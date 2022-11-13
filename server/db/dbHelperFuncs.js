@@ -74,10 +74,9 @@ const addMessage = (chat, cb)=>{
 };
 
 const getUsersMsg = (id, cb) => {
-  Chat.find({ receiver: id, sender: id })
+  Chat.find({receiver: id})
     .then(data => cb(data))
     .catch(err => console.log(err));
-
 };
 
 
