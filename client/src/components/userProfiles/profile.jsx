@@ -5,7 +5,6 @@ const Profile = (props) => {
   return (
     <div>
       <InfoSect/>
-      profiless
     </div>
   );
 };
