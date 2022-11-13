@@ -45,7 +45,7 @@ const Compose = () => {
       />
       <Link to={'/inbox'} >
         <Button
-        onClick={}
+          onClick={setMsg}
           variant='contained'
           endIcon={<Send/>}>
         Send
