@@ -51,7 +51,7 @@ const Poke = ({ selectPoke, getCards }) => {
           <CardActions>
             <Button variant='contained' onClick={() => sendUserId(id)}>Add as Your Favorite</Button>
             <Button variant='contained' onClick={() => selectPoke(id)}>View {`${pokemon.name}'s`} Stats</Button>
-            <Button variant='contained' onClick={() => getCards(pokemon.name)}>View {`${pokemon.name}'s`} Cards</Button>
+            {/* <Button variant='contained' onClick={() => getCards(pokemon.name)}>View {`${pokemon.name}'s`} Cards</Button> */}
           </CardActions>
         </Card>
       </PokeEntry>
