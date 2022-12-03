@@ -32,10 +32,13 @@ A great place to evaluate your pokemon cards and to connect with others into the
 
 # To get it up and Running
      - `npm install`
+     - All Environment variables needed in project are labeled in example.env
+     - Make dup of example.env and rename to .env
      - Get your [OAuth Credentials](https://console.cloud.google.com/apis/credentials)
-     - Get Keys form [Pokemon TCG API](https://pokemontcg.io/)
+     - set your callbackURL for passport
+     - Get Keys from [Pokemon TCG API](https://pokemontcg.io/)
      - Insert your ENVs in a copy of the example.env
-     - Run `npm start`
      - Run `npm run build`
+     - Run `npm start`
      - Open up `localhost:8080`
-     
+

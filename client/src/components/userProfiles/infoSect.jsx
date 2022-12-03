@@ -51,11 +51,11 @@ const InfoSect = () => {
   useEffect(retriveIdData, []);
 
 
-  const userRef = createRef(); // the refrence for the username edit text 
+  const userRef = createRef(); // the refrence for the username edit text
   const descRef = createRef(); // the refrence for the description edit text
 
   return (
-    <div>
+    <div className='info'>
       {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
 
       <Avatar
@@ -74,7 +74,7 @@ const InfoSect = () => {
       {inputVals.clicked ?
         <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
         <h3>{profile.description}</h3>} <br />
-      
+
       {inputVals.clicked ?
         <div><Button variant='contained' onClick={() => {
           handleClick();

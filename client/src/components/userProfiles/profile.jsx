@@ -3,7 +3,7 @@ import InfoSect from './infoSect.jsx';
 
 const Profile = (props) => {
   return (
-    <div>
+    <div className='profile'>
       <InfoSect/>
     </div>
   );
