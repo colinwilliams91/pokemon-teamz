@@ -2,20 +2,9 @@ import React, { useEffect, useState } from 'react';
 import MessageList from './MessageList.jsx';
 import axios from 'axios';
 import Search from './Search.jsx';
-import styled from 'styled-components';
+import {Header, InboxBody} from '../Styled.jsx';
 
 
-const Header = styled.div`
-  font-family:monospace;
-  font-size: 5rem;
-  display: flex;
-  justify-content: center;
-`;
-const Body = styled.div`
- display: flex;
- flex-direction: row;
- justify-content: space-between;
-`;
 
 
 const Inbox = () => {
@@ -33,10 +22,10 @@ const Inbox = () => {
   return (
     <div>
       <Header>Inbox</Header>
-      <Body>
+      <InboxBody>
         <MessageList msg={msg}/>
         <Search/>
-      </Body>
+      </InboxBody>
     </div>
   );
 };
