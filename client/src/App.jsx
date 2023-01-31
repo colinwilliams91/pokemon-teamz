@@ -1,4 +1,4 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 const NavBar = lazy(() => import('./NavBar.jsx'));
@@ -14,8 +14,8 @@ const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
 
 const App = () => (
   <BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
     <NavBar />
-    <React.Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path='/' element={<Profile />} />
         <Route path='inbox' element={< Inbox />} />
@@ -26,7 +26,7 @@ const App = () => (
         <Route path="userProfile:id" element={<NonUserProf />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
-    </React.Suspense>
+    </Suspense>
   </BrowserRouter>
 );
 
