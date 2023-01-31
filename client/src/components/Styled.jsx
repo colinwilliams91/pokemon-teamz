@@ -106,5 +106,14 @@ const Contents = styled.div`
   justify-items: flex-start;
 `;
 
+const CreateCharContainer = styled.div`
+  display: flex;
+  position: relative;
+  top: 20rem;
+  left: 20rem;
+`;
 
-export { Body, FoundUser, Header, InboxBody, UserMsg, UserInfo, Message, ListBody, Input, PokeEntry, Contents };
+
+export { Body, FoundUser, Header, InboxBody,
+  UserMsg, UserInfo, Message, ListBody, Input,
+  PokeEntry, Contents, CreateCharContainer };
