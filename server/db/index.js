@@ -34,7 +34,9 @@ const userSchema = new Schema({
   favPokemonType2: String,
   avatar: String,
   description: String,
-  record: Object
+  wins: Number,
+  losses: Number,
+  draws: Number,
 });
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
@@ -76,11 +78,9 @@ function (accessToken, refreshToken, profile, cb) {
         firstName: profile._json.given_name,
         lastName: profile._json.family_name,
         avatar: profile._json['picture'],
-        record: {
-          wins: 0,
-          losses: 0,
-          draws: 0
-        }
+        wins: 0,
+        losses: 0,
+        draws: 0
       }
     },
     { upsert: true }, // allows functionality option to create what is not there
