@@ -59,8 +59,8 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack --config webpack.config.js --mode production",
-    "server-build": "node server/index.js && webpack --config webpack.config.js --mode production",
+    "build": "webpack --config webpack.config.js",
+    "server-build": "node server/index.js && webpack --config webpack.config.js",
     "lint": "eslint . --ext=.js,.jsx"
   },
   "repository": {
