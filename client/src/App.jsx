@@ -12,6 +12,7 @@ const Inbox = lazy(() => import ('./components/Messages/Inbox.jsx'));
 const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
 
 
+//
 const App = () => (
   <BrowserRouter>
     <NavBar />
