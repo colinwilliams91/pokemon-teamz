@@ -2,13 +2,9 @@ import React, {useState} from 'react';
 import axios from 'axios';
 import FoundUsers from './FoundUsers.jsx';
 import TextField from '@mui/material/TextField';
-import styled from 'styled-components';
+import { Input } from '../Styled.jsx';
 
 
-const Input = styled.div`
-display: flex;
-justify-content: flex-end;
-`;
 
 
 const Search = () => {
