@@ -71,30 +71,33 @@ passport.use(new GoogleStrategy({
 function (accessToken, refreshToken, profile, cb) {
   User.findOneAndUpdate(
     { password: profile._json.email }, // search for the user with this email (password)
-    { $set: { // if id is not found create it with these inputs
-      _id: profile.id,
-      password: profile._json.email,
-      firstName: profile._json.given_name,
-      lastName: profile._json.family_name,
-      avatar: profile._json['picture'],
-      wins: 0,
-      losses: 0,
-      draws: 0
-    }},
-    { upsert: true}, // allows functionality option to create what is not there
+    {
+      $set: { // if id is not found create it with these inputs
+        _id: profile.id,
+        password: profile._json.email,
+        firstName: profile._json.given_name,
+        lastName: profile._json.family_name,
+        avatar: profile._json['picture'],
+        record: {
+          wins: 0,
+          losses: 0,
+          draws: 0
+        }
+      }
+    },
+    { upsert: true }, // allows functionality option to create what is not there
     (err, user) => { // serelize the user
       return cb(err, user);
     }
     // option to allow such functionality
   );
-}
-));
+}));
 const Deck = mongoose.model('Deck', deckSchema);
 const Chat = mongoose.model('Chat', chatSchema);
 passport.use(User.createStrategy());
 
 
-passport.serializeUser( (user, done) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
