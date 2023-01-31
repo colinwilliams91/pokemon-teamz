@@ -8,7 +8,7 @@ import NavBar from './NavBar.jsx';
 import NonUserProf from './components/userProfiles/nonUserProf.jsx';
 import Inbox from './components/Messages/Inbox.jsx';
 import Compose from './components/Messages/Compose.jsx';
-
+import { FireAni } from './components/pokemonMatrix/PokeTypeMatrix.jsx';
 
 // 
 const App = () => (
