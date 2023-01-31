@@ -7,6 +7,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 
 const mongoUri = 'mongodb://localhost/poke';
+// connect to Atlas (Mongo Cloud)
+const { MONGO_URI, MONGO_API_KEY } = process.env;
 
 
 mongoose.connect(mongoUri)
@@ -27,7 +29,7 @@ const userSchema = new Schema({
   },
   deckId: String,
   favPokemonName: String,
-  favPokemonType1: String, 
+  favPokemonType1: String,
   favPokemonImage: String,
   favPokemonType2: String,
   avatar: String,
