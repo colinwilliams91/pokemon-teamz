@@ -1,21 +1,9 @@
 
 import axios from 'axios';
 import React from 'react';
-import styled from 'styled-components';
-import { Button, Card, CardActions, CardContent, CardMedia  } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
 
-
-const CardSect = styled.div`
-  display: inline-block;
-`;
-
-// const Card = styled.div`
-//   margin: 25px;
-// `;
-
-const PokeCard = styled.img`
-  box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-`;
+//moved 2 unsused style components to Styled.jsx - CardSect, PokeCard
 
 const Cards = ({ pokeCards, changePokeCardDisplay }) => {
   // const [cardToAdd, setCardToAdd] = useState({});

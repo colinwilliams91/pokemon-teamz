@@ -1,37 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import {Avatar, Button} from '@mui/material';
 import { Send } from '@mui/icons-material';
+import {UserMsg, UserInfo, Message} from '../Styled.jsx';
 
-const UserMsg = styled.div`
-  display: flex;
-  gap: 50px;
-  box-shadow: 0 0 2px;
-  align-items: center;
-  padding: 2px;
-  border-radius: 5px;
-  margin: 5px;
-  padding-top: 5px;
-
-`;
-
-const UserInfo = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 25%;
-  background-color: none;
-`;
-
-const Message = styled.div`
-  position: relative;
-  margin-left: 0px;
-  padding-left: 0px;
-  display: flex;
-  width: 75%;
-`;
 
 const MessageEntry = ({ msg }) => {
 
