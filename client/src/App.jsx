@@ -1,9 +1,9 @@
 import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import NavBar from './NavBar.jsx';
-import Profile from './components/userProfiles/profile.jsx';
-import NonUserProf from './components/userProfiles/nonUserProf.jsx';
+const NavBar = lazy(() => import('./NavBar.jsx'));
+const Profile = lazy(() => import('./components/userProfiles/profile.jsx'));
+const NonUserProf = lazy(() => import('./components/userProfiles/nonUserProf.jsx'));
 
 const Collection = lazy(() => import('./components/cardCollection/collection.jsx')); // working?
 const MarketPlace = lazy(() => import('./components/marketPlace/marketPlace.jsx'));
