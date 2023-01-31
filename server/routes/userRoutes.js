@@ -9,9 +9,9 @@ User.get('/current', (req, res) => { // get the currently logged in user
   res.status(200).send(req.user); // sends the google auth object from passport
 });
 
-User.get('/find', (req, res)=>{
+User.get('/find', (req, res) => {
   const user = req.query.name;
-  findUser(user, (returnedUsers)=>{
+  findUser(user, (returnedUsers) => {
     if (returnedUsers.length) {
       res.status(200).send(returnedUsers);
     } else {
@@ -21,9 +21,9 @@ User.get('/find', (req, res)=>{
 });
 
 User.get('/findUserId:id', (req, res) => { // get the user at the specified id
-  findUserById(req.params.id, (userInfo)=>{
+  findUserById(req.params.id, (userInfo) => {
     if (userInfo) {
-      res.status(200).send({data: [userInfo, req.user._id]});
+      res.status(200).send({ data: [userInfo, req.user._id] });
     } else {
       res.sendStatus(404);
     }
@@ -50,6 +50,18 @@ User.post('/favpokemon/:id', (req, res) => {
   const { id } = req.params;
   addFavPokemon(req.user._id, id);
   res.status(201).send('work');
+});
+
+//SN: Function to handle request for User data from database request from LeaderBoard
+User.get('/db/users', (req, res) => {
+  obtainAllUsers()
+    .then((userArr) => {
+      console.log(userArr);
+      res.status(201).send(userArr);
+    }).catch((err) => {
+      console.log('GET /db/users', err);
+      res.sendStatus(500);
+    });
 });
 
 
