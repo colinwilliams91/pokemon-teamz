@@ -34,9 +34,7 @@ const userSchema = new Schema({
   favPokemonType2: String,
   avatar: String,
   description: String,
-  wins: Number,
-  losses: Number,
-  draws: Number,
+  record: Object
 });
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
