@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/', express.static(path.join(__dirname, '../client/dist/login')));
 app.use('/home', isLoggedIn, express.static(path.join(__dirname, '../client/dist')));
-app.use( express.static(CLIENT_PATH));
+app.use(express.static(CLIENT_PATH));
 
 
 app.get('/auth/google',

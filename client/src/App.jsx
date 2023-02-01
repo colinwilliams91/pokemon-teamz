@@ -8,7 +8,7 @@ const NonUserProf = lazy(() => import('./components/userProfiles/nonUserProf.jsx
 const Collection = lazy(() => import('./components/cardCollection/collection.jsx')); // working?
 const MarketPlace = lazy(() => import('./components/marketPlace/marketPlace.jsx'));
 const Pokedex = lazy(() => import('./components/pokedex/Pokedex.jsx'));
-const Inbox = lazy(() => import ('./components/Messages/Inbox.jsx'));
+const Inbox = lazy(() => import('./components/Messages/Inbox.jsx'));
 const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
 
 
