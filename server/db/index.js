@@ -78,9 +78,6 @@ function (accessToken, refreshToken, profile, cb) {
         firstName: profile._json.given_name,
         lastName: profile._json.family_name,
         avatar: profile._json['picture'],
-        wins: 0,
-        losses: 0,
-        draws: 0
       }
     },
     { upsert: true }, // allows functionality option to create what is not there
