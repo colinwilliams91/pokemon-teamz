@@ -6,7 +6,7 @@ const PokeTypes = () => {
 
   return (
     <div>
-      <h1>Pokemon World!</h1>
+      <h1>Pokemon Types!</h1>
     </div>
   );
 };
