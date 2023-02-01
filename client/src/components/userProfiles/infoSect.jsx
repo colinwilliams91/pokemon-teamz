@@ -1,8 +1,6 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
 

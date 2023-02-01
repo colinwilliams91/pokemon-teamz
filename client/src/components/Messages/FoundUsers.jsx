@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Avatar } from '@mui/material';
-import { Send } from '@mui/icons-material';
+import { Button, Avatar, Send } from '../../mui/index.jsx';
 import { FoundUser } from '../Styled.jsx';
 
 
