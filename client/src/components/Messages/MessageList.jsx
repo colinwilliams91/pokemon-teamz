@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import MessageEntry from './MessageEntry.jsx';
-import Grid2 from '@mui/material/Unstable_Grid2/Grid2.js';
+import { Grid2 } from '../../mui/index.jsx';
 import { ListBody } from '../Styled.jsx';
 
 
