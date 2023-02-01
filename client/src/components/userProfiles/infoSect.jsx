@@ -50,6 +50,18 @@ const InfoSect = () => {
     }
   };
 
+  // Axios request to get user history
+  const getUserHistory = () => {
+    axios.get('api/user/current')
+      .then((userObj) => {
+        const {wins, losses, draws} = userObj.data;
+        console.log('This is the user object', wins, losses, draws);
+      })
+      .catch((err) => {
+        console.log(err, 'Axios get user history');
+      });
+  };
+
   useEffect(retriveIdData, []);
 
 
@@ -80,6 +92,7 @@ const InfoSect = () => {
 
       {inputVals.clicked ?
         <div><Button variant='contained' onClick={() => {
+          getUserHistory();
           handleClick();
           setInputVals(() => ({ clicked: false }));
           retriveIdData();

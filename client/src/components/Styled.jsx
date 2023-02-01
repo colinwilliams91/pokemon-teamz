@@ -123,7 +123,7 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   display: flex;
   position: relative;
-  top: 35rem;
+  top: 32rem;
   right: 38rem;
 `;
 
