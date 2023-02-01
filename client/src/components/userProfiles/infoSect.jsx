@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
+import UserHistory from './UserHistory.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -50,17 +51,6 @@ const InfoSect = () => {
     }
   };
 
-  // Axios request to get user history
-  const getUserHistory = () => {
-    axios.get('api/user/current')
-      .then((userObj) => {
-        const {wins, losses, draws} = userObj.data;
-        console.log('This is the user object', wins, losses, draws);
-      })
-      .catch((err) => {
-        console.log(err, 'Axios get user history');
-      });
-  };
 
   useEffect(retriveIdData, []);
 
@@ -92,7 +82,6 @@ const InfoSect = () => {
 
       {inputVals.clicked ?
         <div><Button variant='contained' onClick={() => {
-          getUserHistory();
           handleClick();
           setInputVals(() => ({ clicked: false }));
           retriveIdData();
@@ -126,6 +115,8 @@ const InfoSect = () => {
       <TrainerCreatorContainer>
         {inputVals.create ? <TrainerCreator /> : <></>}
       </TrainerCreatorContainer>
+
+      <UserHistory />
 
     </div>
   );
