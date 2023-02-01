@@ -20,6 +20,9 @@ const Layout = () => (
         <li>
           <Link to="/collection">Collection</Link>
         </li>
+        <li>
+          <Link to="/leaderBoard">Leaderboard</Link>
+        </li>
       </ul>
     </nav>
 
