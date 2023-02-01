@@ -1,9 +1,8 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
-import { CreateCharContainer } from '../Styled.jsx';
+import { Avatar, Button, TextField } from '../../mui/index.jsx';
+import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
+import TrainerCreator from './TrainerCreator.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -72,13 +71,13 @@ const InfoSect = () => {
   return (
     <div className='info'>
       {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
-
+      <h2>You!</h2>
       <Avatar
         alt={profile.firstName}
         src={profile.avatar}
         sx={{ width: 100, height: 100 }}
         referrerpolicy="no-referrer"
-        style={{ margin: '1rem' }}
+        style={{ margin: '2rem' }}
       />
 
       <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
@@ -99,17 +98,18 @@ const InfoSect = () => {
           retriveIdData();
         }}>Post</Button></div> : <div></div>}
 
-      Your Favorite Pokemon:
-      <div>
-        <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerpolicy='no-referrer' /> <br />
-        <h2>
-          {profile.favPokemonName}
-        </h2>  <br />
-        <ul>
-          <li>{profile.favPokemonType1}</li>
-          {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
-        </ul>
-      </div>
+      <FavoritePokemon>
+        <b>Your Favorite Pokemon:</b>
+        <div>
+          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerpolicy='no-referrer' /> <br />
+          <h2>
+            {profile.favPokemonName}
+          </h2>  <br />
+          <span>Type: </span>
+          <span>{profile.favPokemonType1}</span>
+          {profile.favPokemonType2 ? <span>/ {profile.favPokemonType2}</span> : <></>}
+        </div>
+      </FavoritePokemon>
 
       <CreateCharContainer>
         <h2>Your Trainer!</h2>
@@ -122,6 +122,10 @@ const InfoSect = () => {
         />
         <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
       </CreateCharContainer>
+
+      <TrainerCreatorContainer>
+        {inputVals.create ? <TrainerCreator /> : <></>}
+      </TrainerCreatorContainer>
 
     </div>
   );

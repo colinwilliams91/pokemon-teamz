@@ -20,6 +20,12 @@ const Layout = () => (
         <li>
           <Link to="/collection">Collection</Link>
         </li>
+        <li>
+          <Link to="/leaderBoard">Leaderboard</Link>
+        </li>
+        <li>
+          <Link to="/pokeTypes">PokeTypes</Link>
+        </li>
       </ul>
     </nav>
 

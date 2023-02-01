@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import {CardMedia, CardActions, Card, Button } from '@mui/material';
+import { CardMedia, CardActions, Card, Button } from '../../mui/index.jsx';
 import { PokeEntry } from '../Styled.jsx';
-
 
 const Poke = ({ selectPoke, getCards }) => {
   const [pokedex, setPokedex] = useState([]); //array of pokemon to be rendered

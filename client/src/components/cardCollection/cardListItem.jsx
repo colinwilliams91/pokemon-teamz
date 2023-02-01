@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import {Button, Card, CardActions, CardContent, CardMedia } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia } from '../../mui/index.jsx';
 
 
 const CardListItem = ({ card }) => {
