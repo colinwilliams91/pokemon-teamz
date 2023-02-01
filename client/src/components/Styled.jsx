@@ -42,7 +42,8 @@ const Header = styled.div`
 `;
 const InboxBody = styled.div`
  display: flex;
- flex-direction: row;
+ flex-wrap: wrap;
+ max-width: 100%;
  justify-content: space-between;
 `;
 
@@ -138,7 +139,7 @@ const blinkHover = keyframes`
       transform: scale(1);
     }
     50% {
-      transform: scale(1.5);
+      transform: scale(1.3);
     }
     100% {
       transform: scale(1);
@@ -146,11 +147,11 @@ const blinkHover = keyframes`
 `;
 
 const TypeDiv = styled.div`
-
-    width: 5rem;
-    height: 5rem;
-    margin: 5rem;
+    width: 6rem;
+    height: 6rem;
+    margin: 4rem;
     padding: 2rem;
+    font-size: .7rem;
     letter-spacing: .2rem;
     cursor: pointer;
     text-align: center;
