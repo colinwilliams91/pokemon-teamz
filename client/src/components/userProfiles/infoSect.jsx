@@ -3,6 +3,7 @@ import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
+import { CreateCharContainer } from '../Styled.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -12,6 +13,7 @@ import TextField from '@mui/material/TextField';
 const InfoSect = () => {
   const [profile, setProfile] = useState({});
   const [inputVals, setInputVals] = useState({});
+  const [character, setCharacter] = useState({});
 
   const retriveIdData = () => { // get the profile object data from db
     axios.get('/api/user/current') // then just return YOU the current user data
@@ -20,7 +22,8 @@ const InfoSect = () => {
         setInputVals({ // set the text on the page to the profile objects username and desc values
           description: profile.description,
           username: profile.username,
-          clicked: false
+          clicked: false,
+          create: false
         });
       })
       .catch(err => console.log(err, 'ERROR ON GET CURRENT USER'));
@@ -63,6 +66,7 @@ const InfoSect = () => {
         src={profile.avatar}
         sx={{ width: 100, height: 100 }}
         referrerpolicy="no-referrer"
+        style={{margin: '1rem'}}
       />
 
       <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
@@ -94,7 +98,17 @@ const InfoSect = () => {
         </ul>
       </div>
 
-
+      <CreateCharContainer>
+        <h2>Your Trainer!</h2>
+        <Avatar
+          alt={profile.firstName}
+          src={profile.avatar}
+          sx={{ width: 100, height: 100 }}
+          referrerpolicy="no-referrer"
+          style={{margin: '1rem'}}
+        />
+        <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
+      </CreateCharContainer>
 
     </div>
   );

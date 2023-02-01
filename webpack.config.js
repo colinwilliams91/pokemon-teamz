@@ -7,6 +7,7 @@ module.exports = {
   entry: path.resolve(__dirname, 'client', 'src', 'index.jsx'),
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js', // set up for code-splitting
     path: path.resolve(__dirname, 'client', 'dist'),
     publicPath: '/'
   },
