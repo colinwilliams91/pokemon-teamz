@@ -110,10 +110,31 @@ const CreateCharContainer = styled.div`
   display: flex;
   position: relative;
   top: 20rem;
-  left: 20rem;
+  right: 42rem;
 `;
 
+const FavoritePokemon = styled.div`
+  display: flex;
+  position: relative;
+  top: 10rem;
+  left: 10rem;
+`;
+
+const TrainerCreatorContainer = styled.div`
+  display: flex;
+  position: relative;
+  top: 35rem;
+  right: 38rem;
+`;
+
+const TrainerCarItem = styled.img`
+  width: 3rem;
+  height: 3rem;
+  margin: 1rem;
+`;
 
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
-  PokeEntry, Contents, CreateCharContainer };
+  PokeEntry, Contents, CreateCharContainer,
+  FavoritePokemon, TrainerCreatorContainer,
+  TrainerCarItem };
