@@ -1,9 +1,9 @@
-import React, { lazy } from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
-import NavBar from './NavBar.jsx';
-import Profile from './components/userProfiles/profile.jsx';
-import NonUserProf from './components/userProfiles/nonUserProf.jsx';
+const NavBar = lazy(() => import('./NavBar.jsx'));
+const Profile = lazy(() => import('./components/userProfiles/profile.jsx'));
+const NonUserProf = lazy(() => import('./components/userProfiles/nonUserProf.jsx'));
 
 const Collection = lazy(() => import('./components/cardCollection/collection.jsx')); // working?
 const MarketPlace = lazy(() => import('./components/marketPlace/marketPlace.jsx'));
@@ -14,8 +14,8 @@ const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
 
 const App = () => (
   <BrowserRouter>
+    <Suspense fallback={<div>Loading...</div>}>
     <NavBar />
-    <React.Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route path='/' element={<Profile />} />
         <Route path='inbox' element={< Inbox />} />
@@ -26,7 +26,7 @@ const App = () => (
         <Route path="userProfile:id" element={<NonUserProf />} />
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
-    </React.Suspense>
+    </Suspense>
   </BrowserRouter>
 );
 
