@@ -5,6 +5,6 @@ client/dist/client_*
 client/dist/vendors-node*
 client/dist/main.bundle.js
 client/dist/main.bundle.js.LICENSE.txt
-.env
 client/dist/client_*
 client/dist/vendors-node*
+.env
