@@ -1,9 +1,11 @@
 const path = require('path');
+require('dotenv').config();
+
 
 const { ENV_DEV } = process.env;
 
 module.exports = {
-  mode: 'development',
+  mode: ENV_DEV || 'production',
   entry: path.resolve(__dirname, 'client', 'src', 'index.jsx'),
   output: {
     filename: '[name].bundle.js',
