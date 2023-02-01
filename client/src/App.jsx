@@ -23,12 +23,12 @@ const App = () => (
         <Route path='/' element={<Profile />} />
         <Route path='inbox' element={< Inbox />} />
         <Route path='compose:id' element={<Compose />} />
-        <Route path="marketPlace" element={<MarketPlace />} />
-        <Route path="pokedex" element={<Pokedex />} />
-        <Route path="collection" element={<Collection />} />
-        <Route path="userProfile:id" element={<NonUserProf />} />
-        <Route path="leaderBoard" element={<LeaderBoard />} />
-        
+        <Route path='marketPlace' element={<MarketPlace />} />
+        <Route path='pokedex' element={<Pokedex />} />
+        <Route path='collection' element={<Collection />} />
+        <Route path='userProfile:id' element={<NonUserProf />} />
+        <Route path='leaderBoard' element={<LeaderBoard />} />
+
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </Suspense>
