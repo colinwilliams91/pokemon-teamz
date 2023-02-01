@@ -10,8 +10,11 @@ const MarketPlace = lazy(() => import('./components/marketPlace/marketPlace.jsx'
 const Pokedex = lazy(() => import('./components/pokedex/Pokedex.jsx'));
 const Inbox = lazy(() => import('./components/Messages/Inbox.jsx'));
 const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
+const LeaderBoard = lazy(() => import('./LeaderBoard.jsx'));
 
 
+
+//
 const App = () => (
   <BrowserRouter>
     <Suspense fallback={<div>Loading...</div>}>
@@ -24,6 +27,8 @@ const App = () => (
         <Route path="pokedex" element={<Pokedex />} />
         <Route path="collection" element={<Collection />} />
         <Route path="userProfile:id" element={<NonUserProf />} />
+        <Route path="leaderBoard" element={<LeaderBoard />} />
+        
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </Suspense>
