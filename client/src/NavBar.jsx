@@ -43,7 +43,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            PokePlay-Pen
+            Pokemon-Teamz
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

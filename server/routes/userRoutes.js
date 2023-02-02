@@ -64,8 +64,6 @@ User.get('/db/users', (req, res) => {
     });
 });
 
-
-
 //post data to user schema to add a user
 User.post('/', (req, res) => { // adds a user to the database useing the google auth object (i would hope)
   res.status(201).send();
