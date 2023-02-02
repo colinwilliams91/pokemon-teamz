@@ -106,11 +106,7 @@ const InfoSect = () => {
           src={profile.avatar}
           sx={{ width: 100, height: 100 }}
           referrerPolicy="no-referrer"
-<<<<<<< HEAD
           style={{ margin: '1rem' }}
-=======
-          style={{margin: '1rem'}}
->>>>>>> ca6ed43 (change referrerpolicy to referrPolicy to remove error from console)
         />
         <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
       </CreateCharContainer>

@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 
-const { User } = require('./routes/userRoutes.js');
+let { User } = require('./routes/userRoutes.js');
 const { Deck } = require('./routes/deckRoutes.js');
 const { Pokedex } = require('./routes/pokedexRoutes.js');
 const { Chat } = require('./routes/chat');
@@ -73,12 +73,14 @@ app.use('/api/pokedex', Pokedex);
 app.use('/api/deck', Deck);
 app.use('/api/chat', Chat);
 
-//SN: Function to handle request for User data from database request from LeaderBoard
 User.get('/db/users', (req, res) => {
-  data = obtainAllUsers();
-  console.log('heeeeeeeeeeeeeeeeeeeere', data);
-  res.status(201).send(data);
-
+  User.find({})
+    .then((users) => {
+      res.status(201).send(users);
+    })
+    .catch((err) => {
+      err;
+    });
 });
 
 app.use('*', (req, res) => {
