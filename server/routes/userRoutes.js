@@ -52,6 +52,12 @@ User.post('/favpokemon/:id', (req, res) => {
   res.status(201).send('work');
 });
 
+User.patch('/battle/results', (req, res) => {
+  const { results } = req.body;
+  updateRecords(req.user._id, results);
+  res.status(200).send('records updated');
+});
+
 //SN: Function to handle request for User data from database request from LeaderBoard
 User.get('/db/users', (req, res) => {
   obtainAllUsers()
