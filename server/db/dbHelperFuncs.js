@@ -3,13 +3,12 @@ const { Deck, User, Chat } = require('./index.js');
 const axios = require('axios');
 
 const obtainAllUsers = () => {
-  User.find({})
+  return User.find({})
     .then((users) => {
-      console.log('helper', users);
       return users;
     })
     .catch((err) => {
-      err;
+      console.error('obtainAllUsers failed', err);
     });
 };
 
