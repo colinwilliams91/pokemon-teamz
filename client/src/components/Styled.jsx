@@ -134,6 +134,25 @@ const TrainerCarItem = styled.img`
   margin: 1rem;
 `;
 
+const PokeTypesBody = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
+`;
+
+
+const OuterTypeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  width: 16.6666666667%;
+  height: 33.33333%;
+`;
+
+
+
+
 const blinkHover = keyframes`
     0% {
       transform: scale(1);
@@ -147,24 +166,29 @@ const blinkHover = keyframes`
 `;
 
 const TypeDiv = styled.div`
-    width: 6rem;
-    height: 6rem;
-    margin: 4rem;
-    padding: 2rem;
-    font-size: .7rem;
-    letter-spacing: .2rem;
-    cursor: pointer;
-    text-align: center;
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem;
+    padding: 1rem;
     border-radius: 50%;
-    font-family: 'Pokemon Solid', sans-serif;
-    background: linear-gradient(to bottom, #ff0000, #ffff00);
+  
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
     }
 `;
 
-export { Body, FoundUser, Header, InboxBody,
+const TextTypeDiv = styled.h1`
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .2rem;
+    text-align: center;
+`;
+
+export {
+  Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem, TypeDiv };
+  TrainerCarItem, TypeDiv, TextTypeDiv, 
+  OuterTypeContainer, PokeTypesBody
+};
