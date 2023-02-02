@@ -1,10 +1,9 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
+import UserHistory from './UserHistory.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -52,6 +51,7 @@ const InfoSect = () => {
     }
   };
 
+
   useEffect(retriveIdData, []);
 
 
@@ -66,7 +66,7 @@ const InfoSect = () => {
         alt={profile.firstName}
         src={profile.avatar}
         sx={{ width: 100, height: 100 }}
-        referrerpolicy="no-referrer"
+        referrerPolicy="no-referrer"
         style={{ margin: '2rem' }}
       />
 
@@ -90,7 +90,7 @@ const InfoSect = () => {
       <FavoritePokemon>
         <b>Your Favorite Pokemon:</b>
         <div>
-          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerpolicy='no-referrer' /> <br />
+          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
           <h2>
             {profile.favPokemonName}
           </h2>  <br />
@@ -106,7 +106,7 @@ const InfoSect = () => {
           alt={profile.firstName}
           src={profile.avatar}
           sx={{ width: 100, height: 100 }}
-          referrerpolicy="no-referrer"
+          referrerPolicy="no-referrer"
           style={{ margin: '1rem' }}
         />
         <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
@@ -115,6 +115,8 @@ const InfoSect = () => {
       <TrainerCreatorContainer>
         {inputVals.create ? <TrainerCreator /> : <></>}
       </TrainerCreatorContainer>
+
+      <UserHistory />
 
     </div>
   );

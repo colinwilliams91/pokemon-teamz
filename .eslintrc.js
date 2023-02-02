@@ -2,7 +2,7 @@ module.exports = {
   env: {
     'es6': true
   },
-  parserOptions: {
+  parserOptions: { // eslint parser ?
     sourceType: 'module',
     ecmaVersion: 9,
     ecmaFeatures: {

@@ -1,8 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Avatar, Button} from '@mui/material';
-import { Send } from '@mui/icons-material';
+import {Avatar, Button, Send } from '../../mui/index.jsx';
 import {UserMsg, UserInfo, Message} from '../Styled.jsx';
 
 
@@ -29,7 +28,7 @@ const MessageEntry = ({ msg }) => {
           <Avatar
             src={sender.avatar}
             alt={sender.name}
-            referrerpolicy="no-referrer"
+            referrerPolicy="no-referrer"
           />
         </Link>
         <p>{sender.username}</p>

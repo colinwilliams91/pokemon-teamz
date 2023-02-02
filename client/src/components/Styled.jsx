@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 
 const Body = styled.div`
@@ -123,7 +123,10 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   display: flex;
   position: relative;
-  top: 35rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  top: 32rem;
   right: 38rem;
 `;
 
@@ -133,8 +136,59 @@ const TrainerCarItem = styled.img`
   margin: 1rem;
 `;
 
+
+const TrainerHair = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
+const TrainerFace = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
+const TrainerBody = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
+
+const blinkHover = keyframes`
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.5);
+    }
+    100% {
+      transform: scale(1);
+    }
+`;
+
+const TypeDiv = styled.div`
+
+    width: 5rem;
+    height: 5rem;
+    margin: 5rem;
+    padding: 2rem;
+    letter-spacing: .2rem;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 50%;
+    font-family: 'Pokemon Solid', sans-serif;
+    background: linear-gradient(to bottom, #ff0000, #ffff00);
+    &:hover{
+    animation: ${blinkHover} 1.5s ease-in-out infinite;
+    }
+`;
+
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem };
+  TrainerCarItem, TrainerHair, TrainerFace,
+  TrainerBody, TypeDiv };
+  

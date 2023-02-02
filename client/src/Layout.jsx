@@ -23,6 +23,9 @@ const Layout = () => (
         <li>
           <Link to="/leaderBoard">Leaderboard</Link>
         </li>
+        <li>
+          <Link to="/pokeTypes">PokeTypes</Link>
+        </li>
       </ul>
     </nav>
 
