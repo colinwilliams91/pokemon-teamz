@@ -123,6 +123,9 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   display: flex;
   position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   top: 32rem;
   right: 38rem;
 `;
@@ -133,8 +136,27 @@ const TrainerCarItem = styled.img`
   margin: 1rem;
 `;
 
+const TrainerHair = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
+const TrainerFace = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
+const TrainerBody = styled.div`
+  display: flex;
+  position: relative;
+  margin: 1rem;
+`;
+
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem };
+  TrainerCarItem, TrainerHair, TrainerFace,
+  TrainerBody };
