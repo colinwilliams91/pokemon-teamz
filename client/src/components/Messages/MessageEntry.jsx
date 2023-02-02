@@ -28,7 +28,7 @@ const MessageEntry = ({ msg }) => {
           <Avatar
             src={sender.avatar}
             alt={sender.name}
-            referrerpolicy="no-referrer"
+            referrerPolicy="no-referrer"
           />
         </Link>
         <p>{sender.username}</p>

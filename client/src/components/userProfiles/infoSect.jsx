@@ -66,7 +66,7 @@ const InfoSect = () => {
         alt={profile.firstName}
         src={profile.avatar}
         sx={{ width: 100, height: 100 }}
-        referrerpolicy="no-referrer"
+        referrerPolicy="no-referrer"
         style={{ margin: '2rem' }}
       />
 
@@ -90,7 +90,7 @@ const InfoSect = () => {
       <FavoritePokemon>
         <b>Your Favorite Pokemon:</b>
         <div>
-          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerpolicy='no-referrer' /> <br />
+          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
           <h2>
             {profile.favPokemonName}
           </h2>  <br />
@@ -106,7 +106,7 @@ const InfoSect = () => {
           alt={profile.firstName}
           src={profile.avatar}
           sx={{ width: 100, height: 100 }}
-          referrerpolicy="no-referrer"
+          referrerPolicy="no-referrer"
           style={{ margin: '1rem' }}
         />
         <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />

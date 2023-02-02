@@ -10,6 +10,10 @@ const { Chat } = require('./routes/chat');
 
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 
+const axios = require('axios');
+require('dotenv').config();
+const { CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET } = process.env;
+
 const app = express();
 app.use(session({
   secret: 'Our little secret.',
@@ -45,6 +49,23 @@ app.get('/auth/failure', (req, res) => {
   res.redirect('/login');
 });
 
+app.get('/cloudinary', (req, res) => {
+  axios.get(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/resources/image`, {
+    auth: {
+      username: CLOUDINARY_API_KEY,
+      password: CLOUDINARY_API_SECRET
+    }
+  })
+    .then(results => {
+      console.log('RESULTS', results.data.resources); // results.data.resources[0].url
+      console.log('NEXT CURSOR', results.data.next_cursor);
+      res.status(200).send(results.data.resources);
+    })
+    .catch(err => {
+      console.log('Error from cloudinary?', err);
+      res.sendStatus(500);
+    });
+});
 
 app.use('/api/user', User);
 app.use('/api/pokedex', Pokedex);

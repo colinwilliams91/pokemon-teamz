@@ -22,7 +22,7 @@ const NonUserProf = () => {
 
   return (
     <div>
-      <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br />
+      <img alt={profile.firstName} width='100px' src={profile.avatar} referrerPolicy="no-referrer" /> <br />
 
       <h1>{profile.username}</h1>
 
@@ -30,7 +30,7 @@ const NonUserProf = () => {
 
       Favorite Pokemon:
       <div>
-        <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerpolicy='no-referrer' /> <br />
+        <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
         <h2>
           {profile.favPokemonName}
         </h2>  <br />
