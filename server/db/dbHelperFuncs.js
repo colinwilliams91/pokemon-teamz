@@ -2,8 +2,14 @@ const db = require('mongoose');
 const { Deck, User, Chat } = require('./index.js');
 const axios = require('axios');
 
-const obtainAllUsers = function () {
-  User.find({});
+const obtainAllUsers = () => {
+  return User.find({})
+    .then((users) => {
+      return users;
+    })
+    .catch((err) => {
+      console.error('obtainAllUsers failed', err);
+    });
 };
 
 const createUser = function (data) {
