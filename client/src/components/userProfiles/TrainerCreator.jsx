@@ -19,38 +19,34 @@ const TrainerCreator = () => {
   }, []);
 
   return (
-    <>
-      <TrainerHair>
-        <Carousel slide={false} indicators={false} onSelect={handleSelect}>
-          <Carousel.Item>
-            <TrainerCarItem
-              src=""
-              alt="Hair"
-            />
-          </Carousel.Item>
-        </Carousel>
-      </TrainerHair>
-      <TrainerFace>
-        <Carousel slide={false} indicators={false} onSelect={handleSelect}>
-          <Carousel.Item>
-            <TrainerCarItem
-              src=""
-              alt="Face"
-            />
-          </Carousel.Item>
-        </Carousel>
-      </TrainerFace>
-      <TrainerBody>
-        <Carousel slide={false} indicators={false} onSelect={handleSelect}>
-          <Carousel.Item>
-            <TrainerCarItem
-              src=""
-              alt="Body"
-            />
-          </Carousel.Item>
-        </Carousel>
-      </TrainerBody>
-    </>
+
+    <Carousel slide={false} indicators={false} onSelect={handleSelect}>
+      <Carousel.Item as='div'>
+        <TrainerCarItem
+          src="https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/1_ezqvts.png"
+          alt="First Slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <TrainerCarItem
+          src="https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png"
+          alt="Second Slide"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <TrainerCarItem
+          src="https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/2_wn0jws.png"
+          alt="Trainer"
+        />
+      </Carousel.Item>
+      <Carousel.Item>
+        <TrainerCarItem
+          src="https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/3_g5v7we.png"
+          alt="Trainer"
+        />
+      </Carousel.Item>
+    </Carousel>
+
   );
 };
 
