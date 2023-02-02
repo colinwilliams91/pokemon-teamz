@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import { useLocation, Link} from 'react-router-dom';
 import axios from 'axios';
-import { Button, TextField} from '@mui/material';
-import { Send } from '@mui/icons-material';
+import { Button, TextField, Send } from '../../mui/index.jsx';
 import { Body } from '../Styled.jsx';
 
 

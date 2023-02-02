@@ -1,10 +1,9 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import TextField from '@mui/material/TextField';
+import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
+import UserHistory from './UserHistory.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -51,6 +50,7 @@ const InfoSect = () => {
       changeDescription(descRef.current.value); // if the description field is not empty change the description
     }
   };
+
 
   useEffect(retriveIdData, []);
 
@@ -115,6 +115,8 @@ const InfoSect = () => {
       <TrainerCreatorContainer>
         {inputVals.create ? <TrainerCreator /> : <></>}
       </TrainerCreatorContainer>
+
+      <UserHistory />
 
     </div>
   );
