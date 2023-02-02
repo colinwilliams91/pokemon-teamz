@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 
-let { User } = require('./routes/userRoutes.js');
+const { User } = require('./routes/userRoutes.js');
 const { Deck } = require('./routes/deckRoutes.js');
 const { Pokedex } = require('./routes/pokedexRoutes.js');
 const { Chat } = require('./routes/chat');
@@ -73,15 +73,7 @@ app.use('/api/pokedex', Pokedex);
 app.use('/api/deck', Deck);
 app.use('/api/chat', Chat);
 
-User.get('/db/users', (req, res) => {
-  User.find({})
-    .then((users) => {
-      res.status(201).send(users);
-    })
-    .catch((err) => {
-      err;
-    });
-});
+
 
 app.use('*', (req, res) => {
   res.sendFile(path.join(CLIENT_PATH, 'index.html'), (err) => {
