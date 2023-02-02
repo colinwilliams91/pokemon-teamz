@@ -53,14 +53,20 @@ const BattleView = () => {
     <>
       <div> Battle Screen </div>
       <div> Get a team that includes your favorite Pokemon!</div>
+
       <div>Your favorite pokemon: {favMon.favPokemonName}</div>
+      <img src={profile.favPokemonImage} />
+      <span>Type: </span>
+      <span>{favMon.favPokemonType1}</span>
+      {favMon.favPokemonType2 ? <span>/ {favMon.favPokemonType2}</span> : <></>}
+      <p></p>
       <button onClick={teamGen}> Generate Team</button>
       <div> Your Team: INSERT GRAPHIC HERE</div>
       <div>YOU BATTLED WELL! Report the result below!</div>
       <button onClick={handleWin}> Log a win</button>
       <button onClick={handleLoss}> Log a loss</button>
       <button onClick={handleDraw}> Log a draw</button>
-      
+
     </>
   );
 };
