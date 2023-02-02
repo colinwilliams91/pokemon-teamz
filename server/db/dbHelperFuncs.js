@@ -12,7 +12,7 @@ const createUser = function (data) {
 
 
 const findUser = (user, cb) => {
-  User.find({ username: { $regex: `${user}`, $options: 'i' }})
+  User.find({ username: { $regex: `${user}`, $options: 'i' } })
     .then(foundUsers => cb(foundUsers))
     .catch(err => console.log(err));
 };
@@ -30,6 +30,7 @@ const changeUsername = (loggedInId, newName) => { //DOES NOT WORK
     .then(data => data)
     .catch(err => console.log(err));
 };
+
 
 const changeDescription = (loggedInId, newDescription) => {
   User.findByIdAndUpdate(
@@ -56,6 +57,13 @@ const addFavPokemon = (loggedInId, id) => {
 
 };
 
+//MADE BY BEN
+const updateRecords = (loggedInId, records) => {
+  User.findOneAndUpdate({loggedInId}, records)
+    .then(userDoc => userDoc)
+    .catch( err => console.err(err));
+};
+
 const addCard = (card, cb) => {
   Deck.create(card)
     .catch(error => console.log(error));
@@ -67,14 +75,14 @@ const getMarketCards = (cb) => {
     .catch((err) => console.log(err));
 };
 
-const addMessage = (chat, cb)=>{
+const addMessage = (chat, cb) => {
   Chat.create(chat)
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
 
 const getUsersMsg = (id, cb) => {
-  Chat.find({receiver: id})
+  Chat.find({ receiver: id })
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
@@ -93,5 +101,6 @@ module.exports = {
   addMessage,
   getUsersMsg,
   addFavPokemon,
-  getMarketCards
+  getMarketCards,
+  updateRecords
 };
