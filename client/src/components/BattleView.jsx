@@ -4,7 +4,7 @@ import axios from 'axios';
 const BattleView = () => {
   const [player, setPlayer] = useState({});
   const [playerTeam, setPlayerTeam] = useState([]);
-  const [rivalTeam, setRivalTeam] = useState([]);
+  const [rival, setRival] = useState({});
   const [matchups, setMatchups] = useState({});
 
   const matchupPopulate = () => {
@@ -30,40 +30,6 @@ const BattleView = () => {
     });
   };
 
-  const teamGen = () => {
-    console.log('Hardcoded an additional 5 mons onto player team. Resulting Team:');
-    const generatedTeam = [
-      player.favPokemonName,
-      'meowth',
-      'onix',
-      'gyarados',
-      'rhydon',
-      'nidoqueen'
-    ];
-    console.log(generatedTeam);
-    setPlayerTeam(generatedTeam);
-  };
-
-  const rivalGen = () => {
-    if (playerTeam.length) {
-      console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
-      const generatedTeam = [
-        'tropius',
-        'tropius',
-        'tropius',
-        'tropius',
-        'tropius',
-        'tropius'
-      ];
-      console.log(generatedTeam);
-      setRivalTeam(generatedTeam);
-    } else {
-      console.log('You haven\'t gotten a team for battling yet!');
-    }
-
-
-  };
-
   const getFavorite = () => {
     axios.get('api/user/current')
       .then((result) => {
@@ -73,17 +39,62 @@ const BattleView = () => {
       });
   };
 
+  useEffect(() => {
+    getFavorite();
+    matchupPopulate();
+  }, []);
+
+  const teamGen = () => {
+    console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+    const generatedTeam = [
+      player.favPokemonName,
+      Math.floor(Math.random() * (151) + 1),
+      Math.floor(Math.random() * (152 - 1) + 1),
+      Math.floor(Math.random() * (152 - 1) + 1),
+      Math.floor(Math.random() * (152 - 1) + 1),
+      Math.floor(Math.random() * (152 - 1) + 1),
+    ];
+    console.log(generatedTeam);
+    setPlayerTeam(generatedTeam);
+  };
+
+  const rivalGen = () => {
+    if (playerTeam.length) {
+      console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
+      const generatedRival = {};
+      const rivals = { 
+        BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius' ],
+        AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
+        ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
+        TrainerZazu: ['likitung', 'tangela', 'mr-mime', 'farfetchd', 'psyduck', 'seel'],
+        PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle' ],
+        GhostHammer: ['mimikyu-disguised', 'gourgeist-average', 'palossand', 'phantump', 'litwick', 'snorlax'],
+        FatTubBetty: ['mr-mime', 'probopass', 'ludicolo', 'jynx', 'shuckle', 'pelipper'],
+      };
+      generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
+      generatedRival.team = rivals[generatedRival.name];
+      
+      console.log(generatedRival);
+      setRival(generatedRival);
+    } else {
+      console.log('You haven\'t gotten a team for battling yet!');
+    }
+  };
+
   const handleResult = (battleResult) => {
     const battleRecord = {};
     switch (battleResult) {
     case 'win':
       battleRecord.wins = player.wins + 1;
+      setPlayer({...player, wins: player.wins + 1 });
       break;
     case 'loss':
       battleRecord.losses = player.losses + 1;
+      setPlayer({...player, losses: player.losses + 1 });
       break;
     case 'draw':
       battleRecord.draws = player.draws + 1;
+      setPlayer({...player, draws: player.draws + 1 });
       break;
     }
     console.log('RESULT LOGGED: ', battleResult, battleRecord );
