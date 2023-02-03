@@ -286,7 +286,8 @@ export { Body, FoundUser, Header, InboxBody,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeImg, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, TextTypeDiv, 
-  OuterTypeContainer, PokeTypesBody
+  TrainerBody, TypeImg, UserHistBox, UserHistBox1, 
+  UserHistBox2, ColorBar, Text, Text2, Text3, 
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody
 };
 
