@@ -134,27 +134,11 @@ const TrainerCarItem = styled.img`
   display: flex;
   position: relative;
   margin: 1rem;
+  cursor: grab;
+  &:active{
+    cursor: grabbing;
+  }
 `;
-
-
-const TrainerHair = styled.div`
-  display: flex;
-  position: relative;
-  margin: 1rem;
-`;
-
-const TrainerFace = styled.div`
-  display: flex;
-  position: relative;
-  margin: 1rem;
-`;
-
-const TrainerBody = styled.div`
-  display: flex;
-  position: relative;
-  margin: 1rem;
-`;
-
 
 const blinkHover = keyframes`
   0% {
@@ -247,6 +231,7 @@ export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeDiv, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3 };
+  TrainerCarItem, TypeDiv, UserHistBox,
+  UserHistBox1, UserHistBox2, ColorBar,
+  Text, Text2, Text3 };
 
