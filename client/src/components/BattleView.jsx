@@ -67,9 +67,10 @@ const BattleView = () => {
         AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
         TrainerZazu: ['likitung', 'tangela', 'mr-mime', 'farfetchd', 'psyduck', 'seel'],
-        PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle' ],
+        SaltySeagull:['ponyta', 'staryu', 'vulpix', 'gengar', 'eevee', 'bulbasaur'],
         GhostHammer: ['mimikyu-disguised', 'gourgeist-average', 'palossand', 'phantump', 'litwick', 'snorlax'],
         FatTubBetty: ['mr-mime', 'probopass', 'ludicolo', 'jynx', 'shuckle', 'pelipper'],
+        PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle' ],
       };
       generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
       generatedRival.team = rivals[generatedRival.name];
