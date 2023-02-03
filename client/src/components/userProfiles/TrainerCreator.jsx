@@ -1,13 +1,15 @@
 import { TrainerCarItem, TrainerHair, TrainerFace, TrainerBody } from '../Styled.jsx';
-import React, { useState, useEffect, createRef } from 'react';
+import React, { useState, useEffect, createRef, useContext } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { TrainerContext } from './infoSect.jsx';
 import axios from 'axios';
 
 
 const TrainerCreator = () => {
 
   const [index, setIndex] = useState(0);
+  const { character, setCharacter } = useContext(TrainerContext);
   const avatarRef = createRef('');
 
   const handleSelect = (selectedIndex, e) => {
@@ -17,6 +19,7 @@ const TrainerCreator = () => {
   const handleSave = (e) => {
     avatarRef.current = e.target.src;
     console.log('Avatar String', avatarRef.current);
+    setCharacter(avatarRef.current);
     axios.patch('api/user/updateRecords', { trainer: avatarRef.current })
       .then((results) => {
         console.log('SUCCESS sending TRAINER AXIOS PATCH', results);
