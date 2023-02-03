@@ -1,63 +1,105 @@
-import React from 'react';
-import Table from 'react-bootstrap/Table';
+import React, { useState, useEffect } from 'react';
+//import Table from 'react-bootstrap/Table';
 import axios from 'axios';
+import Leader from './Leader.jsx';
+
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from './mui/index.jsx';
+
+
+const createData = (rank, name, wins) => {
+  return { rank, name, wins };
+};
+
+
+
 
 
 
 const LeaderBoard = () => {
-  //axios request to server/database to get Name and Score
-  const getLeaders = () => {
-    axios.get('db/users')
-      .then((data) => {
-        console.log(data);
-      }).err((err) => {
+
+
+
+  const [leaders, setLeaders] = useState([]);
+
+
+  const getAllLeaders = () => {
+    axios.get('/api/user/db/users')
+      .then((users) => {
+        setLeaders(users.data);
+      })
+      .catch((err) => {
         console.log(err);
       });
+
   };
-  //getLeaders();
+
+
+
+  useEffect(() => {
+    getAllLeaders();
+
+  }, []);
+  console.log('leaders:', leaders);
+
+  const rows = leaders.map((leader, i) => {
+    console.log(i, leader.firstName);
+    return createData(i, leader.firstName, leader.wins);
+  });
+  console.log('rows', rows);
+
+  // return (
+  //   <Table>
+  //     <thead>
+  //       <tr>
+  //         <th>Rank</th>
+  //         <th>Name</th>
+  //         <th>Points</th>
+  //       </tr>
+  //     </thead>
+  //     <tbody>
+  //       {leaders.map((leader, i) => (
+  //         <tr key={i}>
+  //           <td>{i}</td>
+  //           <td>{leader.firstName}</td>
+  //           <td>{leader.wins}</td>
+  //         </tr>
+  //       ))}
+  //     </tbody>
+  //   </Table >
+  // );
 
   return (
-
-    <Table striped bordered hover>
-      <h2>LeaderBoard</h2>
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>User</th>
-          <th>Points</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>I.Tusk</td>
-          <td>10000000000</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>B.McHammer</td>
-          <td>1888888</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>S.P.Beets</td>
-          <td>190999</td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>J.Valjean</td>
-          <td>193</td>
-        </tr>
-      </tbody>
-    </Table>
-
-
-
-
+    <TableContainer component={Paper}>
+      <Table className="leader-table" sx={{ minWidth: 650 }} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell align="right"><b>Rank</b></TableCell>
+            <TableCell align="right"><b>Player</b></TableCell>
+            <TableCell align="right"><b>Wins</b></TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {rows.map((row, i) => (
+            <TableRow
+              key={i}
+              row={row}
+              sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+            >
+              <TableCell align="right">{i + 1}</TableCell>
+              <TableCell align="right">{row.name}</TableCell>
+              <TableCell align="right">{row.wins}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 
-
 };
+
+
+
+
 
 export default LeaderBoard;
 

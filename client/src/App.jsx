@@ -12,6 +12,7 @@ const Inbox = lazy(() => import('./components/Messages/Inbox.jsx'));
 const Compose = lazy(() => import('./components/Messages/Compose.jsx'));
 const LeaderBoard = lazy(() => import('./LeaderBoard.jsx'));
 const PokeTypes = lazy(() => import('./PokeTypes.jsx'));
+const BattleView = lazy(() => import('./components/BattleView.jsx'));
 
 
 const App = () => (
@@ -28,6 +29,7 @@ const App = () => (
         <Route path='userProfile:id' element={<NonUserProf />} />
         <Route path='leaderBoard' element={<LeaderBoard />} />
         <Route path='pokeTypes' element={<PokeTypes />} />
+        <Route path="battler" element={<BattleView />}/>
         <Route path='*' element={<Navigate to='/' replace />} />
       </Routes>
     </Suspense>

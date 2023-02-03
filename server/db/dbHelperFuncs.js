@@ -2,8 +2,14 @@ const db = require('mongoose');
 const { Deck, User, Chat } = require('./index.js');
 const axios = require('axios');
 
-const obtainAllUsers = function () {
-  User.find({});
+const obtainAllUsers = () => {
+  return User.find({})
+    .then((users) => {
+      return users;
+    })
+    .catch((err) => {
+      console.error('obtainAllUsers failed', err);
+    });
 };
 
 const createUser = function (data) {
@@ -12,7 +18,7 @@ const createUser = function (data) {
 
 
 const findUser = (user, cb) => {
-  User.find({ username: { $regex: `${user}`, $options: 'i' }})
+  User.find({ username: { $regex: `${user}`, $options: 'i' } })
     .then(foundUsers => cb(foundUsers))
     .catch(err => console.log(err));
 };
@@ -30,6 +36,7 @@ const changeUsername = (loggedInId, newName) => { //DOES NOT WORK
     .then(data => data)
     .catch(err => console.log(err));
 };
+
 
 const changeDescription = (loggedInId, newDescription) => {
   User.findByIdAndUpdate(
@@ -56,6 +63,18 @@ const addFavPokemon = (loggedInId, id) => {
 
 };
 
+//MADE BY BEN
+const updateRecords = (loggedInId, records) => {
+  console.log('got into db helpers');
+  console.log(loggedInId, records);
+  return User.findOneAndUpdate({ _id: loggedInId }, records)
+    .then((userDoc) => {
+      console.log('got data back from db');
+      return userDoc;
+    })
+    .catch( err => console.err(err));
+};
+
 const addCard = (card, cb) => {
   Deck.create(card)
     .catch(error => console.log(error));
@@ -67,14 +86,14 @@ const getMarketCards = (cb) => {
     .catch((err) => console.log(err));
 };
 
-const addMessage = (chat, cb)=>{
+const addMessage = (chat, cb) => {
   Chat.create(chat)
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
 
 const getUsersMsg = (id, cb) => {
-  Chat.find({receiver: id})
+  Chat.find({ receiver: id })
     .then(data => cb(data))
     .catch(err => console.log(err));
 };
@@ -93,5 +112,6 @@ module.exports = {
   addMessage,
   getUsersMsg,
   addFavPokemon,
-  getMarketCards
+  getMarketCards,
+  updateRecords
 };

@@ -67,7 +67,7 @@ const InfoSect = () => {
         src={profile.avatar}
         sx={{ width: 100, height: 100 }}
         referrerPolicy="no-referrer"
-        style={{ margin: '2rem' }}
+        style={{margin: '1rem'}}
       />
 
       <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
@@ -87,18 +87,17 @@ const InfoSect = () => {
           retriveIdData();
         }}>Post</Button></div> : <div></div>}
 
-      <FavoritePokemon>
-        <b>Your Favorite Pokemon:</b>
-        <div>
-          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
-          <h2>
-            {profile.favPokemonName}
-          </h2>  <br />
-          <span>Type: </span>
-          <span>{profile.favPokemonType1}</span>
-          {profile.favPokemonType2 ? <span>/ {profile.favPokemonType2}</span> : <></>}
-        </div>
-      </FavoritePokemon>
+      Your Favorite Pokemon:
+      <div>
+        <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
+        <h2>
+          {profile.favPokemonName}
+        </h2>  <br />
+        <ul>
+          <li>{profile.favPokemonType1}</li>
+          {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
+        </ul>
+      </div>
 
       <CreateCharContainer>
         <h2>Your Trainer!</h2>

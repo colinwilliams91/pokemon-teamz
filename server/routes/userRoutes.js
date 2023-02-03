@@ -1,5 +1,5 @@
 const db = require('mongoose');
-const { obtainAllUsers, createUser, findUser, findUserById, changeUsername, changeDescription, addFavPokemon } = require('../db/dbHelperFuncs.js');
+const { obtainAllUsers, updateRecords, createUser, findUser, findUserById, changeUsername, changeDescription, addFavPokemon } = require('../db/dbHelperFuncs.js');
 const { Router } = require('express');
 const User = Router();
 const axios = require('axios');
@@ -50,6 +50,13 @@ User.post('/favpokemon/:id', (req, res) => {
   const { id } = req.params;
   addFavPokemon(req.user._id, id);
   res.status(201).send('work');
+});
+
+User.patch('/updateRecords', (req, res) => {
+  console.log('got into server endpoint');
+  console.log('req: ', req);
+  updateRecords(req.user._id, req.body); //thats the issue right there
+  res.status(200).send('records updated');
 });
 
 //SN: Function to handle request for User data from database request from LeaderBoard
