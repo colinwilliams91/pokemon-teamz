@@ -38,7 +38,9 @@ A great place to evaluate your pokemon cards and to connect with others into the
      - set your callbackURL for passport
      - Get Keys from [Pokemon TCG API](https://pokemontcg.io/)
      - Insert your ENVs in a copy of the example.env
+      - Start database
      - Run `npm run build`
+     - Run `npm run seed`
      - Run `npm start`
      - Open up `localhost:8080`
 

@@ -42,7 +42,8 @@ const Header = styled.div`
 `;
 const InboxBody = styled.div`
  display: flex;
- flex-direction: row;
+ flex-wrap: wrap;
+ max-width: 100%;
  justify-content: space-between;
 `;
 
@@ -136,6 +137,8 @@ const TrainerCreatorContainer = styled.div`
 const TrainerCarItem = styled.img`
   display: flex;
   position: relative;
+  display: flex;
+  position: relative;
   margin: 1rem;
   cursor: grab;
   &:active{
@@ -143,19 +146,48 @@ const TrainerCarItem = styled.img`
   }
 `;
 
-const blinkHover = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+
+const PokeTypesBody = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
 `;
 
-const TypeDiv = styled.div`
+
+const OuterTypeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  align-items: center;
+  width: 16.6666666667%;
+  height: 33.33333%;
+`;
+
+
+
+
+const blinkHover = keyframes`
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
+`;
+
+const TypeImg = styled.img`
+    width: 4rem;
+    height: 4rem;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 50%;
+
+    &:hover{
+    animation: ${blinkHover} 1.5s ease-in-out infinite;
+    }
   width: 5rem;
   height: 5rem;
   margin: 5rem;
@@ -230,11 +262,19 @@ const Text3 = styled.div`
   font-size: 50px;
 `;
 
+const TextTypeDiv = styled.h1`
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .2rem;
+    text-align: center;
+`;
+
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem, TypeDiv, UserHistBox,
-  UserHistBox1, UserHistBox2, ColorBar,
-  Text, Text2, Text3 };
+  TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
+  UserHistBox2, ColorBar, Text, Text2, Text3,
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody
+};
 
