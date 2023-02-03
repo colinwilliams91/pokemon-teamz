@@ -11,7 +11,10 @@ const mongoUri = 'mongodb://localhost/poke';
 const { MONGO_URI, MONGO_API_KEY } = process.env;
 
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
   .then(() => console.log('connected to mongodb'))
   .catch(err => console.log('you did not connect to mongodb'));
 
@@ -33,6 +36,7 @@ const userSchema = new Schema({
   favPokemonImage: String,
   favPokemonType2: String,
   avatar: String,
+  trainer: String,
   description: String,
   wins: Number,
   losses: Number,
@@ -65,7 +69,7 @@ const deckSchema = new Schema({
 
 const typeSchema = new Schema({
   name: String,
-  imgUrl: String,
+  imageUrl: String,
   strongVs: [String],
   weakVs: [String],
   resistantTo: [String],
@@ -111,6 +115,10 @@ passport.deserializeUser((id, done) => {
     done(err, user);
   });
 });
+
+
+
+
 
 
 module.exports = {

@@ -1,5 +1,5 @@
 const db = require('mongoose');
-const { obtainAllUsers, createUser, findUser, findUserById, changeUsername, changeDescription, addFavPokemon } = require('../db/dbHelperFuncs.js');
+const { obtainAllUsers, updateRecords, createUser, findUser, findUserById, changeUsername, changeDescription, addFavPokemon } = require('../db/dbHelperFuncs.js');
 const { Router } = require('express');
 const User = Router();
 const axios = require('axios');
@@ -52,6 +52,13 @@ User.post('/favpokemon/:id', (req, res) => {
   res.status(201).send('work');
 });
 
+User.patch('/updateRecords', (req, res) => {
+  console.log('got into server endpoint');
+  console.log('req: ', req);
+  updateRecords(req.user._id, req.body); //thats the issue right there
+  res.status(200).send('records updated');
+});
+
 //SN: Function to handle request for User data from database request from LeaderBoard
 User.get('/db/users', (req, res) => {
   obtainAllUsers()
@@ -63,8 +70,6 @@ User.get('/db/users', (req, res) => {
       res.sendStatus(500);
     });
 });
-
-
 
 //post data to user schema to add a user
 User.post('/', (req, res) => { // adds a user to the database useing the google auth object (i would hope)

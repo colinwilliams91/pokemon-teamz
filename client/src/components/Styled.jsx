@@ -134,6 +134,8 @@ const TrainerCreatorContainer = styled.div`
 const TrainerCarItem = styled.img`
   display: flex;
   position: relative;
+  display: flex;
+  position: relative;
   margin: 1rem;
 `;
 
@@ -198,6 +200,78 @@ const TypeDiv = styled.div`
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
     }
+  width: 5rem;
+  height: 5rem;
+  margin: 5rem;
+  padding: 2rem;
+  letter-spacing: .2rem;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 50%;
+  font-family: 'Pokemon Solid', sans-serif;
+  background: linear-gradient(to bottom, #ff0000, #ffff00);
+  &:hover{
+  animation: ${blinkHover} 1.5s ease-in-out infinite;
+  }
+`;
+const UserHistBox = styled.div`
+  background-color: rgba(247, 248, 248, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  /* min-width: 200px;
+  min-height: 100px;
+  max-width: 400px;
+  max-height: 800px; */
+`;
+
+const UserHistBox1 = styled.div`
+  border-radius: 10px;
+  width: 50%;
+  height: 200px;
+  background-color: rgba(247, 248, 248, 0.5);
+  margin-top: 150px;
+  text-align: center;
+`;
+
+const UserHistBox2 = styled.div`
+  border-radius: 10px;
+  width: 100%;
+  height: 100px;
+  background-color: rgba(247, 248, 248, 0.5);
+  margin-bottom: 100px;
+  text-align: center;
+
+`;
+
+const ColorBar = styled.div`
+border-top-left-radius: 10px;
+border-top-right-radius: 10px;
+  width: 100%;
+  height: 50px;
+  background-color: #160355;
+`;
+
+const Text = styled.div`
+  color: gold;
+  font-size: 30px;
+`;
+
+const Text2 = styled.div`
+color: purple;
+font-size: 50px;
+margin-top: 30px;
+`;
+
+const Text3 = styled.div`
+  color: purple;
+  font-size: 50px;
 `;
 
 const TextTypeDiv = styled.h1`
@@ -207,13 +281,12 @@ const TextTypeDiv = styled.h1`
     text-align: center;
 `;
 
-export {
-  Body, FoundUser, Header, InboxBody,
+export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeDiv, TextTypeDiv, 
+  TrainerBody, TypeDiv, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, TextTypeDiv, 
   OuterTypeContainer, PokeTypesBody
 };
-  
+

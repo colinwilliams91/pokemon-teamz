@@ -9,15 +9,18 @@ import UserHistory from './UserHistory.jsx';
  * Profile data only rendering after making an edit
  * text inputted into edit dosent get sent to the function to edit it in the db
  */
+export const TrainerContext = React.createContext();
 
 const InfoSect = () => {
   const [profile, setProfile] = useState({});
   const [inputVals, setInputVals] = useState({});
   const [character, setCharacter] = useState({});
+  console.log('CHARACTER', character);
 
   const retriveIdData = () => { // get the profile object data from db
     axios.get('/api/user/current') // then just return YOU the current user data
       .then(data => {
+        console.log('DATA?', data);
         setProfile(data.data); // give the profile state the profile object from google auth
         setInputVals({ // set the text on the page to the profile objects username and desc values
           description: profile.description,
@@ -25,6 +28,7 @@ const InfoSect = () => {
           clicked: false,
           create: false
         });
+        setCharacter(data.data.trainer || data.data.avatar);
       })
       .catch(err => console.log(err, 'ERROR ON GET CURRENT USER'));
   };
@@ -59,66 +63,69 @@ const InfoSect = () => {
   const descRef = createRef(); // the refrence for the description edit text
 
   return (
-    <div className='info'>
-      {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
-      <h2>You!</h2>
-      <Avatar
-        alt={profile.firstName}
-        src={profile.avatar}
-        sx={{ width: 100, height: 100 }}
-        referrerPolicy="no-referrer"
-        style={{ margin: '2rem' }}
-      />
+    <>
+      <TrainerContext.Provider value={ { character, setCharacter } }>
+        <div className='info'>
+          {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
+          <h2>You!</h2>
+          <Avatar
+            alt={profile.firstName}
+            src={profile.avatar}
+            sx={{ width: 100, height: 100 }}
+            referrerPolicy="no-referrer"
+            style={{margin: '1rem'}}
+          />
 
-      <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
+          <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
 
-      {inputVals.clicked ?
-        <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
-        <h1>{profile.username}</h1>} <br />
+          {inputVals.clicked ?
+            <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
+            <h1>{profile.username}</h1>} <br />
 
-      {inputVals.clicked ?
-        <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
-        <h3>{profile.description}</h3>} <br />
+          {inputVals.clicked ?
+            <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
+            <h3>{profile.description}</h3>} <br />
 
-      {inputVals.clicked ?
-        <div><Button variant='contained' onClick={() => {
-          handleClick();
-          setInputVals(() => ({ clicked: false }));
-          retriveIdData();
-        }}>Post</Button></div> : <div></div>}
+          {inputVals.clicked ?
+            <div><Button variant='contained' onClick={() => {
+              handleClick();
+              setInputVals(() => ({ clicked: false }));
+              retriveIdData();
+            }}>Post</Button></div> : <div></div>}
 
-      <FavoritePokemon>
-        <b>Your Favorite Pokemon:</b>
-        <div>
-          <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
-          <h2>
-            {profile.favPokemonName}
-          </h2>  <br />
-          <span>Type: </span>
-          <span>{profile.favPokemonType1}</span>
-          {profile.favPokemonType2 ? <span>/ {profile.favPokemonType2}</span> : <></>}
+          Your Favorite Pokemon:
+          <div>
+            <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
+            <h2>
+              {profile.favPokemonName}
+            </h2>  <br />
+            <ul>
+              <li>{profile.favPokemonType1}</li>
+              {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
+            </ul>
+          </div>
+
+          <CreateCharContainer>
+            <h2>Your Trainer!</h2>
+            <Avatar
+              alt={profile.firstName}
+              src={character}
+              sx={{ width: 100, height: 100 }}
+              referrerPolicy="no-referrer"
+              style={{ margin: '1rem' }}
+            />
+            <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
+          </CreateCharContainer>
+
+          <TrainerCreatorContainer>
+            {inputVals.create ? <TrainerCreator /> : <></>}
+          </TrainerCreatorContainer>
+
+          <UserHistory />
+
         </div>
-      </FavoritePokemon>
-
-      <CreateCharContainer>
-        <h2>Your Trainer!</h2>
-        <Avatar
-          alt={profile.firstName}
-          src={profile.avatar}
-          sx={{ width: 100, height: 100 }}
-          referrerPolicy="no-referrer"
-          style={{ margin: '1rem' }}
-        />
-        <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
-      </CreateCharContainer>
-
-      <TrainerCreatorContainer>
-        {inputVals.create ? <TrainerCreator /> : <></>}
-      </TrainerCreatorContainer>
-
-      <UserHistory />
-
-    </div>
+      </TrainerContext.Provider>
+    </>
   );
 };
 

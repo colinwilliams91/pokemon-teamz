@@ -7,6 +7,7 @@ const { User } = require('./routes/userRoutes.js');
 const { Deck } = require('./routes/deckRoutes.js');
 const { Pokedex } = require('./routes/pokedexRoutes.js');
 const { Chat } = require('./routes/chat');
+const { obtainAllUsers } = require('./db/dbHelperFuncs.js');
 
 const CLIENT_PATH = path.resolve(__dirname, '../client/dist');
 
@@ -73,8 +74,9 @@ app.use('/api/deck', Deck);
 app.use('/api/chat', Chat);
 
 
-app.use('*', (req, res)=>{
-  res.sendFile(path.join(CLIENT_PATH, 'index.html'), (err)=>{
+
+app.use('*', (req, res) => {
+  res.sendFile(path.join(CLIENT_PATH, 'index.html'), (err) => {
     if (err) {
       res.status(500).send(err);
     }
