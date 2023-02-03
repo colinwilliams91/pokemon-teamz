@@ -65,8 +65,13 @@ const addFavPokemon = (loggedInId, id) => {
 
 //MADE BY BEN
 const updateRecords = (loggedInId, records) => {
-  User.findOneAndUpdate({loggedInId}, records)
-    .then(userDoc => userDoc)
+  console.log('got into db helpers');
+  console.log(loggedInId, records);
+  return User.findOneAndUpdate({ _id: loggedInId }, records)
+    .then((userDoc) => {
+      console.log('got data back from db');
+      return userDoc;
+    })
     .catch( err => console.err(err));
 };
 

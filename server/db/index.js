@@ -33,6 +33,7 @@ const userSchema = new Schema({
   favPokemonImage: String,
   favPokemonType2: String,
   avatar: String,
+  trainer: String,
   description: String,
   wins: Number,
   losses: Number,
