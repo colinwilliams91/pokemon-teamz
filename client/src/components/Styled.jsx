@@ -136,6 +136,7 @@ const TrainerCarItem = styled.img`
   margin: 1rem;
 `;
 
+
 const TrainerHair = styled.div`
   display: flex;
   position: relative;
@@ -153,6 +154,7 @@ const TrainerBody = styled.div`
   position: relative;
   margin: 1rem;
 `;
+
 
 const blinkHover = keyframes`
   0% {
@@ -182,10 +184,10 @@ const TypeDiv = styled.div`
   }
 `;
 
-
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TrainerHair, TrainerFace,
   TrainerBody, TypeDiv };
+  
