@@ -1,5 +1,6 @@
 body,
 html {
+     /* background-image: url(https://wallpaperaccess.com/full/8643.jpg); */
      background-image: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdna.artstation.com%2Fp%2Fassets%2Fimages%2Fimages%2F004%2F158%2F902%2Flarge%2Fscott-zenteno-pokecenter.jpg%3F1480927479&f=1&nofb=1&ipt=ebb3783310f54fe2f4f0bbad682194c157a27bf20bf4790c69eaefa74bedfbd0&ipo=images);
      margin: auto;
      background-repeat: no-repeat;
@@ -33,7 +34,7 @@ img {
      overflow: hidden;
      box-shadow: inset -10px 10px 0 10px #ccc;
      animation: fall .25s ease-in-out,
-          shake 1.25s cubic-bezier(.36, .07, .19, .97) 3;
+          shake 1.25s cubic-bezier(.36, .07, .19, .97);
 }
 
 .pokeball::before,

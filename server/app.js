@@ -72,7 +72,7 @@ app.use('/api/user', User);
 app.use('/api/pokedex', Pokedex);
 app.use('/api/deck', Deck);
 app.use('/api/chat', Chat);
-
+//app.use('/api/types', Type);
 
 
 app.use('*', (req, res) => {
