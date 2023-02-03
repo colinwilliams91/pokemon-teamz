@@ -6,6 +6,8 @@ const BattleView = () => {
   const [playerTeam, setPlayerTeam] = useState([]);
   const [rival, setRival] = useState({});
   const [matchups, setMatchups] = useState({});
+  const [playerActive, setPlayerActive] = useState({});
+  const [rivalActive, setrivalActive] = useState({});
 
   const matchupPopulate = () => {
     setMatchups({
@@ -108,8 +110,8 @@ const BattleView = () => {
   };
 
   const battleResolution = (playerActive, rivalActive) => {
-    playerActive = {name: 'charizard', statTotal: 534, type1: 'fire', type2: 'flying'};
-    rivalActive = {name: 'geodude', statTotal: 300, type1: 'rock', type2: 'ground'};
+    playerActive = {name: 'charizard', statTotal: 534, type1: 'fire', type2: 'flying', canBattle: true};
+    rivalActive = {name: 'geodude', statTotal: 300, type1: 'rock', type2: 'ground', canBattle: true};
     let playerMulti = 1;
     let rivalMulti = 1;
     if (matchups[playerActive.type1].includes(rivalActive.type1)) { playerMulti += 0.25; }
@@ -122,9 +124,9 @@ const BattleView = () => {
     if (matchups[rivalActive.type2].includes(playerActive.type2)) { rivalMulti += 0.25; }
     
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
-      handleResult('loss');
+      playerActive.canBattle = false;
     } else {
-      handleResult( 'win' );
+      rivalActive.canBattle = false;
     }
     
   };
