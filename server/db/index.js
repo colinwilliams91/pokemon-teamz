@@ -62,6 +62,16 @@ const deckSchema = new Schema({
   image: String
 });
 
+
+const typeSchema = new Schema({
+  name: String,
+  imgUrl: String,
+  strongVs: [String],
+  weakVs: [String],
+  resistantTo: [String],
+  vulnerableTo: [String]
+});
+
 const User = mongoose.model('User', userSchema);
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -87,6 +97,7 @@ function (accessToken, refreshToken, profile, cb) {
     // option to allow such functionality
   );
 }));
+const Type = mongoose.model('Type', typeSchema);
 const Deck = mongoose.model('Deck', deckSchema);
 const Chat = mongoose.model('Chat', chatSchema);
 passport.use(User.createStrategy());
@@ -106,4 +117,5 @@ module.exports = {
   Deck,
   User,
   Chat,
+  Type,
 };

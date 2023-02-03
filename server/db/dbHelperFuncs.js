@@ -1,5 +1,5 @@
 const db = require('mongoose');
-const { Deck, User, Chat } = require('./index.js');
+const { Deck, User, Chat, Type } = require('./index.js');
 const axios = require('axios');
 
 const obtainAllUsers = function () {
@@ -80,6 +80,9 @@ const getUsersMsg = (id, cb) => {
 };
 
 
+const addType = () => {
+
+};
 
 
 module.exports = {

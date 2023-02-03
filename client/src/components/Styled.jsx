@@ -132,8 +132,8 @@ const TrainerCreatorContainer = styled.div`
 `;
 
 const TrainerCarItem = styled.img`
-  width: 3rem;
-  height: 3rem;
+  display: flex;
+  position: relative;
   margin: 1rem;
 `;
 

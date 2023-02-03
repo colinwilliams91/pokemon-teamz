@@ -1,0 +1,445 @@
+{
+  "results": [
+    {
+      "name": "Normal",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Normal_rtmqeh.png",
+      "strongVs": [
+        "none"
+      ],
+      "weakVs": [],
+      "resistantTo": [
+        "Ghost"
+      ],
+      "vulnerableTo": [
+        "Fighting"
+      ]
+    },
+    {
+      "name": "Fighting",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Fighting_mnczcj.png",
+      "strongVs": [
+        "Normal",
+        "Rock",
+        "Steel",
+        "Ice",
+        "Dark"
+      ],
+      "weakVs": [
+        "Flying",
+        "Poison",
+        "Bug",
+        "Psychic",
+        "Ghost"
+      ],
+      "resistantTo": [
+        "Rock",
+        "Bug",
+        "Dark"
+      ],
+      "vulnerableTo": [
+        "Flying",
+        "Psychic",
+        "Fairy"
+      ]
+    },
+    {
+      "name": "Flying",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Flying_slttyu.png",
+      "strongVs": [
+        "Fighting",
+        "Bug",
+        "Grass",
+        "Fairy"
+      ],
+      "weakVs": [
+        "Rock",
+        "Steel",
+        "Electric"
+      ],
+      "resistantTo": [
+        "Ground",
+        "Fighting",
+        "Bug",
+        "Grass"
+      ],
+      "vulnerableTo": [
+        "Rock",
+        "Electric",
+        "Ice"
+      ]
+    },
+    {
+      "name": "Poison",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Poison_isxsry.png",
+      "strongVs": [
+        "Grass",
+        "Fairy"
+      ],
+      "weakVs": [
+        "Poison",
+        "Ground",
+        "Rock",
+        "Ghost"
+      ],
+      "resistantTo": [
+        "Fighting",
+        "Poison",
+        "Bug",
+        "Grass",
+        "Fairy"
+      ],
+      "vulnerableTo": [
+        "Ground",
+        "Psychic"
+      ]
+    },
+    {
+      "name": "Ground",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Ground_avdpcd.png",
+      "strongVs": [
+        "Poison",
+        "Rock",
+        "Steel",
+        "Fire",
+        "Electric"
+      ],
+      "weakVs": [
+        "Bug",
+        "Grass"
+      ],
+      "resistantTo": [
+        "Poison",
+        "Rock"
+      ],
+      "vulnerableTo": [
+        "Water",
+        "Grass",
+        "Ice"
+      ]
+    },
+    {
+      "name": "Rock",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Rock_hzuiko.png",
+      "strongVs": [
+        "Flying",
+        "Bug",
+        "Fire",
+        "Ice"
+      ],
+      "weakVs": [
+        "Fighting",
+        "Ground",
+        "Steel"
+      ],
+      "resistantTo": [
+        "Poison",
+        "Rock"
+      ],
+      "vulnerableTo": [
+        "Water",
+        "Grass",
+        "Ice"
+      ]
+    },
+    {
+      "name": "Bug",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Bug_gvkkcq.png",
+      "strongVs": [
+        "Grass",
+        "Psychic",
+        "Dark"
+      ],
+      "weakVs": [
+        "Fighting",
+        "Flying",
+        "Poison",
+        "Ghost",
+        "Steel",
+        "Fire",
+        "Fairy"
+      ],
+      "resistantTo": [
+        "Fighting",
+        "Ground",
+        "Grass"
+      ],
+      "vulnerableTo": [
+        "Flying",
+        "Rock",
+        "Fire"
+      ]
+    },
+    {
+      "name": "Ghost",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Ghost_t51xzt.png",
+      "strongVs": [
+        "Ghost",
+        "Psychic"
+      ],
+      "weakVs": [
+        "Dark"
+      ],
+      "resistantTo": [
+        "Normal",
+        "Fighting",
+        "Poison",
+        "Bug"
+      ],
+      "vulnerableTo": [
+        "Ghost",
+        "Dark"
+      ]
+    },
+    {
+      "name": "Steel",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Steel_dwvarw.png",
+      "strongVs": [
+        "Rock",
+        "Ice",
+        "Fairy"
+      ],
+      "weakVs": [
+        "Steel",
+        "Fire",
+        "Water",
+        "Electric"
+      ],
+      "resistantTo": [
+        "Normal",
+        "Flying",
+        "Poison",
+        "Rock",
+        "Bug",
+        "Steel",
+        "Grass",
+        "Psychic",
+        "Ice",
+        "Dragon",
+        "Fairy"
+      ],
+      "vulnerableTo": [
+        "Fighting",
+        "Fire",
+        "Poison"
+      ]
+    },
+    {
+      "name": "Fire",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Fire_xpbpvz.png",
+      "strongVs": [
+        "Bug",
+        "Steel",
+        "Grass",
+        "Ice"
+      ],
+      "weakVs": [
+        "Rock",
+        "Fire",
+        "Water",
+        "Dragon"
+      ],
+      "resistantTo": [
+        "Bug",
+        "Steel",
+        "Fire",
+        "Grass",
+        "Ice",
+        "Fairy"
+      ],
+      "vulnerableTo": [
+        "Ground",
+        "Rock",
+        "Water"
+      ]
+    },
+    {
+      "name": "Water",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Water_uwswd2.png",
+      "strongVs": [
+        "Ground",
+        "Rock",
+        "Fire"
+      ],
+      "weakVs": [
+        "Water",
+        "Grass",
+        "Dragon"
+      ],
+      "resistantTo": [
+        "Steel",
+        "Fire",
+        "Water",
+        "Ice"
+      ],
+      "vulnerableTo": [
+        "Grass",
+        "Electric"
+      ]
+    },
+    {
+      "name": "Grass",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Grass_i7uprs.png",
+      "strongVs": [
+        "Ground",
+        "Rock",
+        "Water"
+      ],
+      "weakVs": [
+        "Flying",
+        "Poison",
+        "Bug",
+        "Steel",
+        "Fire",
+        "Grass"
+      ],
+      "resistantTo": [
+        "Water",
+        "Grass",
+        "Electric"
+      ],
+      "vulnerableTo": [
+        "Flying",
+        "Poison",
+        "Bug",
+        "Fire",
+        "Ice"
+      ]
+    },
+    {
+      "name": "Electric",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Electric_os2fgi.png",
+      "strongVs": [
+        "Flying",
+        "Water"
+      ],
+      "weakVs": [
+        "Ground",
+        "Grass",
+        "Electric"
+      ],
+      "resistantTo": [
+        "Flying",
+        "Steel",
+        "Electric"
+      ],
+      "vulnerableTo": [
+        "Ground"
+      ]
+    },
+    {
+      "name": "Psychic",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Psychic_g25ucb.png",
+      "strongVs": [
+        "Fighting",
+        "Poison"
+      ],
+      "weakVs": [
+        "Steel",
+        "Psychic",
+        "Dark"
+      ],
+      "resistantTo": [
+        "Fighting",
+        "Psychic"
+      ],
+      "vulnerableTo": [
+        "Bug",
+        "Ghost",
+        "Dark"
+      ]
+    },
+    {
+      "name": "Ice",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Ice_cyk9pw.png",
+      "strongVs": [
+        "Flying",
+        "Ground",
+        "Grass",
+        "Dragon"
+      ],
+      "weakVs": [
+        "Steel",
+        "Fire",
+        "Water",
+        "Ice"
+      ],
+      "resistantTo": [
+        "Ice"
+      ],
+      "vulnerableTo": [
+        "Fighting",
+        "Rock",
+        "Steel",
+        "Fire"
+      ]
+    },
+    {
+      "name": "Dragon",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Dragon_sqxqbj.png",
+      "strongVs": [
+        "Dragon"
+      ],
+      "weakVs": [
+        "Steel"
+      ],
+      "resistantTo": [
+        "Fire",
+        "Water",
+        "Grass",
+        "Electric"
+      ],
+      "vulnerableTo": [
+        "Ice",
+        "Dragon",
+        "Fairy"
+      ]
+    },
+    {
+      "name": "Dark",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Dark_frklzk.png",
+      "strongVs": [
+        "Ghost",
+        "Psychic"
+      ],
+      "weakVs": [
+        "Fighting",
+        "Dark",
+        "Fairy"
+      ],
+      "resistantTo": [
+        "Ghost",
+        "Psychic",
+        "Dark"
+      ],
+      "vulnerableTo": [
+        "Fighting",
+        "Bug",
+        "Fairy"
+      ]
+    },
+    {
+      "name": "Fairy",
+      "imageUrl": "",
+      "strongVs": [
+        "Fighting",
+        "Dragon",
+        "Dark"
+      ],
+      "weakVs": [
+        "Poison",
+        "Steel",
+        "Fire"
+      ],
+      "resistantTo": [
+        "Fighting",
+        "Bug",
+        "Dark"
+      ],
+      "vulnerableTo": [
+        "Poison",
+        "Ghost",
+        "Dragon"
+      ]
+    }
+  ]
+}

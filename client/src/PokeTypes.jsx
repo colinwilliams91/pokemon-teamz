@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { TypeDiv, TextTypeDiv, OuterTypeContainer, PokeTypesBody } from './components/Styled.jsx';
 const PokeTypes = () => {
 
-  const [isVisible, setIsVisible] = useState(false);
+
 
   return (
     <>
