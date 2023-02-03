@@ -24,8 +24,8 @@ const PokeTypes = () => {
 
       <PokeTypesBody>
         <OuterTypeContainer>
-          {types.map((type) => (
-            <TypeImg key={type._id} src ={type.imageUrl} />
+          {types.map((type, i) => (
+            <TypeImg key={i} src ={type.imageUrl} />
           ))}
           <TextTypeDiv>Normal</TextTypeDiv>
         </OuterTypeContainer>
