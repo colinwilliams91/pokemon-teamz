@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3 } from '../Styled.jsx';
 
 const UserHistory = () => {
   const [userWins, setUserWins] = useState();
@@ -19,18 +19,34 @@ const UserHistory = () => {
       });
   }, []);
 
-  
+
   return (
 
     <>
-      <div> User History </div>
-      <div>
-        <ul>
-          <li>wins: {userWins}</li>
-          <li>losses: {userLosses}</li>
-          <li>draws: {userDraws}</li>
-        </ul>
-      </div>
+      <UserHistBox>
+        <img src=''/>
+
+        <UserHistBox1>
+          <ColorBar>
+            <Text>Wins</Text>
+          </ColorBar>
+          <Text2>{userWins}</Text2>
+        </UserHistBox1>
+        <UserHistBox1>
+          <ColorBar>
+            <Text>Losses</Text>
+          </ColorBar>
+          <Text2>{userLosses}</Text2>
+        </UserHistBox1>
+
+        <UserHistBox2>
+          <ColorBar>
+            <Text>Draws</Text>
+          </ColorBar>
+          <Text3>{userDraws}</Text3>
+        </UserHistBox2>
+
+      </UserHistBox>
     </>
   );
 };
