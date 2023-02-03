@@ -107,6 +107,7 @@ const Contents = styled.div`
 `;
 
 const CreateCharContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   top: 20rem;
@@ -114,6 +115,7 @@ const CreateCharContainer = styled.div`
 `;
 
 const FavoritePokemon = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   top: 10rem;
@@ -121,6 +123,7 @@ const FavoritePokemon = styled.div`
 `;
 
 const TrainerCreatorContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   flex-direction: column;
