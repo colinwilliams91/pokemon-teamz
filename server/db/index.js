@@ -11,10 +11,7 @@ const mongoUri = 'mongodb://localhost/poke';
 const { MONGO_URI, MONGO_API_KEY } = process.env;
 
 
-mongoose.connect(mongoUri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
+mongoose.connect(mongoUri)
   .then(() => console.log('connected to mongodb'))
   .catch(err => console.log('you did not connect to mongodb'));
 
