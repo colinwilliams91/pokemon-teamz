@@ -9,8 +9,8 @@ const PokeTypes = () => {
 
     const getAllTypes = async () => {
       try {
-        const response = await axios.get('/api/types');
-        setTypes(response.data);
+        const res = await axios.get('/api/types');
+        setTypes(res.data);
       } catch (error) {
         console.error('Error in getAllTypes : ', error);
       }
