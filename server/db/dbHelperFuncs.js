@@ -99,10 +99,6 @@ const getUsersMsg = (id, cb) => {
 };
 
 
-const addType = () => {
-
-};
-
 
 module.exports = {
   obtainAllUsers,
