@@ -190,7 +190,7 @@ const blinkHover = keyframes`
     }
 `;
 
-const TypeDiv = styled.div`
+const TypeImg = styled.img`
     width: 4rem;
     height: 4rem;
     margin: 1rem;
@@ -286,7 +286,7 @@ export { Body, FoundUser, Header, InboxBody,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeDiv, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, TextTypeDiv, 
+  TrainerBody, TypeImg, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, TextTypeDiv, 
   OuterTypeContainer, PokeTypesBody
 };
 

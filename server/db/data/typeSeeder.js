@@ -13,7 +13,7 @@ const seedType = async () => {
 
     console.log('Database seeded successfully');
   } catch (err) {
-    console.error(err);
+    console.error('Error in seedType typeSeeder.js: ', err);
   }
 };
 
