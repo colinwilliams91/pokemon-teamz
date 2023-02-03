@@ -67,7 +67,7 @@ const BattleView = () => {
         AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
         TrainerZazu: ['likitung', 'tangela', 'mr-mime', 'farfetchd', 'psyduck', 'seel'],
-        SaltySeagull:['ponyta', 'staryu', 'vulpix', 'gengar', 'eevee', 'bulbasaur'],
+        SaltySeagull: ['ponyta', 'staryu', 'vulpix', 'gengar', 'eevee', 'bulbasaur'],
         GhostHammer: ['mimikyu-disguised', 'gourgeist-average', 'palossand', 'phantump', 'litwick', 'snorlax'],
         FatTubBetty: ['mr-mime', 'probopass', 'ludicolo', 'jynx', 'shuckle', 'pelipper'],
         PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle' ],
