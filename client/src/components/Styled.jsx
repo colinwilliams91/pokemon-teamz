@@ -131,8 +131,8 @@ const TrainerCreatorContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 13rem;
-  right: 41rem;
+  top: 15rem;
+  right: 40.3rem;
 `;
 
 const TrainerCarItem = styled.img`
