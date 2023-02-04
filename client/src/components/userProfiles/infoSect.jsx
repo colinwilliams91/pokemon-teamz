@@ -69,19 +69,6 @@ const InfoSect = () => {
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
           <UserInfo/>
-          <h2>You!</h2>
-          <Avatar
-            alt={profile.firstName}
-            src={profile.avatar}
-            sx={{ width: 100, height: 100 }}
-            referrerPolicy="no-referrer"
-            style={{margin: '1rem'}}
-          />
-
-          <Button
-            onClick={() => setInputVals(() => ({ clicked: true }))}
-          >Edit Profile
-          </Button> <br />
 
           {inputVals.clicked ?
             <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
@@ -135,3 +122,21 @@ const InfoSect = () => {
 };
 
 export default InfoSect;
+
+
+
+// <-- moved into UserInfo.jsx -->
+{ /* <h2>You!</h2>
+<Avatar
+  alt={profile.firstName}
+  src={profile.avatar}
+  sx={{ width: 100, height: 100 }}
+  referrerPolicy="no-referrer"
+  style={{margin: '1rem'}}
+/>
+
+<Button
+  onClick={() => setInputVals(() => ({ clicked: true }))}
+>Edit Profile
+</Button> <br /> */ }
+

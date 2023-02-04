@@ -4,7 +4,7 @@ import { UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, 
 import { TrainerContext } from './infoSect.jsx';
 const UserInfo = () => {
 
-  const { profile } = useContext(TrainerContext);
+  const { profile, setInputVals } = useContext(TrainerContext);
 
   return (
 
