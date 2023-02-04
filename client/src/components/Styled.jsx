@@ -158,7 +158,6 @@ const OuterTypeContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  cursor: pointer;
   padding-top: 4rem;
   padding-bottom: 5rem;
 `;
@@ -179,13 +178,9 @@ const blinkHover = keyframes`
 `;
 
 const TypeImg = styled.img`
-  
+    cursor: pointer;
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
-    }
-
-  cursor: pointer;
-  &:hover{
         -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
          filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
   animation: ${blinkHover} 1.5s ease-in-out infinite;
