@@ -4,6 +4,7 @@ import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
 import UserHistory from './UserHistory.jsx';
+import UserInfo from './UserInfo.jsx';
 
 /** CURRENT ISSUE
  * Profile data only rendering after making an edit
@@ -67,6 +68,7 @@ const InfoSect = () => {
       <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile } }>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
+          <UserInfo/>
           <h2>You!</h2>
           <Avatar
             alt={profile.firstName}
