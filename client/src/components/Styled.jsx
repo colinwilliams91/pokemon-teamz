@@ -211,6 +211,7 @@ const UserHistBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  margin-left: 50px;
 `;
 
 const UserHistBox1 = styled.div`
@@ -274,8 +275,8 @@ const UserInfoBox = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  left: 0;
-  top: 0;
+  margin-right: 50px;
+
 `;
 
 const InfoFavoriteContainer = styled.div`
