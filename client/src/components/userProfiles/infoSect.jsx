@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
 import { Avatar, Button, TextField } from '../../mui/index.jsx';
-import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
+import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer, InfoFavoriteContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
 import UserHistory from './UserHistory.jsx';
 import UserInfo from './UserInfo.jsx';
@@ -70,7 +70,6 @@ const InfoSect = () => {
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
           <UserInfo/>
 
-
           {inputVals.clicked ?
             <div><Button variant='contained' onClick={() => {
               handleClick();
@@ -78,8 +77,8 @@ const InfoSect = () => {
               retriveIdData();
             }}>Post</Button></div> : <div></div>}
 
-          Your Favorite Pokemon:
-          <div>
+          <InfoFavoriteContainer>
+            <span><b>Your Favorite Pokemon:</b></span>
             <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
             <h2>
               {profile.favPokemonName}
@@ -88,9 +87,8 @@ const InfoSect = () => {
               <li>{profile.favPokemonType1}</li>
               {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
             </ul>
-          </div>
+          </InfoFavoriteContainer>
 
-        
           <TrainerCreatorContainer>
             {inputVals.create ? <TrainerCreator /> : <></>}
           </TrainerCreatorContainer>
@@ -104,3 +102,21 @@ const InfoSect = () => {
 };
 
 export default InfoSect;
+
+
+
+// <-- moved into UserInfo.jsx -->
+{ /* <h2>You!</h2>
+<Avatar
+  alt={profile.firstName}
+  src={profile.avatar}
+  sx={{ width: 100, height: 100 }}
+  referrerPolicy="no-referrer"
+  style={{margin: '1rem'}}
+/>
+
+<Button
+  onClick={() => setInputVals(() => ({ clicked: true }))}
+>Edit Profile
+</Button> <br /> */ }
+

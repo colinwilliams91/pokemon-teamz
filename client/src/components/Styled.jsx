@@ -278,6 +278,13 @@ const UserInfoBox = styled.div`
   top: 0;
 `;
 
+const InfoFavoriteContainer = styled.div`
+  position: relative;
+  display: grid;
+  justify-content: space-evenly;
+  grid-auto-flow: column;
+  justify-items: center;
+`;
 
 
 
@@ -287,7 +294,7 @@ export { Body, FoundUser, Header, InboxBody,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
-  TextTypeDiv, OuterTypeContainer, PokeTypesBody, 
-  UserInfoBox, TypeGrid, FlexDiv
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody,
+  UserInfoBox, TypeGrid, FlexDiv, InfoFavoriteContainer
 };
 
