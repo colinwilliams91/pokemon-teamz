@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { TableCell, TableRow } from '../mui/index.jsx';
 
 
 const Body = styled.div`
@@ -320,7 +321,7 @@ const BattleButton = styled.button`
   font-family: 'Pokemon Solid', sans-serif;
   text-shadow: 1px 1px 1px #000000;
   padding: .3rem;
-   opacity: 0.8;
+  opacity: 0.8;
   letter-spacing: .2rem;
   border-color: white;
   border-radius:20%;
@@ -329,7 +330,25 @@ const BattleButton = styled.button`
   background-color: transparent;
   color: white;
 `;
+const StyledTableRow = styled(TableRow)`
+  background-color: #babdc3;
+  &:nth-of-type(odd) {
+    background-color: #e5f3f6;
 
+  }
+
+`;
+
+const StyledTableCell = styled(TableCell)`
+font-weight: bold;
+color: red;
+font-size: 1rem;
+text-shadow:1px 1px 1px black;
+text-align: center;
+font-family: 'Pokemon Solid', sans-serif;
+letter-spacing: .2rem;
+
+`;
 
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
@@ -338,7 +357,8 @@ export { Body, FoundUser, Header, InboxBody,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
-  UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer, 
-  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer
+  UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer,
+  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer,
+  StyledTableRow, StyledTableCell
 };
 
