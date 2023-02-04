@@ -65,31 +65,11 @@ const InfoSect = () => {
 
   return (
     <>
-      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile } }>
+      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile, userRef, descRef } }>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
           <UserInfo/>
-          <h2>You!</h2>
-          <Avatar
-            alt={profile.firstName}
-            src={profile.avatar}
-            sx={{ width: 100, height: 100 }}
-            referrerPolicy="no-referrer"
-            style={{margin: '1rem'}}
-          />
 
-          <Button
-            onClick={() => setInputVals(() => ({ clicked: true }))}
-          >Edit Profile
-          </Button> <br />
-
-          {inputVals.clicked ?
-            <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
-            <h1>{profile.username}</h1>} <br />
-
-          {inputVals.clicked ?
-            <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
-            <h3>{profile.description}</h3>} <br />
 
           {inputVals.clicked ?
             <div><Button variant='contained' onClick={() => {
