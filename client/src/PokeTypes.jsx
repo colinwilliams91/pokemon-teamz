@@ -33,10 +33,20 @@ const PokeTypes = () => {
             <TypeImg key={i} src={type.imageUrl} onClick={() => handleTypeClick(type)} />
           ))}
         </OuterTypeContainer>
+        <hr />
         {selectedType && (
           <OuterTypeContainer>
             {types
               .filter((t) => selectedType.strongVs.includes(t.name))
+              .map((t, index) => (
+                <TypeImg key={index} src={t.imageUrl} />
+              ))}
+          </OuterTypeContainer>
+        )}
+        {selectedType && (
+          <OuterTypeContainer>
+            {types
+              .filter((t) => selectedType.weakVs.includes(t.name))
               .map((t, index) => (
                 <TypeImg key={index} src={t.imageUrl} />
               ))}
