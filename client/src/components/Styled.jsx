@@ -159,7 +159,8 @@ const OuterTypeContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  cursor: pointer;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
 `;
 
 
@@ -178,20 +179,28 @@ const blinkHover = keyframes`
 `;
 
 const TypeImg = styled.img`
-    width: auto;
-    height: auto;
-    margin: 1rem;
+    cursor: pointer;
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
-    }
-
-  cursor: pointer;
-  &:hover{
         -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
          filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
   animation: ${blinkHover} 1.5s ease-in-out infinite;
   }
 `;
+
+const TypeGrid = styled.div`
+ display: grid;
+ grid-auto-flow: column;
+  background-image: url(https://wallpaperaccess.com/full/40705.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+`;
+
+const FlexDiv = styled.div`
+  width: 100px;
+`;
+
 const UserHistBox = styled.div`
   background-color: rgba(247, 248, 248, 0.2);
   padding: 10px;
@@ -250,8 +259,9 @@ const Text3 = styled.div`
 const TextTypeDiv = styled.h1`
     font-family: 'Pokemon Solid', sans-serif;
     font-size: 1rem;
+    color: white;
     letter-spacing: .2rem;
-    text-align: center;
+    text-align: left;
 `;
 
 const UserInfoBox = styled.div`
@@ -277,6 +287,7 @@ export { Body, FoundUser, Header, InboxBody,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
-  TextTypeDiv, OuterTypeContainer, PokeTypesBody, UserInfoBox
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody, 
+  UserInfoBox, TypeGrid, FlexDiv
 };
 
