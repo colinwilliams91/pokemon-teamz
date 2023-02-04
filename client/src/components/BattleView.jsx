@@ -3,9 +3,12 @@ import axios from 'axios';
 
 const BattleView = () => {
   const [player, setPlayer] = useState({});
-  const [playerTeam, setPlayerTeam] = useState([]);
-  const [rival, setRival] = useState({});
+  const [playerTeam, setPlayerTeam] = useState([]); // should probably live in a child component
+  const [rivalTeam, setRivalTeam] = useState([]);
+  const [rival, setRival] = useState({}); // should probably live in a child component
   const [matchups, setMatchups] = useState({});
+  const [playerActive, setPlayerActive] = useState({}); // should probably live in a child component
+  const [rivalActive, setRivalActive] = useState({}); // should probably live in a child component
 
   const matchupPopulate = () => {
     setMatchups({
@@ -38,6 +41,20 @@ const BattleView = () => {
         setPlayer({ _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 }); //object shorthand
       });
   };
+  // add stateSetter parameter...
+  const fetchTeam = (team, stateSetter) => {
+    team.forEach(pokemon => {
+      axios.post('/team', {
+        data: {
+          pokeLookup: pokemon
+        }
+      })
+        .then(fetchedPokemon => {
+          stateSetter(prevTeam => [...prevTeam, fetchedPokemon.data]);
+        })
+        .catch(err => console.error('Error retrieving pokemon from server', err));
+    });
+  };
 
   useEffect(() => {
     getFavorite();
@@ -46,8 +63,9 @@ const BattleView = () => {
 
   const teamGen = () => {
     console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+
     const generatedTeam = [
-      player.favPokemonName,
+      player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
       Math.floor(Math.random() * (151) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
@@ -55,14 +73,16 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
     console.log(generatedTeam);
-    setPlayerTeam(generatedTeam);
+    fetchTeam(generatedTeam, setPlayerTeam);
+    // fetchTeam(generatedTeam);
   };
+
 
   const rivalGen = () => {
     if (playerTeam.length) {
       console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
-      const rivals = { 
+      const rivals = {
         BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius' ],
         AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
@@ -74,7 +94,7 @@ const BattleView = () => {
       };
       generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
       generatedRival.team = rivals[generatedRival.name];
-      
+      fetchTeam(generatedRival.team, setRivalTeam);
       console.log(generatedRival);
       setRival(generatedRival);
     } else {
@@ -107,28 +127,45 @@ const BattleView = () => {
       .catch((err) => { console.error(err); });
   };
 
-  const battleResolution = () => {
-    console.log('insert battle mechanics here');
+  const battleResolution = (playerActive, rivalActive) => {
+    playerActive = {name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true};
+    rivalActive = {name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true};
+    let playerMulti = 1;
+    let rivalMulti = 1;
+    if (matchups[playerActive.types[0]].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[0]].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[1]].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[1]].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[1]].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[1]].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    
+    if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
+      playerActive.canBattle = false;
+    } else {
+      rivalActive.canBattle = false;
+      setRivalActive();
+    }
+    // set active pokemon to null
+    setPlayerActive({});
+    // set rival pokemon to next in array
+    setRivalActive({});
+    // call a function that checks state and moves to declare a winner
   };
-
-  const testOpponent = [
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp'
-  ];
 
   useEffect(() => {
     getFavorite();
     matchupPopulate();
   }, []);
 
+  console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
+  console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
+
   return (
     <>
-      <div> Battle Screen </div>
-      <div> Get a team that includes your favorite Pokemon!</div>
+      <div> Welcome to the Battle Arena, {player.username || 'Player'}</div>
+      <div> Generate a team to take into battle below. The team will always include your favorite Pokemon!</div>
       <div>Your favorite pokemon: {player.favPokemonName}</div>
       <img src={player.favPokemonImage} />
       <span>Type: </span>
