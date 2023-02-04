@@ -419,7 +419,7 @@
     },
     {
       "name": "Fairy",
-      "imageUrl": "",
+      "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368219/PokeTypes/Fairy_n54y8i.png",
       "strongVs": [
         "Fighting",
         "Dragon",

@@ -168,11 +168,9 @@ justify-content: space-between;
 
 const OuterTypeContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
   cursor: pointer;
-  align-items: center;
-  width: 16.6666666667%;
-  height: 33.33333%;
 `;
 
 
@@ -191,26 +189,17 @@ const blinkHover = keyframes`
 `;
 
 const TypeImg = styled.img`
-    width: 4rem;
-    height: 4rem;
+    width: auto;
+    height: auto;
     margin: 1rem;
-    padding: 1rem;
-    border-radius: 50%;
-  
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
     }
-  width: 5rem;
-  height: 5rem;
-  margin: 5rem;
-  padding: 2rem;
-  letter-spacing: .2rem;
+
   cursor: pointer;
-  text-align: center;
-  border-radius: 50%;
-  font-family: 'Pokemon Solid', sans-serif;
-  background: linear-gradient(to bottom, #ff0000, #ffff00);
   &:hover{
+        -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
+         filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
   animation: ${blinkHover} 1.5s ease-in-out infinite;
   }
 `;
