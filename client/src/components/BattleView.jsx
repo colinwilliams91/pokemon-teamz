@@ -4,6 +4,7 @@ import axios from 'axios';
 const BattleView = () => {
   const [player, setPlayer] = useState({});
   const [playerTeam, setPlayerTeam] = useState([]);
+  const [rivalTeam, setRivalTeam] = useState([]);
   const [rival, setRival] = useState({});
   const [matchups, setMatchups] = useState({});
 
@@ -39,7 +40,7 @@ const BattleView = () => {
       });
   };
   // add stateSetter parameter...
-  const fetchTeam = (team) => {
+  const fetchTeam = (team, stateSetter) => {
     team.forEach(pokemon => {
       axios.post('/team', {
         data: {
@@ -47,9 +48,7 @@ const BattleView = () => {
         }
       })
         .then(fetchedPokemon => {
-          // check if stateSetter === player || rival
-          setPlayerTeam(prevTeam => [...prevTeam, fetchedPokemon.data]);
-          // build out logic to fire setRival state change...
+          stateSetter(prevTeam => [...prevTeam, fetchedPokemon.data]);
         })
         .catch(err => console.error('Error retrieving pokemon from server', err));
     });
@@ -72,11 +71,11 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
     console.log(generatedTeam);
-    // fetchTeam(generatedTeam, setPlayerTeam)
-    fetchTeam(generatedTeam);
+    fetchTeam(generatedTeam, setPlayerTeam);
+    // fetchTeam(generatedTeam);
   };
 
-  console.log('TEAM COMPILED SUCCESS', playerTeam);
+
   const rivalGen = () => {
     if (playerTeam.length) {
       console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
@@ -93,10 +92,9 @@ const BattleView = () => {
       };
       generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
       generatedRival.team = rivals[generatedRival.name];
-
+      fetchTeam(generatedRival.team, setRivalTeam);
       console.log(generatedRival);
       setRival(generatedRival);
-      // fetchTeam(generatedRival.team, setRival)
     } else {
       console.log('You haven\'t gotten a team for battling yet!');
     }
@@ -144,6 +142,9 @@ const BattleView = () => {
     getFavorite();
     matchupPopulate();
   }, []);
+
+  console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
+  console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
 
   return (
     <>
