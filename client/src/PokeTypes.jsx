@@ -46,7 +46,7 @@ const PokeTypes = () => {
         {selectedType && (
           <OuterTypeContainer>
             {types
-              .filter((t) => selectedType.weakVs.includes(t.name))
+              .filter((t) => selectedType.vulnerableTo.includes(t.name))
               .map((t, index) => (
                 <TypeImg key={index} src={t.imageUrl} />
               ))}
