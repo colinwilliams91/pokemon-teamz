@@ -193,11 +193,6 @@ const UserHistBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
-  /* min-width: 200px;
-  min-height: 100px;
-  max-width: 400px;
-  max-height: 800px; */
 `;
 
 const UserHistBox1 = styled.div`
@@ -212,7 +207,7 @@ const UserHistBox1 = styled.div`
 const UserHistBox2 = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 100px;
+  height: 110px;
   background-color: rgba(247, 248, 248, 0.5);
   margin-bottom: 100px;
   text-align: center;
@@ -243,10 +238,30 @@ const Text3 = styled.div`
   font-size: 50px;
 `;
 
+const UserInfoBox = styled.div`
+  background-color: rgba(247, 248, 248, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+`;
+
+
+
+
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeDiv, UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3 };
+  TrainerBody, TypeDiv, UserHistBox, UserHistBox1,
+  UserHistBox2, ColorBar, Text, Text2, Text3, UserInfoBox
+};
 
