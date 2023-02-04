@@ -108,11 +108,12 @@ const Contents = styled.div`
 `;
 
 const CreateCharContainer = styled.div`
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   display: flex;
   position: relative;
-  top: 20rem;
-  right: 42rem;
+  margin-top: 60px;
+  /* top: 20rem;
+  right: 42rem; */
 `;
 
 const FavoritePokemon = styled.div`
@@ -260,10 +261,9 @@ const UserInfoBox = styled.div`
   width: 400px;
   height: 600px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  position: fixed;
   left: 0;
   top: 0;
 `;
