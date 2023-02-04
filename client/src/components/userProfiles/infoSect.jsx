@@ -89,18 +89,7 @@ const InfoSect = () => {
             </ul>
           </InfoFavoriteContainer>
 
-          <CreateCharContainer>
-            <h2>Your Trainer!</h2>
-            <Avatar
-              alt={profile.firstName}
-              src={character}
-              sx={{ width: 100, height: 100 }}
-              referrerPolicy="no-referrer"
-              style={{ margin: '1rem' }}
-            />
-            <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
-          </CreateCharContainer>
-
+        
           <TrainerCreatorContainer>
             {inputVals.create ? <TrainerCreator /> : <></>}
           </TrainerCreatorContainer>
