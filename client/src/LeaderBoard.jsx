@@ -4,12 +4,29 @@ import axios from 'axios';
 import Leader from './Leader.jsx';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from './mui/index.jsx';
-import { LeaderBoardContainer } from '../src/components/Styled.jsx';
 
 
-const createData = (rank, name, winPercentage, wins, losses) => {
-  return { rank, name, winPercentage, wins, losses };
+const createData = (rank, avatar, name, captain, winPercentage, wins, losses) => {
+  return { rank, avatar, name, captain, winPercentage, wins, losses };
 };
+const avatars = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
+  'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/2_wn0jws.png',
+  'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/3_g5v7we.png',
+  'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/1_ezqvts.png'
+];
+
+const pokes = ['https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back/1.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/4.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/5.png',
+  'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/6.png',
+];
+
+
+
+
+
 
 const LeaderBoard = () => {
 
@@ -20,6 +37,9 @@ const LeaderBoard = () => {
       .then((users) => {
         users.data.forEach((user) => {
           user.winPercentage = Math.floor((user.wins / (user.wins + user.losses) * 100));
+          user.avatar = avatars[Math.floor(Math.random() * avatars.length)];
+          user.captain = pokes[Math.floor(Math.random() * pokes.length)];
+
         });
         users = users.data.sort((a, b) => b.winPercentage - a.winPercentage);
         setLeaders(users);
@@ -34,12 +54,10 @@ const LeaderBoard = () => {
     getAllLeaders();
 
   }, []);
-  console.log(leaders);
 
 
   const rows = leaders.map((leader, i) => {
-    console.log(i, leader.firstName, leader.winPercentage, leader.wins, leader.losses);
-    return createData(i, leader.firstName, leader.winPercentage, leader.wins, leader.losses);
+    return createData(i, leader.avatar, leader.firstName, leader.captain, leader.winPercentage, leader.wins, leader.losses);
   });
 
   return (
@@ -50,6 +68,8 @@ const LeaderBoard = () => {
           <TableRow>
             <TableCell align="center"><b>Rank</b></TableCell>
             <TableCell align="center"><b>Trainer</b></TableCell>
+            <TableCell align="center"><b>Player</b></TableCell>
+            <TableCell align="center"><b>Captain</b></TableCell>
             <TableCell align="center"><b>WinPercentage</b></TableCell>
             <TableCell align="center"><b>Wins</b></TableCell>
             <TableCell align="center"><b>Losses</b></TableCell>
@@ -62,8 +82,16 @@ const LeaderBoard = () => {
               row={row}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="center">{i + 1}</TableCell>
+              <TableCell className="leader-row" align="center">{i + 1}</TableCell>
+              <TableCell align="center"><img src={row.avatar} style={{
+                width: '60px',
+                height: '60px'
+              }} /></TableCell>
               <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center"><img src={row.captain} style={{
+                width: '60px',
+                height: '60px'
+              }} /></TableCell>
               <TableCell align="center">{row.winPercentage + '%'}</TableCell>
               <TableCell align="center">{row.wins}</TableCell>
               <TableCell align="center">{row.losses}</TableCell>
@@ -72,7 +100,7 @@ const LeaderBoard = () => {
           ))}
         </TableBody>
       </Table>
-    </TableContainer>
+    </TableContainer >
   );
 
 };
