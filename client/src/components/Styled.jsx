@@ -265,7 +265,7 @@ const TextTypeDiv = styled.h1`
     font-size: 1rem;
     color: white;
     letter-spacing: .2rem;
-    text-align: center;
+    text-align: left;
 `;
 
 const UserInfoBox = styled.div`
