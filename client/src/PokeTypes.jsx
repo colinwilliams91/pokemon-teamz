@@ -35,7 +35,7 @@ const PokeTypes = () => {
         </OuterTypeContainer>
         <TypeGrid>
           <div>
-            <TextTypeDiv>STRENGTHS</TextTypeDiv>
+            <TextTypeDiv>STRONG VS.</TextTypeDiv>
             {selectedType && (
               <OuterTypeContainer>
                 {types
@@ -47,7 +47,7 @@ const PokeTypes = () => {
             )}
           </div>
           <div>
-            <TextTypeDiv>WEAKNESSES</TextTypeDiv>
+            <TextTypeDiv>WEAK VS.</TextTypeDiv>
             {selectedType && (
               <OuterTypeContainer>
                 {types
