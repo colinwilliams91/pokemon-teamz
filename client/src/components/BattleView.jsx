@@ -174,6 +174,7 @@ const BattleView = () => {
     while (!foundNext && index < 6) {
       if (rivalTeam[index].canBattle) {
         foundNext = true;
+        setPlayerActive(rivalTeam[index]);
       }
       index++;
     }
