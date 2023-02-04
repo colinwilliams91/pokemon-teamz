@@ -125,18 +125,27 @@ const BattleView = () => {
       .catch((err) => { console.error(err); });
   };
 
-  const battleResolution = () => {
-    console.log('insert battle mechanics here');
+  const battleResolution = (playerActive, rivalActive) => {
+    playerActive = {name: 'charizard', statTotal: 534, type1: 'fire', type2: 'flying'};
+    rivalActive = {name: 'geodude', statTotal: 300, type1: 'rock', type2: 'ground'};
+    let playerMulti = 1;
+    let rivalMulti = 1;
+    if (matchups[playerActive.type1].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.type1].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[playerActive.type2].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.type2].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[rivalActive.type1].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.type1].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.type2].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.type2].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    
+    if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
+      handleResult('loss');
+    } else {
+      handleResult( 'win' );
+    }
+    
   };
-
-  const testOpponent = [
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp',
-    'magikarp'
-  ];
 
   useEffect(() => {
     getFavorite();
