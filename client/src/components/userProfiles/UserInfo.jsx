@@ -43,7 +43,7 @@ const UserInfo = () => {
             referrerPolicy="no-referrer"
             style={{ margin: '1rem' }}
           />
-          <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
+          <Button onClick={() => setInputVals(() => ({ create: !inputVals.create }))}>Edit Trainer</Button> <br />
         </CreateCharContainer>
 
 

@@ -89,7 +89,6 @@ const InfoSect = () => {
             </ul>
           </InfoFavoriteContainer>
 
-        
           <TrainerCreatorContainer>
             {inputVals.create ? <TrainerCreator /> : <></>}
           </TrainerCreatorContainer>
