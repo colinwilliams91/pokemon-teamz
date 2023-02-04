@@ -65,17 +65,19 @@ const InfoSect = () => {
 
   return (
     <>
-      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile, userRef, descRef } }>
+      <TrainerContext.Provider value={{ character, setCharacter, inputVals, setInputVals, profile, setProfile, userRef, descRef }}>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
-          <UserInfo/>
+          <UserInfo />
 
           {inputVals.clicked ?
-            <div><Button variant='contained' onClick={() => {
-              handleClick();
-              setInputVals(() => ({ clicked: false }));
-              retriveIdData();
-            }}>Post</Button></div> : <div></div>}
+            <div><Button
+              style={{ right: '15rem', top: '1rem' }}
+              variant='contained' onClick={() => {
+                handleClick();
+                setInputVals(() => ({ clicked: false }));
+                retriveIdData();
+              }}>Save</Button></div> : <div></div>}
 
           <InfoFavoriteContainer>
             <span><b>Your Favorite Pokemon:</b></span>

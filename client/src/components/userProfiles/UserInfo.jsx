@@ -31,7 +31,7 @@ const UserInfo = () => {
             referrerPolicy="no-referrer"
             style={{ margin: '1rem' }}
           />
-          <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
+          <Button onClick={() => setInputVals(() => ({ clicked: !inputVals.clicked }))}>Edit Profile</Button> <br />
         </CreateCharContainer>
 
         <CreateCharContainer>

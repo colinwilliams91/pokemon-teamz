@@ -127,12 +127,12 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   box-sizing: border-box;
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 32rem;
-  right: 38rem;
+  top: 13rem;
+  right: 41rem;
 `;
 
 const TrainerCarItem = styled.img`
@@ -285,6 +285,7 @@ const InfoFavoriteContainer = styled.div`
   justify-content: space-evenly;
   grid-auto-flow: column;
   justify-items: center;
+  margin: .1rem 2.2rem;
 `;
 
 
