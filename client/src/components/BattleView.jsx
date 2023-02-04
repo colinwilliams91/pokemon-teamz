@@ -56,14 +56,9 @@ const BattleView = () => {
     });
   };
 
-  useEffect(() => {
-    getFavorite();
-    matchupPopulate();
-  }, []);
-
   const teamGen = () => {
     console.log('Generated an additional 5 mons onto player team. Resulting Team:');
-
+    setPlayerTeam([]);
     const generatedTeam = [
       player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
       Math.floor(Math.random() * (151) + 1),
@@ -80,19 +75,20 @@ const BattleView = () => {
 
   const rivalGen = () => {
     if (playerTeam.length) {
+      setRivalTeam([]);
       console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
       const rivals = {
-        BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius' ],
-        AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
+        BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius'],
+        AwesomeAngler: ['magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp'],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
-        TrainerZazu: ['likitung', 'tangela', 'mr-mime', 'farfetchd', 'psyduck', 'seel'],
+        TrainerZazu: ['lickitung', 'tangela', 'mr-mime', 'farfetchd', 'psyduck', 'seel'],
         SaltySeagull: ['ponyta', 'staryu', 'vulpix', 'gengar', 'eevee', 'bulbasaur'],
         GhostHammer: ['mimikyu-disguised', 'gourgeist-average', 'palossand', 'phantump', 'litwick', 'snorlax'],
         FatTubBetty: ['mr-mime', 'probopass', 'ludicolo', 'jynx', 'shuckle', 'pelipper'],
-        PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle' ],
+        PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle'],
       };
-      generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
+      generatedRival.name = Object.keys(rivals)[Math.floor(Math.random() * (7 - 0) + 0)];
       generatedRival.team = rivals[generatedRival.name];
       fetchTeam(generatedRival.team, setRivalTeam);
       console.log(generatedRival);
@@ -107,18 +103,18 @@ const BattleView = () => {
     switch (battleResult) {
     case 'win':
       battleRecord.wins = player.wins + 1;
-      setPlayer({...player, wins: player.wins + 1 });
+      setPlayer({ ...player, wins: player.wins + 1 });
       break;
     case 'loss':
       battleRecord.losses = player.losses + 1;
-      setPlayer({...player, losses: player.losses + 1 });
+      setPlayer({ ...player, losses: player.losses + 1 });
       break;
     case 'draw':
       battleRecord.draws = player.draws + 1;
-      setPlayer({...player, draws: player.draws + 1 });
+      setPlayer({ ...player, draws: player.draws + 1 });
       break;
     }
-    console.log('RESULT LOGGED: ', battleResult, battleRecord );
+    console.log('RESULT LOGGED: ', battleResult, battleRecord);
     //axios request to server to update user record in DB
     axios.patch('api/user/updateRecords', battleRecord)
       .then((result) => {
@@ -128,8 +124,8 @@ const BattleView = () => {
   };
 
   const battleResolution = (playerActive, rivalActive) => {
-    playerActive = {name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true};
-    rivalActive = {name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true};
+    playerActive = { name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true };
+    rivalActive = { name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true };
     let playerMulti = 1;
     let rivalMulti = 1;
     if (matchups[playerActive.types[0]].includes(rivalActive.type1)) { playerMulti += 0.25; }
@@ -140,7 +136,7 @@ const BattleView = () => {
     if (matchups[rivalActive.types[0]].includes(playerActive.type2)) { rivalMulti += 0.25; }
     if (matchups[rivalActive.types[1]].includes(playerActive.type1)) { rivalMulti += 0.25; }
     if (matchups[rivalActive.types[1]].includes(playerActive.type2)) { rivalMulti += 0.25; }
-    
+
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
       playerActive.canBattle = false;
     } else {
@@ -157,7 +153,7 @@ const BattleView = () => {
   useEffect(() => {
     getFavorite();
     matchupPopulate();
-  }, []);
+  }, [playerTeam, rivalTeam]);
 
   console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
   console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
@@ -174,8 +170,22 @@ const BattleView = () => {
       <p></p>
       <button onClick={teamGen}> Generate Team</button>
       <div> Your Team: INSERT GRAPHIC HERE</div>
+      <div id='player-team'>
+        {
+          playerTeam.length ? <span>{playerTeam.map((mon, i) => {
+            return <img src={`${mon.sprite}`} />;
+          })}</span> : <div></div>
+        }
+      </div>
       <div>YOU BATTLED WELL! Report the result below!</div>
       <button onClick={rivalGen}> Fight a rival!</button>
+      <div id='rival-team'>
+        {
+          rivalTeam.length ? <span>{rivalTeam.map((mon, i) => {
+            return <img src={`${mon.sprite}`} />;
+          })}</span> : <div></div>
+        }
+      </div>
       <button onClick={() => { handleResult('win'); }}> Log a win</button>
       <button onClick={() => { handleResult('loss'); }}> Log a loss</button>
     </>
