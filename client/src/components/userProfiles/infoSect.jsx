@@ -76,7 +76,10 @@ const InfoSect = () => {
             style={{margin: '1rem'}}
           />
 
-          <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
+          <Button
+            onClick={() => setInputVals(() => ({ clicked: true }))}
+          >Edit Profile
+          </Button> <br />
 
           {inputVals.clicked ?
             <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :

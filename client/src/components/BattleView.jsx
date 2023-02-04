@@ -4,6 +4,7 @@ import axios from 'axios';
 const BattleView = () => {
   const [player, setPlayer] = useState({});
   const [playerTeam, setPlayerTeam] = useState([]); // should probably live in a child component
+  const [rivalTeam, setRivalTeam] = useState([]);
   const [rival, setRival] = useState({}); // should probably live in a child component
   const [matchups, setMatchups] = useState({});
   const [playerActive, setPlayerActive] = useState({}); // should probably live in a child component
@@ -40,6 +41,20 @@ const BattleView = () => {
         setPlayer({ _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 }); //object shorthand
       });
   };
+  // add stateSetter parameter...
+  const fetchTeam = (team, stateSetter) => {
+    team.forEach(pokemon => {
+      axios.post('/team', {
+        data: {
+          pokeLookup: pokemon
+        }
+      })
+        .then(fetchedPokemon => {
+          stateSetter(prevTeam => [...prevTeam, fetchedPokemon.data]);
+        })
+        .catch(err => console.error('Error retrieving pokemon from server', err));
+    });
+  };
 
   useEffect(() => {
     getFavorite();
@@ -48,6 +63,7 @@ const BattleView = () => {
 
   const teamGen = () => {
     console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+
     const generatedTeam = [
       player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
       Math.floor(Math.random() * (151) + 1),
@@ -57,14 +73,16 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
     console.log(generatedTeam);
-    setPlayerTeam(generatedTeam);
+    fetchTeam(generatedTeam, setPlayerTeam);
+    // fetchTeam(generatedTeam);
   };
+
 
   const rivalGen = () => {
     if (playerTeam.length) {
       console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
-      const rivals = { 
+      const rivals = {
         BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius' ],
         AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
@@ -76,7 +94,7 @@ const BattleView = () => {
       };
       generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
       generatedRival.team = rivals[generatedRival.name];
-      
+      fetchTeam(generatedRival.team, setRivalTeam);
       console.log(generatedRival);
       setRival(generatedRival);
     } else {
@@ -140,6 +158,9 @@ const BattleView = () => {
     getFavorite();
     matchupPopulate();
   }, []);
+
+  console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
+  console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
 
   return (
     <>
