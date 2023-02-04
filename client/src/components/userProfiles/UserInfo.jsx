@@ -15,15 +15,15 @@ const UserInfo = () => {
         <CreateCharContainer>
           {inputVals.clicked ?
             <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
-            <h1>{profile.username}:  </h1>} <br />
+            <h1>{profile.username}: </h1>} <br />
 
           {inputVals.clicked ?
             <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
-            <h3> {profile.description}</h3>} <br />
+            <h3 style={{ position: 'relative', top: '.7rem', left: '.7rem' }}> {profile.description}</h3>} <br />
         </CreateCharContainer>
 
         <CreateCharContainer>
-          <h2>You!</h2>
+          <h2>Your Profile!</h2>
           <Avatar
             alt={profile.firstName}
             src={profile.avatar}
@@ -53,3 +53,14 @@ const UserInfo = () => {
 };
 
 export default UserInfo;
+
+
+// <-- put in TextField -->
+// onKeyDown={(e) => {
+//   console.log('KEY HIT', e.key);
+//   if (e.key === 'Enter') {
+//     handleClick();
+//     setInputVals(() => ({ clicked: false }));
+//     retriveIdData();
+//   }
+// }}
