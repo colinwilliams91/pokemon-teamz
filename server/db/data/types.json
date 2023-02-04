@@ -3,10 +3,8 @@
     {
       "name": "Normal",
       "imageUrl": "https://res.cloudinary.com/de0mhjdfg/image/upload/v1675368220/PokeTypes/Normal_rtmqeh.png",
-      "strongVs": [
-        "none"
-      ],
-      "weakVs": [],
+      "strongVs": [],
+      "weakVs": ["Rock", "Ghost", "Steel"],
       "resistantTo": [
         "Ghost"
       ],
@@ -136,9 +134,7 @@
         "Rock"
       ],
       "vulnerableTo": [
-        "Water",
-        "Grass",
-        "Ice"
+        "Fighting", "Ground", "Steel", "Water", "Grass"
       ]
     },
     {
@@ -436,9 +432,7 @@
         "Dark"
       ],
       "vulnerableTo": [
-        "Poison",
-        "Ghost",
-        "Dragon"
+        "Poison", "Steel"
       ]
     }
   ]
