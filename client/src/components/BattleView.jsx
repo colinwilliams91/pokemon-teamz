@@ -38,6 +38,22 @@ const BattleView = () => {
         setPlayer({ _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 }); //object shorthand
       });
   };
+  // add stateSetter parameter...
+  const fetchTeam = (team) => {
+    team.forEach(pokemon => {
+      axios.post('/team', {
+        data: {
+          pokeLookup: pokemon
+        }
+      })
+        .then(fetchedPokemon => {
+          // check if stateSetter === player || rival
+          setPlayerTeam(prevTeam => [...prevTeam, fetchedPokemon.data]);
+          // build out logic to fire setRival state change...
+        })
+        .catch(err => console.error('Error retrieving pokemon from server', err));
+    });
+  };
 
   useEffect(() => {
     getFavorite();
@@ -46,6 +62,7 @@ const BattleView = () => {
 
   const teamGen = () => {
     console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+
     const generatedTeam = [
       player.favPokemonName,
       Math.floor(Math.random() * (151) + 1),
@@ -55,14 +72,16 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
     console.log(generatedTeam);
-    setPlayerTeam(generatedTeam);
+    // fetchTeam(generatedTeam, setPlayerTeam)
+    fetchTeam(generatedTeam);
   };
 
+  console.log('TEAM COMPILED SUCCESS', playerTeam);
   const rivalGen = () => {
     if (playerTeam.length) {
       console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
-      const rivals = { 
+      const rivals = {
         BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius' ],
         AwesomeAngler: [ 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp', 'magikarp' ],
         ArwingAce: ['charizard', 'meowth', 'onix', 'beedrill', 'rhydon', 'magneton'],
@@ -74,9 +93,10 @@ const BattleView = () => {
       };
       generatedRival.name = Object.keys(rivals)[ Math.floor(Math.random() * (7 - 0) + 0) ];
       generatedRival.team = rivals[generatedRival.name];
-      
+
       console.log(generatedRival);
       setRival(generatedRival);
+      // fetchTeam(generatedRival.team, setRival)
     } else {
       console.log('You haven\'t gotten a team for battling yet!');
     }
