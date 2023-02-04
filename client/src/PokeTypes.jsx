@@ -27,7 +27,6 @@ const PokeTypes = () => {
           {types.map((type, i) => (
             <TypeImg key={i} src ={type.imageUrl} />
           ))}
-          <TextTypeDiv>Normal</TextTypeDiv>
         </OuterTypeContainer>
       </PokeTypesBody>
     </>
