@@ -4,28 +4,25 @@ import axios from 'axios';
 import Leader from './Leader.jsx';
 
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from './mui/index.jsx';
+import { LeaderBoardContainer } from '../src/components/Styled.jsx';
 
 
-const createData = (rank, name, wins) => {
-  return { rank, name, wins };
+const createData = (rank, name, winPercentage, wins, losses) => {
+  return { rank, name, winPercentage, wins, losses };
 };
-
-
-
-
-
 
 const LeaderBoard = () => {
 
-
-
   const [leaders, setLeaders] = useState([]);
-
 
   const getAllLeaders = () => {
     axios.get('/api/user/db/users')
       .then((users) => {
-        setLeaders(users.data);
+        users.data.forEach((user) => {
+          user.winPercentage = Math.floor((user.wins / (user.wins + user.losses) * 100));
+        });
+        users = users.data.sort((a, b) => b.winPercentage - a.winPercentage);
+        setLeaders(users);
       })
       .catch((err) => {
         console.log(err);
@@ -33,49 +30,29 @@ const LeaderBoard = () => {
 
   };
 
-
-
   useEffect(() => {
     getAllLeaders();
 
   }, []);
-  console.log('leaders:', leaders);
+  console.log(leaders);
+
 
   const rows = leaders.map((leader, i) => {
-    console.log(i, leader.firstName);
-    return createData(i, leader.firstName, leader.wins);
+    console.log(i, leader.firstName, leader.winPercentage, leader.wins, leader.losses);
+    return createData(i, leader.firstName, leader.winPercentage, leader.wins, leader.losses);
   });
-  console.log('rows', rows);
-
-  // return (
-  //   <Table>
-  //     <thead>
-  //       <tr>
-  //         <th>Rank</th>
-  //         <th>Name</th>
-  //         <th>Points</th>
-  //       </tr>
-  //     </thead>
-  //     <tbody>
-  //       {leaders.map((leader, i) => (
-  //         <tr key={i}>
-  //           <td>{i}</td>
-  //           <td>{leader.firstName}</td>
-  //           <td>{leader.wins}</td>
-  //         </tr>
-  //       ))}
-  //     </tbody>
-  //   </Table >
-  // );
 
   return (
+
     <TableContainer component={Paper}>
       <Table className="leader-table" sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell align="right"><b>Rank</b></TableCell>
-            <TableCell align="right"><b>Player</b></TableCell>
-            <TableCell align="right"><b>Wins</b></TableCell>
+            <TableCell align="center"><b>Rank</b></TableCell>
+            <TableCell align="center"><b>Trainer</b></TableCell>
+            <TableCell align="center"><b>WinPercentage</b></TableCell>
+            <TableCell align="center"><b>Wins</b></TableCell>
+            <TableCell align="center"><b>Losses</b></TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -85,9 +62,12 @@ const LeaderBoard = () => {
               row={row}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <TableCell align="right">{i + 1}</TableCell>
-              <TableCell align="right">{row.name}</TableCell>
-              <TableCell align="right">{row.wins}</TableCell>
+              <TableCell align="center">{i + 1}</TableCell>
+              <TableCell align="center">{row.name}</TableCell>
+              <TableCell align="center">{row.winPercentage + '%'}</TableCell>
+              <TableCell align="center">{row.wins}</TableCell>
+              <TableCell align="center">{row.losses}</TableCell>
+
             </TableRow>
           ))}
         </TableBody>
