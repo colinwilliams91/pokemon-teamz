@@ -24,8 +24,7 @@ const UserHistory = () => {
 
     <>
       <UserHistBox>
-        <img src=''/>
-
+        
         <UserHistBox1>
           <ColorBar>
             <Text>Wins</Text>
