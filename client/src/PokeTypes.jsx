@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TypeImg, TextTypeDiv, OuterTypeContainer, PokeTypesBody } from './components/Styled.jsx';
+import { TypeImg, TypeGrid, OuterTypeContainer, PokeTypesBody, TextTypeDiv, FlexDiv } from './components/Styled.jsx';
 import axios from 'axios';
 const PokeTypes = () => {
 
@@ -33,25 +33,32 @@ const PokeTypes = () => {
             <TypeImg key={i} src={type.imageUrl} onClick={() => handleTypeClick(type)} />
           ))}
         </OuterTypeContainer>
-        <hr />
-        {selectedType && (
-          <OuterTypeContainer>
-            {types
-              .filter((t) => selectedType.strongVs.includes(t.name))
-              .map((t, index) => (
-                <TypeImg key={index} src={t.imageUrl} />
-              ))}
-          </OuterTypeContainer>
-        )}
-        {selectedType && (
-          <OuterTypeContainer>
-            {types
-              .filter((t) => selectedType.vulnerableTo.includes(t.name))
-              .map((t, index) => (
-                <TypeImg key={index} src={t.imageUrl} />
-              ))}
-          </OuterTypeContainer>
-        )}
+        <TypeGrid>
+          <div>
+            <TextTypeDiv>STRENGTHS</TextTypeDiv>
+            {selectedType && (
+              <OuterTypeContainer>
+                {types
+                  .filter((t) => selectedType.strongVs.includes(t.name))
+                  .map((t, index) => (
+                    <TypeImg key={index} src={t.imageUrl} />
+                  ))}
+              </OuterTypeContainer>
+            )}
+          </div>
+          <div>
+            <TextTypeDiv>WEAKNESSES</TextTypeDiv>
+            {selectedType && (
+              <OuterTypeContainer>
+                {types
+                  .filter((t) => selectedType.vulnerableTo.includes(t.name))
+                  .map((t, index) => (
+                    <TypeImg key={index} src={t.imageUrl} />
+                  ))}
+              </OuterTypeContainer>
+            )}
+          </div>
+        </TypeGrid>
       </PokeTypesBody>
     </>
   );
