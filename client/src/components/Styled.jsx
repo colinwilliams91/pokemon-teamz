@@ -108,11 +108,12 @@ const Contents = styled.div`
 `;
 
 const CreateCharContainer = styled.div`
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   display: flex;
   position: relative;
-  top: 20rem;
-  right: 42rem;
+  margin-top: 60px;
+  /* top: 20rem;
+  right: 42rem; */
 `;
 
 const FavoritePokemon = styled.div`
@@ -126,12 +127,12 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   box-sizing: border-box;
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 32rem;
-  right: 38rem;
+  top: 13rem;
+  right: 41rem;
 `;
 
 const TrainerCarItem = styled.img`
@@ -156,11 +157,10 @@ justify-content: space-between;
 
 const OuterTypeContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  align-items: center;
-  width: 16.6666666667%;
-  height: 33.33333%;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 4rem;
+  padding-bottom: 5rem;
 `;
 
 
@@ -179,29 +179,28 @@ const blinkHover = keyframes`
 `;
 
 const TypeImg = styled.img`
-    width: 4rem;
-    height: 4rem;
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: 50%;
-
+    cursor: pointer;
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
-    }
-  width: 5rem;
-  height: 5rem;
-  margin: 5rem;
-  padding: 2rem;
-  letter-spacing: .2rem;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 50%;
-  font-family: 'Pokemon Solid', sans-serif;
-  background: linear-gradient(to bottom, #ff0000, #ffff00);
-  &:hover{
+        -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
+         filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
   animation: ${blinkHover} 1.5s ease-in-out infinite;
   }
 `;
+
+const TypeGrid = styled.div`
+ display: grid;
+ grid-auto-flow: column;
+  background-image: url(https://wallpaperaccess.com/full/40705.jpg);
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+`;
+
+const FlexDiv = styled.div`
+  width: 100px;
+`;
+
 const UserHistBox = styled.div`
   background-color: rgba(247, 248, 248, 0.2);
   padding: 10px;
@@ -212,11 +211,6 @@ const UserHistBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
-  /* min-width: 200px;
-  min-height: 100px;
-  max-width: 400px;
-  max-height: 800px; */
 `;
 
 const UserHistBox1 = styled.div`
@@ -231,7 +225,7 @@ const UserHistBox1 = styled.div`
 const UserHistBox2 = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 100px;
+  height: 110px;
   background-color: rgba(247, 248, 248, 0.5);
   margin-bottom: 100px;
   text-align: center;
@@ -265,9 +259,35 @@ const Text3 = styled.div`
 const TextTypeDiv = styled.h1`
     font-family: 'Pokemon Solid', sans-serif;
     font-size: 1rem;
+    color: white;
     letter-spacing: .2rem;
-    text-align: center;
+    text-align: left;
 `;
+
+const UserInfoBox = styled.div`
+  background-color: rgba(247, 248, 248, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+  width: 400px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  left: 0;
+  top: 0;
+`;
+
+const InfoFavoriteContainer = styled.div`
+  position: relative;
+  display: grid;
+  justify-content: space-evenly;
+  grid-auto-flow: column;
+  justify-items: center;
+  margin: .1rem 2.2rem;
+`;
+
+
 
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
@@ -275,6 +295,7 @@ export { Body, FoundUser, Header, InboxBody,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
-  TextTypeDiv, OuterTypeContainer, PokeTypesBody
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody,
+  UserInfoBox, TypeGrid, FlexDiv, InfoFavoriteContainer
 };
 

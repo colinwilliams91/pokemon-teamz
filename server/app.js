@@ -2,7 +2,7 @@ const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
-
+const { Types } = require('./routes/typeRouter.js');
 const { User } = require('./routes/userRoutes.js');
 const { Deck } = require('./routes/deckRoutes.js');
 const { Pokedex } = require('./routes/pokedexRoutes.js');
@@ -70,14 +70,11 @@ app.get('/cloudinary', (req, res) => {
 
 // maybe move to routes... ?
 app.post('/team', (req, res) => {
-  console.log('REQ OBJ FROM TEAM LOOKUP AXIOS', req.body);
   axios.get(`https://pokeapi.co/api/v2/pokemon/${req.body.data.pokeLookup}`)
     .then(pokemon => {
-      // console.log('pokeAPI HIT success', pokemon.data);
       const stats = pokemon.data.stats.reduce((acc, cur) => {
         return acc + cur.base_stat;
       }, 0);
-      console.log('STATS SUM from API', stats);
       const pokeTypes = pokemon.data.types.map(el => el.type.name);
       res.body = {
         sprite: pokemon.data.sprites.front_default,
@@ -86,8 +83,6 @@ app.post('/team', (req, res) => {
         types: pokeTypes,
         canBattle: true
       };
-      console.log('SHOULD HAVE TYPES FROM API', pokeTypes);
-      console.log('RES BODY W ALL STATS', res.body);
       res.status(200).send(res.body);
     })
     .catch(err => {
@@ -99,7 +94,7 @@ app.use('/api/user', User);
 app.use('/api/pokedex', Pokedex);
 app.use('/api/deck', Deck);
 app.use('/api/chat', Chat);
-//app.use('/api/types', Type);
+app.use('/api/types', Types);
 
 
 app.use('*', (req, res) => {
