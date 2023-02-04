@@ -70,14 +70,11 @@ app.get('/cloudinary', (req, res) => {
 
 // maybe move to routes... ?
 app.post('/team', (req, res) => {
-  console.log('REQ OBJ FROM TEAM LOOKUP AXIOS', req.body);
   axios.get(`https://pokeapi.co/api/v2/pokemon/${req.body.data.pokeLookup}`)
     .then(pokemon => {
-      // console.log('pokeAPI HIT success', pokemon.data);
       const stats = pokemon.data.stats.reduce((acc, cur) => {
         return acc + cur.base_stat;
       }, 0);
-      console.log('STATS SUM from API', stats);
       const pokeTypes = pokemon.data.types.map(el => el.type.name);
       res.body = {
         sprite: pokemon.data.sprites.front_default,
@@ -86,8 +83,6 @@ app.post('/team', (req, res) => {
         types: pokeTypes,
         canBattle: true
       };
-      console.log('SHOULD HAVE TYPES FROM API', pokeTypes);
-      console.log('RES BODY W ALL STATS', res.body);
       res.status(200).send(res.body);
     })
     .catch(err => {

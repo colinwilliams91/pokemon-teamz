@@ -64,7 +64,7 @@ const InfoSect = () => {
 
   return (
     <>
-      <TrainerContext.Provider value={ { character, setCharacter } }>
+      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile } }>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
           <h2>You!</h2>
