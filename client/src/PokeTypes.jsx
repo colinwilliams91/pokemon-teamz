@@ -4,6 +4,7 @@ import axios from 'axios';
 const PokeTypes = () => {
 
   const [types, setTypes] = useState([]);
+  const [selectedType, setSelectedType] = useState(null);
 
   useEffect(() => {
 
@@ -19,15 +20,38 @@ const PokeTypes = () => {
     getAllTypes();
   }, []);
 
+  const handleTypeClick = (type) => {
+    setSelectedType(type);
+  };
+
   return (
     <>
 
       <PokeTypesBody>
         <OuterTypeContainer>
           {types.map((type, i) => (
-            <TypeImg key={i} src ={type.imageUrl} />
+            <TypeImg key={i} src={type.imageUrl} onClick={() => handleTypeClick(type)} />
           ))}
         </OuterTypeContainer>
+        <hr />
+        {selectedType && (
+          <OuterTypeContainer>
+            {types
+              .filter((t) => selectedType.strongVs.includes(t.name))
+              .map((t, index) => (
+                <TypeImg key={index} src={t.imageUrl} />
+              ))}
+          </OuterTypeContainer>
+        )}
+        {selectedType && (
+          <OuterTypeContainer>
+            {types
+              .filter((t) => selectedType.vulnerableTo.includes(t.name))
+              .map((t, index) => (
+                <TypeImg key={index} src={t.imageUrl} />
+              ))}
+          </OuterTypeContainer>
+        )}
       </PokeTypesBody>
     </>
   );
