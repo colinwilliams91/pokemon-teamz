@@ -65,7 +65,7 @@ const InfoSect = () => {
 
   return (
     <>
-      <TrainerContext.Provider value={ { character, setCharacter } }>
+      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile } }>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
           <UserInfo/>
@@ -78,7 +78,10 @@ const InfoSect = () => {
             style={{margin: '1rem'}}
           />
 
-          <Button onClick={() => setInputVals(() => ({ clicked: true }))}>Edit Profile</Button> <br />
+          <Button
+            onClick={() => setInputVals(() => ({ clicked: true }))}
+          >Edit Profile
+          </Button> <br />
 
           {inputVals.clicked ?
             <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :

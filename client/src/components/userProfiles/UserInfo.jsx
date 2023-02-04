@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Avatar, Button, TextField } from '../../mui/index.jsx';
 import { UserHistBox, UserHistBox1, UserHistBox2, ColorBar, Text, Text2, Text3, UserInfoBox } from '../Styled.jsx';
-
+import { TrainerContext } from './infoSect.jsx';
 const UserInfo = () => {
 
- 
+  const { profile } = useContext(TrainerContext);
 
   return (
 

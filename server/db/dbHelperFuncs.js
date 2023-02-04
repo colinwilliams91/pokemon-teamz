@@ -1,5 +1,5 @@
 const db = require('mongoose');
-const { Deck, User, Chat } = require('./index.js');
+const { Deck, User, Chat, Type } = require('./index.js');
 const axios = require('axios');
 
 const obtainAllUsers = () => {
@@ -72,7 +72,7 @@ const updateRecords = (loggedInId, records) => {
       console.log('got data back from db');
       return userDoc;
     })
-    .catch( err => console.err(err));
+    .catch(err => console.err(err));
 };
 
 const addCard = (card, cb) => {
@@ -98,8 +98,11 @@ const getUsersMsg = (id, cb) => {
     .catch(err => console.log(err));
 };
 
-
-
+const getAllPokemonTypes = () => {
+  return Type.find({})
+    .then(data => data)
+    .catch(err => console.error('error in getAllPokemonTypes: ', err));
+};
 
 module.exports = {
   obtainAllUsers,
@@ -113,5 +116,6 @@ module.exports = {
   getUsersMsg,
   addFavPokemon,
   getMarketCards,
-  updateRecords
+  updateRecords,
+  getAllPokemonTypes
 };

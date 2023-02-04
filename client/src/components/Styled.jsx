@@ -42,7 +42,8 @@ const Header = styled.div`
 `;
 const InboxBody = styled.div`
  display: flex;
- flex-direction: row;
+ flex-wrap: wrap;
+ max-width: 100%;
  justify-content: space-between;
 `;
 
@@ -107,6 +108,7 @@ const Contents = styled.div`
 `;
 
 const CreateCharContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   top: 20rem;
@@ -114,6 +116,7 @@ const CreateCharContainer = styled.div`
 `;
 
 const FavoritePokemon = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   top: 10rem;
@@ -121,6 +124,7 @@ const FavoritePokemon = styled.div`
 `;
 
 const TrainerCreatorContainer = styled.div`
+  box-sizing: border-box;
   display: flex;
   position: relative;
   flex-direction: column;
@@ -133,53 +137,57 @@ const TrainerCreatorContainer = styled.div`
 const TrainerCarItem = styled.img`
   display: flex;
   position: relative;
-  margin: 1rem;
-`;
-
-
-const TrainerHair = styled.div`
   display: flex;
   position: relative;
   margin: 1rem;
+  cursor: grab;
+  &:active{
+    cursor: grabbing;
+  }
 `;
 
-const TrainerFace = styled.div`
-  display: flex;
-  position: relative;
-  margin: 1rem;
+
+const PokeTypesBody = styled.div`
+display: flex;
+flex-wrap: wrap;
+justify-content: space-between;
 `;
 
-const TrainerBody = styled.div`
+
+const OuterTypeContainer = styled.div`
   display: flex;
-  position: relative;
-  margin: 1rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  cursor: pointer;
 `;
+
+
 
 
 const blinkHover = keyframes`
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.3);
+    }
+    100% {
+      transform: scale(1);
+    }
 `;
 
-const TypeDiv = styled.div`
-  width: 5rem;
-  height: 5rem;
-  margin: 5rem;
-  padding: 2rem;
-  letter-spacing: .2rem;
+const TypeImg = styled.img`
+    width: auto;
+    height: auto;
+    margin: 1rem;
+    &:hover{
+    animation: ${blinkHover} 1.5s ease-in-out infinite;
+    }
+
   cursor: pointer;
-  text-align: center;
-  border-radius: 50%;
-  font-family: 'Pokemon Solid', sans-serif;
-  background: linear-gradient(to bottom, #ff0000, #ffff00);
   &:hover{
+        -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
+         filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
   animation: ${blinkHover} 1.5s ease-in-out infinite;
   }
 `;
@@ -238,6 +246,13 @@ const Text3 = styled.div`
   font-size: 50px;
 `;
 
+const TextTypeDiv = styled.h1`
+    font-family: 'Pokemon Solid', sans-serif;
+    font-size: 1rem;
+    letter-spacing: .2rem;
+    text-align: center;
+`;
+
 const UserInfoBox = styled.div`
   background-color: rgba(247, 248, 248, 0.2);
   padding: 10px;
@@ -260,8 +275,8 @@ export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
   FavoritePokemon, TrainerCreatorContainer,
-  TrainerCarItem, TrainerHair, TrainerFace,
-  TrainerBody, TypeDiv, UserHistBox, UserHistBox1,
-  UserHistBox2, ColorBar, Text, Text2, Text3, UserInfoBox
+  TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
+  UserHistBox2, ColorBar, Text, Text2, Text3,
+  TextTypeDiv, OuterTypeContainer, PokeTypesBody, UserInfoBox
 };
 
