@@ -3,10 +3,12 @@ import axios from 'axios';
 
 const BattleView = () => {
   const [player, setPlayer] = useState({});
-  const [playerTeam, setPlayerTeam] = useState([]);
+  const [playerTeam, setPlayerTeam] = useState([]); // should probably live in a child component
   const [rivalTeam, setRivalTeam] = useState([]);
-  const [rival, setRival] = useState({});
+  const [rival, setRival] = useState({}); // should probably live in a child component
   const [matchups, setMatchups] = useState({});
+  const [playerActive, setPlayerActive] = useState({}); // should probably live in a child component
+  const [rivalActive, setRivalActive] = useState({}); // should probably live in a child component
 
   const matchupPopulate = () => {
     setMatchups({
@@ -63,7 +65,7 @@ const BattleView = () => {
     console.log('Generated an additional 5 mons onto player team. Resulting Team:');
 
     const generatedTeam = [
-      player.favPokemonName,
+      player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
       Math.floor(Math.random() * (151) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
@@ -126,25 +128,30 @@ const BattleView = () => {
   };
 
   const battleResolution = (playerActive, rivalActive) => {
-    playerActive = {name: 'charizard', statTotal: 534, type1: 'fire', type2: 'flying'};
-    rivalActive = {name: 'geodude', statTotal: 300, type1: 'rock', type2: 'ground'};
+    playerActive = {name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true};
+    rivalActive = {name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true};
     let playerMulti = 1;
     let rivalMulti = 1;
-    if (matchups[playerActive.type1].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.type1].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[playerActive.type2].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.type2].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[rivalActive.type1].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.type1].includes(playerActive.type2)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.type2].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.type2].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    if (matchups[playerActive.types[0]].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[0]].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[1]].includes(rivalActive.type1)) { playerMulti += 0.25; }
+    if (matchups[playerActive.types[1]].includes(rivalActive.type2)) { playerMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.type2)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[1]].includes(playerActive.type1)) { rivalMulti += 0.25; }
+    if (matchups[rivalActive.types[1]].includes(playerActive.type2)) { rivalMulti += 0.25; }
     
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
-      handleResult('loss');
+      playerActive.canBattle = false;
     } else {
-      handleResult( 'win' );
+      rivalActive.canBattle = false;
+      setRivalActive();
     }
-    
+    // set active pokemon to null
+    setPlayerActive({});
+    // set rival pokemon to next in array
+    setRivalActive({});
+    // call a function that checks state and moves to declare a winner
   };
 
   useEffect(() => {
@@ -157,8 +164,8 @@ const BattleView = () => {
 
   return (
     <>
-      <div> Battle Screen </div>
-      <div> Get a team that includes your favorite Pokemon!</div>
+      <div> Welcome to the Battle Arena, {player.username || 'Player'}</div>
+      <div> Generate a team to take into battle below. The team will always include your favorite Pokemon!</div>
       <div>Your favorite pokemon: {player.favPokemonName}</div>
       <img src={player.favPokemonImage} />
       <span>Type: </span>
