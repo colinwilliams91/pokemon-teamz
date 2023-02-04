@@ -108,11 +108,12 @@ const Contents = styled.div`
 `;
 
 const CreateCharContainer = styled.div`
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   display: flex;
   position: relative;
-  top: 20rem;
-  right: 42rem;
+  margin-top: 60px;
+  /* top: 20rem;
+  right: 42rem; */
 `;
 
 const FavoritePokemon = styled.div`
@@ -126,12 +127,12 @@ const FavoritePokemon = styled.div`
 const TrainerCreatorContainer = styled.div`
   box-sizing: border-box;
   display: flex;
-  position: relative;
+  position: absolute;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  top: 32rem;
-  right: 38rem;
+  top: 13rem;
+  right: 41rem;
 `;
 
 const TrainerCarItem = styled.img`
@@ -209,6 +210,7 @@ const UserHistBox = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
+  margin-left: 50px;
 `;
 
 const UserHistBox1 = styled.div`
@@ -269,12 +271,20 @@ const UserInfoBox = styled.div`
   width: 400px;
   height: 600px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   align-items: center;
-  position: fixed;
-  left: 0;
-  top: 0;
+  margin-right: 50px;
+
+`;
+
+const InfoFavoriteContainer = styled.div`
+  position: relative;
+  display: grid;
+  justify-content: space-evenly;
+  grid-auto-flow: column;
+  justify-items: center;
+  margin: .1rem 2.2rem;
 `;
 
 const BattleContainerContainer = styled.div`
@@ -327,8 +337,8 @@ export { Body, FoundUser, Header, InboxBody,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
-  TextTypeH1, OuterTypeContainer, PokeTypesBody, 
+  TextTypeH1, OuterTypeContainer, PokeTypesBody,
   UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer, 
-  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer
+  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer
 };
 

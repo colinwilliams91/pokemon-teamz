@@ -1,7 +1,7 @@
 import React, { useState, useEffect, createRef } from 'react';
 import axios from 'axios';
 import { Avatar, Button, TextField } from '../../mui/index.jsx';
-import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer } from '../Styled.jsx';
+import { CreateCharContainer, FavoritePokemon, TrainerCreatorContainer, InfoFavoriteContainer } from '../Styled.jsx';
 import TrainerCreator from './TrainerCreator.jsx';
 import UserHistory from './UserHistory.jsx';
 import UserInfo from './UserInfo.jsx';
@@ -65,21 +65,22 @@ const InfoSect = () => {
 
   return (
     <>
-      <TrainerContext.Provider value={ { character, setCharacter, inputVals, setInputVals, profile, setProfile, userRef, descRef } }>
+      <TrainerContext.Provider value={{ character, setCharacter, inputVals, setInputVals, profile, setProfile, userRef, descRef }}>
         <div className='info'>
           {/* <img alt={profile.firstName} width='100px' src={profile.avatar} referrerpolicy="no-referrer" /> <br /> */}
-          <UserInfo/>
-
+          <UserInfo />
 
           {inputVals.clicked ?
-            <div><Button variant='contained' onClick={() => {
-              handleClick();
-              setInputVals(() => ({ clicked: false }));
-              retriveIdData();
-            }}>Post</Button></div> : <div></div>}
+            <div><Button
+              style={{ right: '15rem', top: '1rem' }}
+              variant='contained' onClick={() => {
+                handleClick();
+                setInputVals(() => ({ clicked: false }));
+                retriveIdData();
+              }}>Save</Button></div> : <div></div>}
 
-          Your Favorite Pokemon:
-          <div>
+          <InfoFavoriteContainer>
+            <span><b>Your Favorite Pokemon:</b></span>
             <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
             <h2>
               {profile.favPokemonName}
@@ -88,19 +89,7 @@ const InfoSect = () => {
               <li>{profile.favPokemonType1}</li>
               {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
             </ul>
-          </div>
-
-          <CreateCharContainer>
-            <h2>Your Trainer!</h2>
-            <Avatar
-              alt={profile.firstName}
-              src={character}
-              sx={{ width: 100, height: 100 }}
-              referrerPolicy="no-referrer"
-              style={{ margin: '1rem' }}
-            />
-            <Button onClick={() => setInputVals(() => ({ create: true }))}>Edit Trainer</Button> <br />
-          </CreateCharContainer>
+          </InfoFavoriteContainer>
 
           <TrainerCreatorContainer>
             {inputVals.create ? <TrainerCreator /> : <></>}
@@ -115,3 +104,21 @@ const InfoSect = () => {
 };
 
 export default InfoSect;
+
+
+
+// <-- moved into UserInfo.jsx -->
+{ /* <h2>You!</h2>
+<Avatar
+  alt={profile.firstName}
+  src={profile.avatar}
+  sx={{ width: 100, height: 100 }}
+  referrerPolicy="no-referrer"
+  style={{margin: '1rem'}}
+/>
+
+<Button
+  onClick={() => setInputVals(() => ({ clicked: true }))}
+>Edit Profile
+</Button> <br /> */ }
+

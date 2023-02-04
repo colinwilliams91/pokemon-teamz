@@ -38,7 +38,7 @@ const TrainerCreator = () => {
 
   return (
     <>
-      <h2>Click Avatar to Save!</h2>
+      {/* <h2>Click Avatar to Save!</h2> */}
       <Carousel slide={false} indicators={false} onSelect={handleSelect} interval={null}>
         <Carousel.Item>
           <TrainerCarItem
