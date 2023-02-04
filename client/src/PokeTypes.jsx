@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TypeImg, TypeGrid, OuterTypeContainer, PokeTypesBody, TextTypeDiv, FlexDiv } from './components/Styled.jsx';
+import { TypeImg, TypeGrid, OuterTypeContainer, PokeTypesBody, TextTypeH1, FlexDiv } from './components/Styled.jsx';
 import axios from 'axios';
 const PokeTypes = () => {
 
@@ -35,7 +35,7 @@ const PokeTypes = () => {
         </OuterTypeContainer>
         <TypeGrid>
           <div>
-            <TextTypeDiv>STRONG VS.</TextTypeDiv>
+            <TextTypeH1>STRONG VS.</TextTypeH1>
             {selectedType && (
               <OuterTypeContainer>
                 {types
@@ -47,7 +47,7 @@ const PokeTypes = () => {
             )}
           </div>
           <div>
-            <TextTypeDiv>WEAK VS.</TextTypeDiv>
+            <TextTypeH1>WEAK VS.</TextTypeH1>
             {selectedType && (
               <OuterTypeContainer>
                 {types

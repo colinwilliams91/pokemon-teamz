@@ -184,7 +184,6 @@ const TypeImg = styled.img`
     animation: ${blinkHover} 1.5s ease-in-out infinite;
         -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
          filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
-  animation: ${blinkHover} 1.5s ease-in-out infinite;
   }
 `;
 
@@ -257,7 +256,7 @@ const Text3 = styled.div`
   font-size: 50px;
 `;
 
-const TextTypeDiv = styled.h1`
+const TextTypeH1 = styled.h1`
     font-family: 'Pokemon Solid', sans-serif;
     font-size: 1rem;
     color: white;
@@ -288,6 +287,48 @@ const InfoFavoriteContainer = styled.div`
   margin: .1rem 2.2rem;
 `;
 
+const BattleContainerContainer = styled.div`
+  background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
+  background-size: auto;
+  background-position: center;
+`;
+
+
+const BattleHeadContainer = styled.div`
+display: grid;
+grid-template-areas: repeat(1, 100px);
+place-items: center;
+grid-auto-flow: row;
+justify-content: space-evenly;
+`;
+
+const BattleTextDiv = styled.h1`
+    font-family: 'Pokemon Solid', sans-serif;
+    opacity: 0.8;
+    font-size: .8rem;
+    color: white;
+    text-shadow: 1px 1px 1px #000000;
+    letter-spacing: .2rem;
+    text-align: center;
+`;
+
+const BattleImage = styled.img`
+
+`;
+
+const BattleButton = styled.button`
+  font-family: 'Pokemon Solid', sans-serif;
+  text-shadow: 1px 1px 1px #000000;
+  padding: .3rem;
+   opacity: 0.8;
+  letter-spacing: .2rem;
+  border-color: white;
+  border-radius:20%;
+  border-width: 1px;
+  margin-bottom: .3rem;
+  background-color: transparent;
+  color: white;
+`;
 
 
 export { Body, FoundUser, Header, InboxBody,
@@ -296,7 +337,8 @@ export { Body, FoundUser, Header, InboxBody,
   FavoritePokemon, TrainerCreatorContainer,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
-  TextTypeDiv, OuterTypeContainer, PokeTypesBody,
-  UserInfoBox, TypeGrid, FlexDiv, InfoFavoriteContainer
+  TextTypeH1, OuterTypeContainer, PokeTypesBody,
+  UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer, 
+  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer
 };
 
