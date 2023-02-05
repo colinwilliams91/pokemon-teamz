@@ -289,9 +289,9 @@ const InfoFavoriteContainer = styled.div`
 `;
 
 const BattleContainerContainer = styled.div`
-  background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
-  background-size: auto;
-  background-position: center;
+  // background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
+  // background-size: auto;
+  // background-position: center;
 `;
 
 
@@ -347,12 +347,22 @@ text-align: center;
 font-family: 'Pokemon Solid', sans-serif;
 letter-spacing: .2rem;
 `;
-const BattleField = styled.div`
-`;
 const BattleFieldDiv = styled.div`
+display: grid;
+grid-template-areas: repeat(1, 100px);
+place-items: center;
+grid-auto-flow: row;
+justify-content: space-evenly;
 `;
+
 const BattleFieldText = styled.div`
-font-family: 'Pokemon Solid', sans-serif;
+    font-family: 'Pokemon Solid', sans-serif;
+    opacity: 0.8;
+    font-size: .8rem;
+    color: white;
+    text-shadow: 1px 1px 1px #000000;
+    letter-spacing: .2rem;
+    text-align: center;
 `;
 const BattleFieldSprites = styled.img`
 `;
@@ -366,7 +376,7 @@ export { Body, FoundUser, Header, InboxBody,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
   UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer,
   BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, 
-  InfoFavoriteContainer, BattleField, BattleFieldText, BattleFieldSprites,
+  InfoFavoriteContainer, BattleFieldText, BattleFieldSprites,
   BattleFieldDiv,
   StyledTableRow, StyledTableCell
 };
