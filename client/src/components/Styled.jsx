@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { TableCell, TableRow } from '../mui/index.jsx';
 
 
 const Body = styled.div`
@@ -225,7 +226,7 @@ const UserHistBox1 = styled.div`
 const UserHistBox2 = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 110px;
+  height: 130px;
   background-color: rgba(247, 248, 248, 0.5);
   margin-bottom: 100px;
   text-align: center;
@@ -319,7 +320,7 @@ const BattleButton = styled.button`
   font-family: 'Pokemon Solid', sans-serif;
   text-shadow: 1px 1px 1px #000000;
   padding: .3rem;
-   opacity: 0.8;
+  opacity: 0.8;
   letter-spacing: .2rem;
   border-color: white;
   border-radius:20%;
@@ -328,7 +329,24 @@ const BattleButton = styled.button`
   background-color: transparent;
   color: white;
 `;
+const StyledTableRow = styled(TableRow)`
+  background-color: #babdc3;
+  &:nth-of-type(odd) {
+    background-color: #e5f3f6;
 
+  }
+
+`;
+
+const StyledTableCell = styled(TableCell)`
+font-weight: bold;
+color: red;
+font-size: 1rem;
+text-shadow:1px 1px 1px black;
+text-align: center;
+font-family: 'Pokemon Solid', sans-serif;
+letter-spacing: .2rem;
+`;
 const BattleField = styled.div`
 `;
 const BattleFieldDiv = styled.div`
@@ -338,6 +356,7 @@ font-family: 'Pokemon Solid', sans-serif;
 `;
 const BattleFieldSprites = styled.img`
 `;
+
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
@@ -345,9 +364,9 @@ export { Body, FoundUser, Header, InboxBody,
   TrainerCarItem, TypeImg, UserHistBox, UserHistBox1,
   UserHistBox2, ColorBar, Text, Text2, Text3,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
-  UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer, 
+  UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer,
   BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, 
   InfoFavoriteContainer, BattleField, BattleFieldText, BattleFieldSprites,
-  BattleFieldDiv
+  BattleFieldDiv,
+  StyledTableRow, StyledTableCell
 };
-

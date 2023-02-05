@@ -5,10 +5,13 @@
 
 body {
 
-     background: radial-gradient(rgb(255, 255, 255), rgb(145, 20, 20));
+    background-image: url(https://res.cloudinary.com/de0mhjdfg/image/upload/v1675548203/poke-bgs/wp2763510-minimalist-pokemon-wallpapers_dot0se.jpg);
+    height: 100%;
+    width: 100%;
+     /* background: radial-gradient(rgb(255, 255, 255), rgb(145, 20, 20));
      background-attachment: fixed;
      margin: 0;
-     height: 100%;
+     height: 100%; */
 }
 
 .profile {
