@@ -90,19 +90,20 @@ const BattleView = () => {
         PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle'],
       };
       generatedRival.name = Object.keys(rivals)[Math.floor(Math.random() * (7 - 0) + 0)];
-      generatedRival.team = rivals[generatedRival.name];
-      fetchTeam(generatedRival.team, setRivalTeam);
+      //generatedRival.team = rivals[generatedRival.name];
+      fetchTeam(rivals[generatedRival.name], setRivalTeam);
       console.log(generatedRival);
-      setRival(generatedRival);
-      console.log(rivalTeam);
+      //setRival(generatedRival);
+      console.log('rivalTeam: ', rivalTeam);
     } else {
       console.log('You haven\'t gotten a team for battling yet!');
     }
 
   };
   //setRivalActive(rivalTeam[0]);
-  const changeActive = (e) => {
-    setPlayerActive(e.target.value);
+  const changeActive = (mon) => {
+    setPlayerActive(mon);
+    setPlayerActive(mon);
   };
 
   const handleResult = (battleResult) => {
@@ -149,19 +150,28 @@ const BattleView = () => {
   };
 
   const battleResolution = (playerActive, rivalActive) => {
-    console.log(playerActive);
-    console.log(rivalActive);
+    console.log('playerActive: ', playerActive);
+    console.log('rivalActive: ', rivalActive);
     let playerMulti = 1;
     let rivalMulti = 1;
-    if (matchups[playerActive.types[0]].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[0]].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[1]].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[1]].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[rivalActive.types[0]].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[0]].includes(playerActive.type2)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[1]].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[1]].includes(playerActive.type2)) { rivalMulti += 0.25; }
 
+    // MULTIPLIER START    
+    if (matchups[playerActive.types[0]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
+
+    if (rivalActive.types[1]) {
+      if (matchups[playerActive.types[0]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; } 
+    }
+    if (playerActive.types[1]) {
+      if (matchups[playerActive.types[1]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[0]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
+    }
+    if (rivalActive.types[1] && playerActive.types[1]) {
+      if (matchups[playerActive.types[1]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
+    } // MULTIPLIER END
+    
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
       playerActive.canBattle = false;
       console.log('rival wins the round');
@@ -180,6 +190,7 @@ const BattleView = () => {
       if (rivalTeam[index].canBattle) {
         foundNext = true;
         setRivalActive(rivalTeam[index]);
+        setRivalActive(rivalTeam[index]);
       }
       index++;
     }
@@ -187,7 +198,7 @@ const BattleView = () => {
   };
 
   const printStates = ()=> {
-    console.log(playerTeam, playerActive, rivalTeam, rivalActive);
+    console.log('playerteam: ', playerTeam, 'PlayerActive: ', playerActive, 'rivalteam: ', rivalTeam, 'rivalactive:', rivalActive);
   };
 
   useEffect(() => {
@@ -199,7 +210,7 @@ const BattleView = () => {
     <>
       <BattleContainerContainer>
         <BattleHeadContainer>
-          <BattleTextDiv>Welcome to the Battle Arena, {player.username || 'Player'}</BattleTextDiv>
+          <BattleTextDiv style={{marginTop: '1rem'}}>Welcome to the Battle Arena, {player.username || 'Player'}</BattleTextDiv>
           <BattleTextDiv>Generate a team below. The team will always include your favorite Pokemon</BattleTextDiv>
           <BattleTextDiv>Once you have a team, you can take them into battle against powerful opponents!</BattleTextDiv>
           <BattleTextDiv>Your favorite pokemon: {player.favPokemonName}</BattleTextDiv>
@@ -215,7 +226,7 @@ const BattleView = () => {
           <div id='player-team'>
             {
               playerTeam.length ? <span>{playerTeam.map((mon, i) => {
-                return <img onClick={changeActive} src={`${mon.sprite}`} />;
+                return <img style={{cursor: 'pointer'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
               })}</span> : <div></div>
             }
           </div>
@@ -231,8 +242,13 @@ const BattleView = () => {
           {/* <BattleButton onClick={() => { handleResult('win'); }}> Log a win</BattleButton> */}
           <BattleButton onClick={() => {
             printStates();
+            console.log('first player member: ', playerTeam[0]);
+            console.log('first rival member: ', rivalTeam[0]);
             setPlayerActive(playerTeam[0]);
             setRivalActive(rivalTeam[0]);
+            setPlayerActive(playerTeam[0]);
+            setRivalActive(rivalTeam[0]);
+            printStates();
           }}>FIGHT!</BattleButton>
         </BattleHeadContainer>
       </BattleContainerContainer>
@@ -256,7 +272,7 @@ const BattleView = () => {
             </BattleFieldDiv> : <BattleFieldDiv />
           }
         </BattleFieldDiv>
-        <BattleButton onClick={battleResolution}>Resolve this battle</BattleButton>
+        <BattleButton onClick={()=>{ battleResolution(playerActive, rivalActive); }}>Resolve this battle</BattleButton>
       </BattleField>
     </>
   );
