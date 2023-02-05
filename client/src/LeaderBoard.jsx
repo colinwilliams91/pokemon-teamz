@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
-//import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import Leader from './Leader.jsx';
-import styled from 'styled-components';
-import { StyledTableRow, StyledTableCell } from './components/Styled.jsx';
 
+import { StyledTableRow, StyledTableCell } from './components/Styled.jsx';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from './mui/index.jsx';
 
 
-
+//This function is for table mui to format rows for table
 const createData = (rank, avatar, name, captain, winPercentage, wins, losses) => {
   return { rank, avatar, name, captain, winPercentage, wins, losses };
 };
+
+//Avatars and Pokes are here to add images to users seeded into database so that we have enough users
+//on leader-board to present the project.
 const avatars = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/2_wn0jws.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/3_g5v7we.png',
@@ -43,7 +43,6 @@ const LeaderBoard = () => {
           user.winPercentage = Math.floor((user.wins / (user.wins + user.losses) * 100));
           user.avatar = avatars[Math.floor(Math.random() * avatars.length)];
           user.captain = pokes[Math.floor(Math.random() * pokes.length)];
-
         });
         users = users.data.sort((a, b) => b.winPercentage - a.winPercentage);
         setLeaders(users);
@@ -55,8 +54,7 @@ const LeaderBoard = () => {
   };
 
   useEffect(() => {
-    getAllLeaders();
-
+    getAllLeaders()
   }, []);
 
 
@@ -65,7 +63,7 @@ const LeaderBoard = () => {
   });
 
   return (
-
+    //Some css attributes are currently in JSX, but could be added to Styled Components in Styled.jsx
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} >
         <TableHead>
@@ -114,8 +112,6 @@ const LeaderBoard = () => {
   );
 
 };
-
-
 
 
 
