@@ -181,10 +181,11 @@ const blinkHover = keyframes`
 
 const TypeImg = styled.img`
     cursor: pointer;
+    -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
+         filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
     &:hover{
     animation: ${blinkHover} 1.5s ease-in-out infinite;
-        -webkit-filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
-         filter: drop-shadow(1.2rem 1.2rem 1rem rgba(0, 0, 0, 0.5));
+        
   }
 `;
 
