@@ -1,5 +1,6 @@
 import React, { useState, useEffect, } from 'react';
 import axios from 'axios';
+import { BattleHeadContainer, BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer } from './Styled.jsx';
 
 const BattleView = () => {
   const [player, setPlayer] = useState({});
@@ -186,36 +187,40 @@ const BattleView = () => {
   }, [playerTeam, rivalTeam, playerActive, rivalActive]);
 
   return (
-    <>
-      <div> Welcome to the Battle Arena, {player.username || 'Player'}</div>
-      <div> Generate a team to take into battle below. The team will always include your favorite Pokemon!</div>
-      <div>Your favorite pokemon: {player.favPokemonName}</div>
-      <img src={player.favPokemonImage} />
-      <span>Type: </span>
-      <span>{player.favPokemonType1}</span>
-      {player.favPokemonType2 ? <span>/ {player.favPokemonType2}</span> : <></>}
-      <p></p>
-      <button onClick={teamGen}> Generate Team</button>
-      <div> Your Team: INSERT GRAPHIC HERE</div>
-      <div id='player-team'>
-        {
-          playerTeam.length ? <span>{playerTeam.map((mon, i) => {
-            return <img src={`${mon.sprite}`} />;
-          })}</span> : <div></div>
-        }
-      </div>
-      <div>YOU BATTLED WELL! Report the result below!</div>
-      <button onClick={rivalGen}> Fight a rival!</button>
-      <div id='rival-team'>
-        {
-          rivalTeam.length ? <span>{rivalTeam.map((mon, i) => {
-            return <img src={`${mon.sprite}`} />;
-          })}</span> : <div></div>
-        }
-      </div>
-      <button onClick={() => { handleResult('win'); }}> Log a win</button>
-      <button onClick={() => { handleResult('loss'); }}> Log a loss</button>
-    </>
+    <BattleContainerContainer>
+      <BattleHeadContainer>
+        <BattleTextDiv> Welcome to the Battle Arena, {player.username || 'Player'}</BattleTextDiv>
+        <BattleTextDiv> Generate a team to take into battle below. The team will always include your favorite Pokemon!</BattleTextDiv>
+        <BattleTextDiv>Your favorite pokemon: {player.favPokemonName}</BattleTextDiv>
+        <BattleImage src={player.favPokemonImage} />
+        <BattleTextDiv>Type: </BattleTextDiv>
+        <BattleTextDiv>{player.favPokemonType1}</BattleTextDiv>
+      </BattleHeadContainer>
+      <BattleHeadContainer>
+        <BattleButton onClick={teamGen}> Generate Team</BattleButton>
+        {player.favPokemonType2 ? <span>/ {player.favPokemonType2}</span> : <></>}
+        <p></p>
+        {/* <div> Your Team: INSERT GRAPHIC HERE</div> */}
+        <div id='player-team'>
+          {
+            playerTeam.length ? <span>{playerTeam.map((mon, i) => {
+              return <img src={`${mon.sprite}`} />;
+            })}</span> : <div></div>
+          }
+        </div>
+        <BattleTextDiv>YOU BATTLED WELL! Report the result below!</BattleTextDiv>
+        <BattleButton onClick={rivalGen}> Fight a rival!</BattleButton>
+        <div id='rival-team'>
+          {
+            rivalTeam.length ? <span>{rivalTeam.map((mon, i) => {
+              return <img src={`${mon.sprite}`} />;
+            })}</span> : <div></div>
+          }
+        </div>
+        <BattleButton onClick={() => { handleResult('win'); }}> Log a win</BattleButton>
+        <BattleButton onClick={() => { handleResult('loss'); }}> Log a loss</BattleButton>
+      </BattleHeadContainer>
+    </BattleContainerContainer>
   );
 };
 
