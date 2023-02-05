@@ -313,7 +313,6 @@ const BattleTextDiv = styled.h1`
 `;
 
 const BattleImage = styled.img`
-
 `;
 
 const BattleButton = styled.button`
@@ -330,7 +329,15 @@ const BattleButton = styled.button`
   color: white;
 `;
 
-
+const BattleField = styled.div`
+`;
+const BattleFieldDiv = styled.div`
+`;
+const BattleFieldText = styled.div`
+font-family: 'Pokemon Solid', sans-serif;
+`;
+const BattleFieldSprites = styled.img`
+`;
 export { Body, FoundUser, Header, InboxBody,
   UserMsg, UserInfo, Message, ListBody, Input,
   PokeEntry, Contents, CreateCharContainer,
@@ -339,6 +346,8 @@ export { Body, FoundUser, Header, InboxBody,
   UserHistBox2, ColorBar, Text, Text2, Text3,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
   UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer, 
-  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer
+  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, 
+  InfoFavoriteContainer, BattleField, BattleFieldText, BattleFieldSprites,
+  BattleFieldDiv
 };
 
