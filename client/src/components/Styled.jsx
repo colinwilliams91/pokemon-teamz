@@ -226,7 +226,7 @@ const UserHistBox1 = styled.div`
 const UserHistBox2 = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 110px;
+  height: 130px;
   background-color: rgba(247, 248, 248, 0.5);
   margin-bottom: 100px;
   text-align: center;
