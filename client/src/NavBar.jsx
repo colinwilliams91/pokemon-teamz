@@ -102,7 +102,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            PokePlay-Pen
+            Pokémon Teamz
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
