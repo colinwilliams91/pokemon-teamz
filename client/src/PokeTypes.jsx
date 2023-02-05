@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { TypeImg, TypeGrid, OuterTypeContainer, PokeTypesBody, TextTypeH1, FlexDiv } from './components/Styled.jsx';
+import { TypeImg, TypeGrid, OuterTypeContainer, PokeTypesBody, TextTypeH1, FlexDiv, OuterStrWeakContainer } from './components/Styled.jsx';
 import axios from 'axios';
 const PokeTypes = () => {
 
@@ -35,27 +35,28 @@ const PokeTypes = () => {
         </OuterTypeContainer>
         <TypeGrid>
           <div>
-            <TextTypeH1>STRONG VS.</TextTypeH1>
+
             {selectedType && (
-              <OuterTypeContainer>
+              <OuterStrWeakContainer>
+                <TextTypeH1>STRONG VS.</TextTypeH1>
                 {types
                   .filter((t) => selectedType.strongVs.includes(t.name))
                   .map((t, index) => (
                     <TypeImg key={index} src={t.imageUrl} />
                   ))}
-              </OuterTypeContainer>
+              </OuterStrWeakContainer>
             )}
           </div>
           <div>
-            <TextTypeH1>WEAK VS.</TextTypeH1>
             {selectedType && (
-              <OuterTypeContainer>
+              <OuterStrWeakContainer>
+                <TextTypeH1>WEAK VS.</TextTypeH1>
                 {types
                   .filter((t) => selectedType.vulnerableTo.includes(t.name))
                   .map((t, index) => (
                     <TypeImg key={index} src={t.imageUrl} />
                   ))}
-              </OuterTypeContainer>
+              </OuterStrWeakContainer>
             )}
           </div>
         </TypeGrid>

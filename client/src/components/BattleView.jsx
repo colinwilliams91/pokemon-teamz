@@ -37,7 +37,7 @@ const BattleView = () => {
   const getFavorite = () => {
     axios.get('api/user/current')
       .then((result) => {
-        //console.log(result);
+        console.log(result);
         const { _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 } = result.data; //deconstruction
         setPlayer({ _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 }); //object shorthand
       });
@@ -58,7 +58,7 @@ const BattleView = () => {
   };
 
   const teamGen = () => {
-    //console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+    console.log('Generated an additional 5 mons onto player team. Resulting Team:');
     setPlayerTeam([]);
     const generatedTeam = [
       player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
@@ -68,7 +68,7 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
-    //console.log(generatedTeam);
+    console.log(generatedTeam);
     fetchTeam(generatedTeam, setPlayerTeam);
     // fetchTeam(generatedTeam);
   };
@@ -77,7 +77,7 @@ const BattleView = () => {
   const rivalGen = () => {
     if (playerTeam.length) {
       setRivalTeam([]);
-      //console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
+      console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
       const rivals = {
         BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius'],
@@ -92,15 +92,11 @@ const BattleView = () => {
       generatedRival.name = Object.keys(rivals)[Math.floor(Math.random() * (7 - 0) + 0)];
       generatedRival.team = rivals[generatedRival.name];
       fetchTeam(generatedRival.team, setRivalTeam);
-      //console.log(generatedRival);
+      console.log(generatedRival);
       setRival(generatedRival);
     } else {
       console.log('You haven\'t gotten a team for battling yet!');
     }
-  };
-
-  const changeActive = (e) => {
-    setPlayerActive(e.target.value);
   };
 
   const handleResult = (battleResult) => {
@@ -128,24 +124,6 @@ const BattleView = () => {
       .catch((err) => { console.error(err); });
   };
 
-  const matchResolution = () => {
-    let playerCheck = false;
-    let rivalCheck = false;
-    for (let i = 0; i < 6; i++) {
-      if (playerTeam[i].canBattle) {
-        playerCheck = true;
-      }
-      if (rivalTeam[i].canBattle) {
-        rivalCheck = true;
-      }
-    }
-    if (!playerCheck) {
-      handleResult('loss');
-    } else if (!rivalCheck) {
-      handleResult('win');
-    }
-  };
-
   const battleResolution = (playerActive, rivalActive) => {
     playerActive = { name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true };
     rivalActive = { name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true };
@@ -164,27 +142,22 @@ const BattleView = () => {
       playerActive.canBattle = false;
     } else {
       rivalActive.canBattle = false;
+      setRivalActive();
     }
-    // call a function that checks state and moves to declare a winner
-    // set both active pokemon to null
-    setRivalActive({});
+    // set active pokemon to null
     setPlayerActive({});
-    // set rival pokemon to next in array with canBattle: true
-    let foundNext = false;
-    let index = 0;
-    while (!foundNext && index < 6) {
-      if (rivalTeam[index].canBattle) {
-        foundNext = true;
-      }
-      index++;
-    }
-    matchResolution();
+    // set rival pokemon to next in array
+    setRivalActive({});
+    // call a function that checks state and moves to declare a winner
   };
 
   useEffect(() => {
     getFavorite();
     matchupPopulate();
-  }, [playerTeam, rivalTeam, playerActive, rivalActive]);
+  }, [playerTeam, rivalTeam]);
+
+  console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
+  console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
 
   return (
     <BattleContainerContainer>
@@ -197,8 +170,8 @@ const BattleView = () => {
         <BattleTextDiv>{player.favPokemonType1}</BattleTextDiv>
       </BattleHeadContainer>
       <BattleHeadContainer>
-        <BattleButton onClick={teamGen}> Generate Team</BattleButton>
         {player.favPokemonType2 ? <span>/ {player.favPokemonType2}</span> : <></>}
+        <BattleButton onClick={teamGen}> Generate Team</BattleButton>
         <p></p>
         {/* <div> Your Team: INSERT GRAPHIC HERE</div> */}
         <div id='player-team'>

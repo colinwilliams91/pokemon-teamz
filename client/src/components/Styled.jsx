@@ -160,10 +160,21 @@ const OuterTypeContainer = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 4rem;
-  padding-bottom: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
 `;
 
+const OuterStrWeakContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 3rem;
+  margin-bottom: 4rem;
+  border: 3px solid black;
+  box-shadow: 1px 1px 1px 1px white;
+border-width: 5px;
+border-color: black;
+`;
 
 
 
@@ -192,10 +203,8 @@ const TypeImg = styled.img`
 const TypeGrid = styled.div`
  display: grid;
  grid-auto-flow: column;
-  background-image: url(https://wallpaperaccess.com/full/40705.jpg);
-  background-size: cover;
-  background-position: center;
   width: 100%;
+  border-radius: 10px;
 `;
 
 const FlexDiv = styled.div`
@@ -261,9 +270,10 @@ const Text3 = styled.div`
 const TextTypeH1 = styled.h1`
     font-family: 'Pokemon Solid', sans-serif;
     font-size: 1rem;
-    color: white;
+    color: #000000;
     letter-spacing: .2rem;
     text-align: left;
+    text-shadow:1px 1px 1px white;
 `;
 
 const UserInfoBox = styled.div`
@@ -360,6 +370,6 @@ export { Body, FoundUser, Header, InboxBody,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
   UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer,
   BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer,
-  StyledTableRow, StyledTableCell
+  StyledTableRow, StyledTableCell, OuterStrWeakContainer
 };
 
