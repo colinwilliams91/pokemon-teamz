@@ -11,9 +11,9 @@ const mongoUri = 'mongodb://localhost/poke';
 const { MONGO_URI, MONGO_API_KEY } = process.env;
 
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('connected to mongodb'))
-  .catch(err => console.log('you did not connect to mongodb'));
+  .catch(err => console.error('you did not connect to mongodb', err));
 
 const userSchema = new Schema({
   _id: Number,
