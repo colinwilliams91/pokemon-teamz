@@ -72,22 +72,21 @@ const InfoSect = () => {
 
           {inputVals.clicked ?
             <div><Button
-              style={{ right: '15rem', top: '1rem' }}
-              variant='contained' onClick={() => {
+              style={{ right: '16rem', top: '1rem' }}
+              variant='contained'
+              onClick={() => {
                 handleClick();
                 setInputVals(() => ({ clicked: false }));
                 retriveIdData();
               }}>Save</Button></div> : <div></div>}
 
           <InfoFavoriteContainer>
-            <span><b>Your Favorite Pokemon:</b></span>
+            <span style={{ position: 'relative', top: '2rem' }}><b>Your Favorite Pokemon:</b></span>
             <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
-            <h2>
-              {profile.favPokemonName}
-            </h2>  <br />
+            <span style={{ position: 'relative', top: '2rem' }}><b>{profile.favPokemonName}</b></span>  <br />
             <ul>
-              <li>{profile.favPokemonType1}</li>
-              {profile.favPokemonType2 ? <li>{profile.favPokemonType2}</li> : <></>}
+              <li style={{ position: 'relative', top: '2rem' }}>{profile.favPokemonType1}</li>
+              {profile.favPokemonType2 ? <li style={{ position: 'relative', top: '2rem' }}>{profile.favPokemonType2}</li> : <></>}
             </ul>
           </InfoFavoriteContainer>
 
