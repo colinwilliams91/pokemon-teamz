@@ -83,7 +83,7 @@ const InfoSect = () => {
           <InfoFavoriteContainer>
             <span style={{ position: 'relative', top: '2rem' }}><b>Your Favorite Pokemon:</b></span>
             <img src={profile.favPokemonImage} alt={profile.favPokemonName} width='90px' referrerPolicy='no-referrer' /> <br />
-            <span style={{ position: 'relative', top: '2rem' }}><b>{profile.favPokemonName}&nbsp;</b></span>  <br />
+            <span style={{ position: 'relative', top: '2rem' }}><b>{profile.favPokemonName}</b></span>  <br />
             <ul>
               <li style={{ position: 'relative', top: '2rem' }}>{profile.favPokemonType1}</li>
               {profile.favPokemonType2 ? <li style={{ position: 'relative', top: '2rem' }}>{profile.favPokemonType2}</li> : <></>}
