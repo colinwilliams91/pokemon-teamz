@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
-//import Table from 'react-bootstrap/Table';
 import axios from 'axios';
-import Leader from './Leader.jsx';
-import styled from 'styled-components';
-import { StyledTableRow, StyledTableCell } from './components/Styled.jsx';
 
+import { StyledTableRow, StyledTableCell } from './components/Styled.jsx';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from './mui/index.jsx';
 
 
-
-const createData = (rank, avatar, name, captain, winPercentage, wins, losses) => {
-  return { rank, avatar, name, captain, winPercentage, wins, losses };
+//This function is for table mui to format rows for table
+const createData = (rank, trainer, name, captain, winPercentage, wins, losses) => {
+  return { rank, trainer, name, captain, winPercentage, wins, losses };
 };
-const avatars = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
+
+//Trainers and Pokes are here to add images to users seeded into database so that we have enough users
+//on leader-board to present the project.
+const trainers = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/2_wn0jws.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/3_g5v7we.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/1_ezqvts.png',
@@ -40,10 +40,16 @@ const LeaderBoard = () => {
     axios.get('/api/user/db/users')
       .then((users) => {
         users.data.forEach((user) => {
+          console.log('user', user);
           user.winPercentage = Math.floor((user.wins / (user.wins + user.losses) * 100));
-          user.avatar = avatars[Math.floor(Math.random() * avatars.length)];
-          user.captain = pokes[Math.floor(Math.random() * pokes.length)];
-
+          if (!user.trainer) {
+            user.trainer = trainers[Math.floor(Math.random() * trainers.length)];
+          }
+          if (user.favPokemonImage) {
+            user.captain = user.favPokemonImage;
+          } else {
+            user.captain = pokes[Math.floor(Math.random() * pokes.length)];
+          }
         });
         users = users.data.sort((a, b) => b.winPercentage - a.winPercentage);
         setLeaders(users);
@@ -56,16 +62,15 @@ const LeaderBoard = () => {
 
   useEffect(() => {
     getAllLeaders();
-
   }, []);
 
 
   const rows = leaders.map((leader, i) => {
-    return createData(i, leader.avatar, leader.firstName, leader.captain, leader.winPercentage, leader.wins, leader.losses);
+    return createData(i, leader.trainer, leader.firstName, leader.captain, leader.winPercentage, leader.wins, leader.losses);
   });
 
   return (
-
+    //Some css attributes are currently in JSX, but could be added to Styled Components in Styled.jsx
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} >
         <TableHead>
@@ -94,7 +99,7 @@ const LeaderBoard = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <StyledTableCell>{i + 1}</StyledTableCell>
-              <TableCell align="center"><img src={row.avatar} style={{
+              <TableCell align="center"><img src={row.trainer} style={{
                 width: '60px',
                 height: '60px'
               }} /></TableCell>
@@ -114,8 +119,6 @@ const LeaderBoard = () => {
   );
 
 };
-
-
 
 
 
