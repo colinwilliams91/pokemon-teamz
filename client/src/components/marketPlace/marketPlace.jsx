@@ -14,7 +14,7 @@ const MarketPlace = () => {
   }, []);
 
   return (
-    <div>
+    <div style={{marginLeft: '50rem', marginTop: '2.5rem'}}>
       <h1>Marketplace</h1>
       <div>
         {market.map((card) => (
