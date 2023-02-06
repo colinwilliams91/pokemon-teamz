@@ -236,7 +236,7 @@ const UserHistBox1 = styled.div`
 const UserHistBox2 = styled.div`
   border-radius: 10px;
   width: 100%;
-  height: 110px;
+  height: 130px;
   background-color: rgba(247, 248, 248, 0.5);
   margin-bottom: 100px;
   text-align: center;
@@ -300,9 +300,9 @@ const InfoFavoriteContainer = styled.div`
 `;
 
 const BattleContainerContainer = styled.div`
-  background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
-  background-size: auto;
-  background-position: center;
+  // background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
+  // background-size: auto;
+  // background-position: center;
 `;
 
 
@@ -325,7 +325,6 @@ const BattleTextDiv = styled.h1`
 `;
 
 const BattleImage = styled.img`
-
 `;
 
 const BattleButton = styled.button`
@@ -358,7 +357,25 @@ text-shadow:1px 1px 1px black;
 text-align: center;
 font-family: 'Pokemon Solid', sans-serif;
 letter-spacing: .2rem;
+`;
+const BattleFieldDiv = styled.div`
+display: grid;
+grid-template-areas: repeat(1, 100px);
+place-items: center;
+grid-auto-flow: row;
+justify-content: space-evenly;
+`;
 
+const BattleFieldText = styled.div`
+    font-family: 'Pokemon Solid', sans-serif;
+    opacity: 0.8;
+    font-size: .8rem;
+    color: white;
+    text-shadow: 1px 1px 1px #000000;
+    letter-spacing: .2rem;
+    text-align: center;
+`;
+const BattleFieldSprites = styled.img`
 `;
 
 export { Body, FoundUser, Header, InboxBody,
@@ -369,7 +386,8 @@ export { Body, FoundUser, Header, InboxBody,
   UserHistBox2, ColorBar, Text, Text2, Text3,
   TextTypeH1, OuterTypeContainer, PokeTypesBody,
   UserInfoBox, TypeGrid, FlexDiv, BattleHeadContainer,
-  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, InfoFavoriteContainer,
+  BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, 
+  InfoFavoriteContainer, BattleFieldText, BattleFieldSprites,
+  BattleFieldDiv,
   StyledTableRow, StyledTableCell, OuterStrWeakContainer
 };
-
