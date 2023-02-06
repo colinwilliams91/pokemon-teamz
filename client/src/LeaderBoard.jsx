@@ -73,21 +73,21 @@ const LeaderBoard = () => {
     //Some css attributes are currently in JSX, but could be added to Styled Components in Styled.jsx
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} >
-        <TableHead>
+        <TableHead style={{backgroundColor: 'grey'}}>
           <TableRow>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center" ><b>Rank</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>Trainer</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>Player</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>Captain</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>WinPercentage</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>Wins</b></TableCell>
-            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif' }}
+            <TableCell style={{ fontFamily: 'Pokemon Solid, sans-serif', color: 'black' }}
               align="center"><b>Losses</b></TableCell>
           </TableRow>
         </TableHead>

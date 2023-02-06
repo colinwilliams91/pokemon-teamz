@@ -1,25 +1,46 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Avatar, Button, TextField } from '../../mui/index.jsx';
+import React, { useContext } from 'react';
+import { Avatar, Button } from '../../mui/index.jsx';
 import { UserInfoBox, CreateCharContainer } from '../Styled.jsx';
 import { TrainerContext } from './infoSect.jsx';
+
 const UserInfo = () => {
 
   const { profile, setInputVals, inputVals, userRef, descRef, character } = useContext(TrainerContext);
-
 
   return (
 
     <>
       <UserInfoBox>
-
         <CreateCharContainer>
           {inputVals.clicked ?
-            <div style={{textShadow: 'none'}}><TextField className='noShadow' label='Username' defaultValue={profile.username} inputRef={userRef} root={{textShadow: '1px 1px 1px transparent'}} /> </div> :
+            <div><input
+              type='text'
+              style={{
+                backgroundColor: '#797979',
+                width: '100%',
+                paddingLeft: '.4rem',
+                paddingBottom: '.2rem',
+                height: '2rem'}}
+              defaultValue={profile.username}
+              ref={userRef}/></div> :
             <h1>{profile.username}: </h1>} <br />
 
           {inputVals.clicked ?
-            <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} inputStyle={{}} /></div> :
-            <h3 style={{ position: 'relative', top: '.7rem', left: '.7rem' }}> {profile.description}</h3>} <br />
+            <div><input
+              type='text'
+              style={{
+                backgroundColor: '#797979',
+                width: '100%',
+                paddingLeft: '.5rem',
+                paddingBottom: '.2rem',
+                height: '2rem'}}
+              defaultValue={profile.description}
+              ref={descRef}/></div> :
+            <h3 style={{
+              position: 'relative',
+              top: '.7rem',
+              left: '.7rem' }}>
+              {profile.description}</h3>} <br />
         </CreateCharContainer>
 
         <CreateCharContainer>
@@ -32,7 +53,10 @@ const UserInfo = () => {
             style={{ margin: '1rem' }}
           />
           <Button
-            style={{ fontFamily: 'Pokemon Solid', letterSpacing: '.2rem', textDecoration: 'underline' }}
+            style={{
+              fontFamily: 'Pokemon Solid',
+              letterSpacing: '.2rem',
+              textDecoration: 'underline' }}
             onClick={() => setInputVals(() => ({ clicked: !inputVals.clicked }))}
           >Edit Profile</Button> <br />
         </CreateCharContainer>
@@ -47,12 +71,13 @@ const UserInfo = () => {
             style={{ margin: '1rem' }}
           />
           <Button
-            style={{ fontFamily: 'Pokemon Solid', letterSpacing: '.2rem', textDecoration: 'underline' }}
+            style={{
+              fontFamily: 'Pokemon Solid',
+              letterSpacing: '.2rem',
+              textDecoration: 'underline' }}
             onClick={() => setInputVals(() => ({ create: !inputVals.create }))}
           >Edit Trainer</Button> <br />
         </CreateCharContainer>
-
-
       </UserInfoBox>
     </>
   );
@@ -60,13 +85,3 @@ const UserInfo = () => {
 
 export default UserInfo;
 
-
-// <-- put in TextField -->
-// onKeyDown={(e) => {
-//   console.log('KEY HIT', e.key);
-//   if (e.key === 'Enter') {
-//     handleClick();
-//     setInputVals(() => ({ clicked: false }));
-//     retriveIdData();
-//   }
-// }}
