@@ -31,7 +31,10 @@ const UserInfo = () => {
             referrerPolicy="no-referrer"
             style={{ margin: '1rem' }}
           />
-          <Button onClick={() => setInputVals(() => ({ clicked: !inputVals.clicked }))}>Edit Profile</Button> <br />
+          <Button
+            style={{ fontFamily: 'Pokemon Solid', letterSpacing: '.2rem', textDecoration: 'underline' }}
+            onClick={() => setInputVals(() => ({ clicked: !inputVals.clicked }))}
+          >Edit Profile</Button> <br />
         </CreateCharContainer>
 
         <CreateCharContainer>
@@ -43,7 +46,10 @@ const UserInfo = () => {
             referrerPolicy="no-referrer"
             style={{ margin: '1rem' }}
           />
-          <Button onClick={() => setInputVals(() => ({ create: !inputVals.create }))}>Edit Trainer</Button> <br />
+          <Button
+            style={{ fontFamily: 'Pokemon Solid', letterSpacing: '.2rem', textDecoration: 'underline' }}
+            onClick={() => setInputVals(() => ({ create: !inputVals.create }))}
+          >Edit Trainer</Button> <br />
         </CreateCharContainer>
 
 

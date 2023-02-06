@@ -289,9 +289,11 @@ const InfoFavoriteContainer = styled.div`
 `;
 
 const BattleContainerContainer = styled.div`
-  background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700799764.jpg);
+  /* background-image: url(https://res.cloudinary.com/de0mhjdfg/image/upload/v1675626653/poke-bgs/thumb-1920-574726_dpvm9u.jpg); */
   background-size: auto;
   background-position: center;
+  /* width: 100%;
+  height: 100%; */
 `;
 
 
