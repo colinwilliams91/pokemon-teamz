@@ -39,6 +39,7 @@ const NavBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
+              textShadow: '2px 2px 1px #000000',
               color: 'inherit',
               textDecoration: 'none',
             }}
@@ -77,8 +78,8 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link style={{textDecoration: 'none', color: 'black'}} to={`/${page}`}>
+                  <Typography textAlign="center" >
+                    <Link to={`/${page}`}>
                       {page}
                     </Link>
                   </Typography>
@@ -111,7 +112,7 @@ const NavBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link style={{textDecoration: 'none', color: 'inherit'}} to={`/${page}`}>
+                <Link style={{textDecoration: 'none', color: 'inherit', textShadow: '2px 2px 1px #000000'}} to={`/${page}`}>
                   {page}
                 </Link>
               </Button>

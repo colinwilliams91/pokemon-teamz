@@ -8,7 +8,7 @@ const Collection = () => {
 
   return (
     <div>
-      <h1>Card Deck</h1>
+      <h1 style={{marginLeft: '1.5rem'}}>Card Deck</h1>
       <SearchForm setCards={setCards} />
       <CardList cards={cards} />
     </div>

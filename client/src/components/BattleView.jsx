@@ -38,7 +38,7 @@ const BattleView = () => {
   const getFavorite = () => {
     axios.get('api/user/current')
       .then((result) => {
-        console.log(result);
+        //console.log(result);
         const { _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 } = result.data; //deconstruction
         setPlayer({ _id, username, wins, losses, draws, favPokemonImage, favPokemonName, favPokemonType1, favPokemonType2 }); //object shorthand
       });
@@ -59,7 +59,7 @@ const BattleView = () => {
   };
 
   const teamGen = () => {
-    console.log('Generated an additional 5 mons onto player team. Resulting Team:');
+    //console.log('Generated an additional 5 mons onto player team. Resulting Team:');
     setPlayerTeam([]);
     const generatedTeam = [
       player.favPokemonName || Math.floor(Math.random() * (151) + 1), // handle case where user without favorite pokemon navigates to battle view
@@ -69,7 +69,7 @@ const BattleView = () => {
       Math.floor(Math.random() * (152 - 1) + 1),
       Math.floor(Math.random() * (152 - 1) + 1),
     ];
-    console.log(generatedTeam);
+    //console.log(generatedTeam);
     fetchTeam(generatedTeam, setPlayerTeam);
     // fetchTeam(generatedTeam);
   };
@@ -78,7 +78,7 @@ const BattleView = () => {
   const rivalGen = () => {
     if (playerTeam.length) {
       setRivalTeam([]);
-      console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
+      //console.log('Hardcoded a team of banana dinosaurs to fight the player: ');
       const generatedRival = {};
       const rivals = {
         BananaMan: ['tropius', 'tropius', 'tropius', 'tropius', 'tropius', 'tropius'],
@@ -132,7 +132,25 @@ const BattleView = () => {
       .then((result) => {
         console.log(result);
       })
-      .catch((err) => { console.error(err); });    
+      .catch((err) => { console.error(err); });
+  };
+
+  const matchResolution = () => {
+    let playerCheck = false;
+    let rivalCheck = false;
+    for (let i = 0; i < 6; i++) {
+      if (playerTeam[i].canBattle) {
+        playerCheck = true;
+      }
+      if (rivalTeam[i].canBattle) {
+        rivalCheck = true;
+      }
+    }
+    if (!playerCheck) {
+      handleResult('loss');
+    } else if (!rivalCheck) {
+      handleResult('win');
+    }
   };
 
   const battleResolution = (playerActive, rivalActive) => {
@@ -141,13 +159,13 @@ const BattleView = () => {
     let playerMulti = 1;
     let rivalMulti = 1;
 
-    // MULTIPLIER START    
+    // MULTIPLIER START
     if (matchups[playerActive.types[0]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
     if (matchups[rivalActive.types[0]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
 
     if (rivalActive.types[1]) {
       if (matchups[playerActive.types[0]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
-      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; } 
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
     }
     if (playerActive.types[1]) {
       if (matchups[playerActive.types[1]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
@@ -157,7 +175,7 @@ const BattleView = () => {
       if (matchups[playerActive.types[1]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
       if (matchups[rivalActive.types[1]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
     } // MULTIPLIER END
-    
+
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
       playerActive.canBattle = false;
       console.log('rival wins the round');
@@ -168,10 +186,6 @@ const BattleView = () => {
       setBattleMsg('You won that round! The rival has changed Pokemon!');
 
     }
-    // set active pokemon to null
-    setPlayerActive({});
-    // set rival pokemon to next in array
-    setRivalActive({});
     // call a function that checks state and moves to declare a winner
     // set both active pokemon to null
     //setRivalActive({});
@@ -197,10 +211,7 @@ const BattleView = () => {
   useEffect(() => {
     getFavorite();
     matchupPopulate();
-  }, [playerTeam, rivalTeam]);
-
-  console.log('PLAYER TEAM COMPILED SUCCESS', playerTeam);
-  console.log('RIVAL TEAM COMPILED SUCCESS', rivalTeam);
+  }, [playerTeam, rivalTeam, playerActive, rivalActive]);
 
   return (
     <BattleContainerContainer>
@@ -218,7 +229,7 @@ const BattleView = () => {
         <div id='player-team'>
           {
             playerTeam.length ? <span>{playerTeam.map((mon, i) => {
-              return <img style={{cursor: 'pointer'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
+              return <img style={mon.canBattle ? {cursor: 'pointer'} : {cursor: 'not-allowed'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
             })}</span> : <div></div>
           }
         </div>
@@ -244,9 +255,11 @@ const BattleView = () => {
         }}>FIGHT!</BattleButton>
         {
           Object.entries(playerActive).length ? <BattleFieldDiv>
-            <BattleTextDiv>Change your active Pokemon by clicking on one of your team member above.</BattleTextDiv>
+            <BattleTextDiv>Change your active Pokemon by clicking on one of your team members above.</BattleTextDiv>
             <BattleTextDiv>Your active Pokemon: {playerActive.name}</BattleTextDiv>
-            <img src={playerActive.sprite} />
+            {
+              playerActive.canBattle ? <img src={playerActive.sprite} /> : <><img src={playerActive.sprite} style={{zIndex: 1}} /> <img src='https://res.cloudinary.com/de0mhjdfg/image/upload/v1675647173/poke-bgs/X_nkjez8.png' style={{zIndex: 2, position: 'absolute', top: '47.2rem'}}/></>
+            }
             <BattleTextDiv>Type: {playerActive.types[0]}{playerActive.types[1] ? `/${playerActive.types[1]}` : ''}</BattleTextDiv>
           </BattleFieldDiv> : <BattleFieldDiv />
         }
