@@ -1,6 +1,6 @@
 import React, { useState, useEffect, } from 'react';
 import axios from 'axios';
-import { BattleHeadContainer, BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer } from './Styled.jsx';
+import { BattleHeadContainer, BattleTextDiv, BattleImage, BattleButton, BattleContainerContainer, BattleFieldDiv } from './Styled.jsx';
 
 const BattleView = () => {
   const [player, setPlayer] = useState({});
@@ -10,10 +10,11 @@ const BattleView = () => {
   const [matchups, setMatchups] = useState({});
   const [playerActive, setPlayerActive] = useState({}); // should probably live in a child component
   const [rivalActive, setRivalActive] = useState({}); // should probably live in a child component
+  const [battleMsg, setBattleMsg] = useState();
 
   const matchupPopulate = () => {
     setMatchups({
-      fire: ['grass', 'bug', 'steel', 'ice',],
+      fire: ['grass', 'bug', 'steel', 'ice'],
       water: ['fire', 'rock', 'ground'],
       grass: ['water', 'rock', 'ground'],
       electric: ['water', 'flying'],
@@ -90,17 +91,20 @@ const BattleView = () => {
         PalletKid: ['pikachu', 'butterfree', 'pidgeotto', 'bulbasaur', 'charmander', 'squirtle'],
       };
       generatedRival.name = Object.keys(rivals)[Math.floor(Math.random() * (7 - 0) + 0)];
-      generatedRival.team = rivals[generatedRival.name];
-      fetchTeam(generatedRival.team, setRivalTeam);
-      //console.log(generatedRival);
-      setRival(generatedRival);
+      //generatedRival.team = rivals[generatedRival.name];
+      fetchTeam(rivals[generatedRival.name], setRivalTeam);
+      console.log(generatedRival);
+      //setRival(generatedRival);
+      console.log('rivalTeam: ', rivalTeam);
     } else {
       console.log('You haven\'t gotten a team for battling yet!');
     }
-  };
 
-  const changeActive = (e) => {
-    setPlayerActive(e.target.value);
+  };
+  //setRivalActive(rivalTeam[0]);
+  const changeActive = (mon) => {
+    setPlayerActive(mon);
+    setPlayerActive(mon);
   };
 
   const handleResult = (battleResult) => {
@@ -109,14 +113,17 @@ const BattleView = () => {
     case 'win':
       battleRecord.wins = player.wins + 1;
       setPlayer({ ...player, wins: player.wins + 1 });
+      setBattleMsg('YOU WON THE MATCH! Hit "Fight" for a rematch or "Fight a rival" to get a new opponent."');
       break;
     case 'loss':
       battleRecord.losses = player.losses + 1;
       setPlayer({ ...player, losses: player.losses + 1 });
+      setBattleMsg('YOU LOST THE MATCH! Hit "Fight" for a rematch or "Fight a rival" to get a new opponent."');
       break;
     case 'draw':
       battleRecord.draws = player.draws + 1;
       setPlayer({ ...player, draws: player.draws + 1 });
+      setBattleMsg('THE MATCH IS A DRAW! Hit "Fight" for a rematch or "Fight a rival" to get a new opponent."');
       break;
     }
     console.log('RESULT LOGGED: ', battleResult, battleRecord);
@@ -125,7 +132,7 @@ const BattleView = () => {
       .then((result) => {
         console.log(result);
       })
-      .catch((err) => { console.error(err); });
+      .catch((err) => { console.error(err); });    
   };
 
   const matchResolution = () => {
@@ -147,38 +154,58 @@ const BattleView = () => {
   };
 
   const battleResolution = (playerActive, rivalActive) => {
-    playerActive = { name: 'charizard', statTotal: 534, types: ['fire', 'flying'], canBattle: true };
-    rivalActive = { name: 'geodude', statTotal: 300, types: ['rock', 'ground'], canBattle: true };
+    console.log('playerActive: ', playerActive);
+    console.log('rivalActive: ', rivalActive);
     let playerMulti = 1;
     let rivalMulti = 1;
-    if (matchups[playerActive.types[0]].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[0]].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[1]].includes(rivalActive.type1)) { playerMulti += 0.25; }
-    if (matchups[playerActive.types[1]].includes(rivalActive.type2)) { playerMulti += 0.25; }
-    if (matchups[rivalActive.types[0]].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[0]].includes(playerActive.type2)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[1]].includes(playerActive.type1)) { rivalMulti += 0.25; }
-    if (matchups[rivalActive.types[1]].includes(playerActive.type2)) { rivalMulti += 0.25; }
 
+    // MULTIPLIER START    
+    if (matchups[playerActive.types[0]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
+    if (matchups[rivalActive.types[0]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
+
+    if (rivalActive.types[1]) {
+      if (matchups[playerActive.types[0]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; } 
+    }
+    if (playerActive.types[1]) {
+      if (matchups[playerActive.types[1]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[0]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
+    }
+    if (rivalActive.types[1] && playerActive.types[1]) {
+      if (matchups[playerActive.types[1]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
+    } // MULTIPLIER END
+    
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
       playerActive.canBattle = false;
+      console.log('rival wins the round');
+      setBattleMsg('The rival won that round, pick another Pokemon!');
     } else {
       rivalActive.canBattle = false;
+      console.log('player wins the round');
+      setBattleMsg('You won that round! The rival has changed Pokemon!');
+
     }
     // call a function that checks state and moves to declare a winner
     // set both active pokemon to null
-    setRivalActive({});
-    setPlayerActive({});
+    //setRivalActive({});
+    //setPlayerActive({});
     // set rival pokemon to next in array with canBattle: true
     let foundNext = false;
     let index = 0;
     while (!foundNext && index < 6) {
       if (rivalTeam[index].canBattle) {
         foundNext = true;
+        setRivalActive(rivalTeam[index]);
+        setRivalActive(rivalTeam[index]);
       }
       index++;
     }
     matchResolution();
+  };
+
+  const printStates = ()=> {
+    console.log('playerteam: ', playerTeam, 'PlayerActive: ', playerActive, 'rivalteam: ', rivalTeam, 'rivalactive:', rivalActive);
   };
 
   useEffect(() => {
@@ -189,26 +216,24 @@ const BattleView = () => {
   return (
     <BattleContainerContainer>
       <BattleHeadContainer>
-        <BattleTextDiv> Welcome to the Battle Arena, {player.username || 'Player'}</BattleTextDiv>
-        <BattleTextDiv> Generate a team to take into battle below. The team will always include your favorite Pokemon!</BattleTextDiv>
+        <BattleTextDiv style={{marginTop: '1rem'}}>Welcome to the Battle Arena, {player.username || 'Player'}</BattleTextDiv>
+        <BattleTextDiv>Generate a team below. The team will always include your favorite Pokemon</BattleTextDiv>
+        <BattleTextDiv>Once you have a team, you can take them into battle against powerful opponents!</BattleTextDiv>
         <BattleTextDiv>Your favorite pokemon: {player.favPokemonName}</BattleTextDiv>
         <BattleImage src={player.favPokemonImage} />
         <BattleTextDiv>Type: </BattleTextDiv>
-        <BattleTextDiv>{player.favPokemonType1}</BattleTextDiv>
-      </BattleHeadContainer>
-      <BattleHeadContainer>
-        <BattleButton onClick={teamGen}> Generate Team</BattleButton>
-        {player.favPokemonType2 ? <span>/ {player.favPokemonType2}</span> : <></>}
+        <BattleTextDiv>{player.favPokemonType1}{player.favPokemonType2 ? `/${player.favPokemonType2}` : ''} </BattleTextDiv>
         <p></p>
+        <BattleButton onClick={teamGen}> Generate a team</BattleButton>
         {/* <div> Your Team: INSERT GRAPHIC HERE</div> */}
         <div id='player-team'>
           {
             playerTeam.length ? <span>{playerTeam.map((mon, i) => {
-              return <img src={`${mon.sprite}`} />;
+              return <img style={{cursor: 'pointer'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
             })}</span> : <div></div>
           }
         </div>
-        <BattleTextDiv>YOU BATTLED WELL! Report the result below!</BattleTextDiv>
+        <BattleTextDiv>There are rivals waiting to fight! Get an opponent below.</BattleTextDiv>
         <BattleButton onClick={rivalGen}> Fight a rival!</BattleButton>
         <div id='rival-team'>
           {
@@ -217,8 +242,36 @@ const BattleView = () => {
             })}</span> : <div></div>
           }
         </div>
-        <BattleButton onClick={() => { handleResult('win'); }}> Log a win</BattleButton>
-        <BattleButton onClick={() => { handleResult('loss'); }}> Log a loss</BattleButton>
+        {/* <BattleButton onClick={() => { handleResult('win'); }}> Log a win</BattleButton> */}
+        <BattleButton onClick={() => {
+          printStates();
+          console.log('first player member: ', playerTeam[0]);
+          console.log('first rival member: ', rivalTeam[0]);
+          setPlayerActive(playerTeam[0]);
+          setRivalActive(rivalTeam[0]);
+          setPlayerActive(playerTeam[0]);
+          setRivalActive(rivalTeam[0]);
+          printStates();
+        }}>FIGHT!</BattleButton>
+        {
+          Object.entries(playerActive).length ? <BattleFieldDiv>
+            <BattleTextDiv>Change your active Pokemon by clicking on one of your team member above.</BattleTextDiv>
+            <BattleTextDiv>Your active Pokemon: {playerActive.name}</BattleTextDiv>
+            <img src={playerActive.sprite} />
+            <BattleTextDiv>Type: {playerActive.types[0]}{playerActive.types[1] ? `/${playerActive.types[1]}` : ''}</BattleTextDiv>
+          </BattleFieldDiv> : <BattleFieldDiv />
+        }
+        {
+          Object.entries(rivalActive).length ? <BattleFieldDiv>
+            <BattleTextDiv>Rival's active Pokemon: {rivalActive.name}</BattleTextDiv>
+            <img src={rivalActive.sprite} />
+            <BattleTextDiv>Type: {rivalActive.types[0]}{rivalActive.types[1] ? `/${rivalActive.types[1]}` : ''}</BattleTextDiv>
+          </BattleFieldDiv> : <BattleFieldDiv />
+        }
+        <BattleButton onClick={()=>{ battleResolution(playerActive, rivalActive); }}>Resolve this battle</BattleButton>
+        <BattleTextDiv>{
+          battleMsg ? battleMsg : ''
+        }</BattleTextDiv>
       </BattleHeadContainer>
     </BattleContainerContainer>
   );
