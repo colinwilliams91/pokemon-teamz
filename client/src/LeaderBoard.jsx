@@ -6,13 +6,13 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 
 
 //This function is for table mui to format rows for table
-const createData = (rank, avatar, name, captain, winPercentage, wins, losses) => {
-  return { rank, avatar, name, captain, winPercentage, wins, losses };
+const createData = (rank, trainer, name, captain, winPercentage, wins, losses) => {
+  return { rank, trainer, name, captain, winPercentage, wins, losses };
 };
 
-//Avatars and Pokes are here to add images to users seeded into database so that we have enough users
+//Trainers and Pokes are here to add images to users seeded into database so that we have enough users
 //on leader-board to present the project.
-const avatars = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
+const trainers = ['https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/4_tmgl9y.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/2_wn0jws.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/3_g5v7we.png',
   'https://res.cloudinary.com/de0mhjdfg/image/upload/v1675307950/Trainers/1_ezqvts.png',
@@ -40,9 +40,16 @@ const LeaderBoard = () => {
     axios.get('/api/user/db/users')
       .then((users) => {
         users.data.forEach((user) => {
+          console.log('user', user);
           user.winPercentage = Math.floor((user.wins / (user.wins + user.losses) * 100));
-          user.avatar = avatars[Math.floor(Math.random() * avatars.length)];
-          user.captain = pokes[Math.floor(Math.random() * pokes.length)];
+          if (!user.trainer) {
+            user.trainer = trainers[Math.floor(Math.random() * trainers.length)];
+          }
+          if (user.favPokemonImage) {
+            user.captain = user.favPokemonImage;
+          } else {
+            user.captain = pokes[Math.floor(Math.random() * pokes.length)];
+          }
         });
         users = users.data.sort((a, b) => b.winPercentage - a.winPercentage);
         setLeaders(users);
@@ -54,12 +61,12 @@ const LeaderBoard = () => {
   };
 
   useEffect(() => {
-    getAllLeaders()
+    getAllLeaders();
   }, []);
 
 
   const rows = leaders.map((leader, i) => {
-    return createData(i, leader.avatar, leader.firstName, leader.captain, leader.winPercentage, leader.wins, leader.losses);
+    return createData(i, leader.trainer, leader.firstName, leader.captain, leader.winPercentage, leader.wins, leader.losses);
   });
 
   return (
@@ -92,7 +99,7 @@ const LeaderBoard = () => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <StyledTableCell>{i + 1}</StyledTableCell>
-              <TableCell align="center"><img src={row.avatar} style={{
+              <TableCell align="center"><img src={row.trainer} style={{
                 width: '60px',
                 height: '60px'
               }} /></TableCell>
