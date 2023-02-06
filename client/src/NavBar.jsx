@@ -2,7 +2,7 @@ import * as React from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuIcon, Container, Avatar, Button, Tooltip, MenuItem, PokeIcon } from './mui/index.jsx';
 import { Outlet, Link } from 'react-router-dom';
 
-const pages = ['profile', 'battler', 'inbox', 'marketPlace', 'pokedex', 'collection', 'leaderboard', 'pokeTypes'];
+const pages = ['profile', 'pokeTypes', 'battler', 'leaderboard', 'inbox', 'pokedex', 'marketPlace', 'collection'];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
