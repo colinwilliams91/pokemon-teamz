@@ -25,3 +25,7 @@ body {
      display: flex;
      margin-top: 3rem;
 }
+
+.MuiTextField-root {
+     text-shadow: 1px 1px 1px transparent !important;
+}

@@ -14,11 +14,11 @@ const UserInfo = () => {
 
         <CreateCharContainer>
           {inputVals.clicked ?
-            <div><TextField id='outlined-uncontrolled' label='Username' defaultValue={profile.username} inputRef={userRef} /> </div> :
+            <div style={{textShadow: 'none'}}><TextField className='noShadow' label='Username' defaultValue={profile.username} inputRef={userRef} root={{textShadow: '1px 1px 1px transparent'}} /> </div> :
             <h1>{profile.username}: </h1>} <br />
 
           {inputVals.clicked ?
-            <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} /></div> :
+            <div><TextField id='outlined-uncontrolled' label='Description' defaultValue={profile.description} inputRef={descRef} inputStyle={{}} /></div> :
             <h3 style={{ position: 'relative', top: '.7rem', left: '.7rem' }}> {profile.description}</h3>} <br />
         </CreateCharContainer>
 

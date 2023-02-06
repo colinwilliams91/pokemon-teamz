@@ -9,7 +9,7 @@ import axios from 'axios';
 const TrainerCreator = () => {
 
   const [index, setIndex] = useState(0);
-  const { character, setCharacter } = useContext(TrainerContext);
+  const { character, setCharacter, setInputVals, inputVals } = useContext(TrainerContext);
   const avatarRef = createRef('');
 
   const handleSelect = (selectedIndex, e) => {
@@ -41,9 +41,12 @@ const TrainerCreator = () => {
       <Carousel slide={false} indicators={false} onSelect={handleSelect} interval={null}>
         {
           Cloudinary.avatars.map((url, i) => {
-            return <Carousel.Item>
+            return <Carousel.Item key={i}>
               <TrainerCarItem
-                onClick={(e) => handleSave(e)}
+                onClick={(e) => {
+                  handleSave(e);
+                  setInputVals(() => ({ create: !inputVals.create }));
+                }}
                 id={i}
                 src={url}
                 alt='First Slide'
