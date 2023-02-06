@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React from 'react';
-import { Button, Card, CardActions, CardContent, CardMedia } from '../../mui/index.jsx';
+import { Button, Card, CardActions, CardMedia } from '../../mui/index.jsx';
 
 //moved 2 unsused style components to Styled.jsx - CardSect, PokeCard
 

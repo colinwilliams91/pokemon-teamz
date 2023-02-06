@@ -81,6 +81,7 @@ img {
 .pokeball__button>p {
      font-size: 30pt;
      z-index: 2;
+     text-shadow: 5px 5px 5px #000000;
      color: rgb(252, 1, 1);
      -webkit-text-stroke-width: 2px;
      -webkit-text-stroke-color: #000;
