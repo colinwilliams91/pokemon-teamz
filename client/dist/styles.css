@@ -1,6 +1,8 @@
 * {
      font-family: 'Pokemon Solid', sans-serif;
      letter-spacing: .2rem;
+     color: white;
+     text-shadow: 2px 2px 1px #000000;
 }
 
 body {

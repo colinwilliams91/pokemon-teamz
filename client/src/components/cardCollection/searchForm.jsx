@@ -38,8 +38,8 @@ const SearchForm = ({ setCards }) => {
     <form onSubmit={handleOnSubmit}>
       <div>
         <TextField
+          style={{marginLeft: '1.5rem', marginBottom: '1rem'}}
           type="text"
-          label="Search"
           value={searchTerm}
           onChange={e => setSearchTerm(e.target.value)}
         />

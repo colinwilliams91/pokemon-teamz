@@ -132,7 +132,7 @@ const BattleView = () => {
       .then((result) => {
         console.log(result);
       })
-      .catch((err) => { console.error(err); });    
+      .catch((err) => { console.error(err); });
   };
 
   const matchResolution = () => {
@@ -159,13 +159,13 @@ const BattleView = () => {
     let playerMulti = 1;
     let rivalMulti = 1;
 
-    // MULTIPLIER START    
+    // MULTIPLIER START
     if (matchups[playerActive.types[0]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
     if (matchups[rivalActive.types[0]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
 
     if (rivalActive.types[1]) {
       if (matchups[playerActive.types[0]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
-      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; } 
+      if (matchups[rivalActive.types[1]].includes(playerActive.types[0])) { rivalMulti += 0.25; }
     }
     if (playerActive.types[1]) {
       if (matchups[playerActive.types[1]].includes(rivalActive.types[0])) { playerMulti += 0.25; }
@@ -175,7 +175,7 @@ const BattleView = () => {
       if (matchups[playerActive.types[1]].includes(rivalActive.types[1])) { playerMulti += 0.25; }
       if (matchups[rivalActive.types[1]].includes(playerActive.types[1])) { rivalMulti += 0.25; }
     } // MULTIPLIER END
-    
+
     if (playerActive.statTotal * playerMulti < rivalActive.statTotal * rivalMulti) {
       playerActive.canBattle = false;
       console.log('rival wins the round');
@@ -229,7 +229,7 @@ const BattleView = () => {
         <div id='player-team'>
           {
             playerTeam.length ? <span>{playerTeam.map((mon, i) => {
-              return <img style={{cursor: 'pointer'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
+              return <img style={mon.canBattle ? {cursor: 'pointer'} : {cursor: 'not-allowed'}} onClick={(e)=> changeActive(playerTeam[i])} src={`${mon.sprite}`} />;
             })}</span> : <div></div>
           }
         </div>
@@ -255,9 +255,11 @@ const BattleView = () => {
         }}>FIGHT!</BattleButton>
         {
           Object.entries(playerActive).length ? <BattleFieldDiv>
-            <BattleTextDiv>Change your active Pokemon by clicking on one of your team member above.</BattleTextDiv>
+            <BattleTextDiv>Change your active Pokemon by clicking on one of your team members above.</BattleTextDiv>
             <BattleTextDiv>Your active Pokemon: {playerActive.name}</BattleTextDiv>
-            <img src={playerActive.sprite} />
+            {
+              playerActive.canBattle ? <img src={playerActive.sprite} /> : <><img src={playerActive.sprite} style={{zIndex: 1}} /> <img src='https://res.cloudinary.com/de0mhjdfg/image/upload/v1675647173/poke-bgs/X_nkjez8.png' style={{zIndex: 2, position: 'absolute', top: '47.2rem'}}/></>
+            }
             <BattleTextDiv>Type: {playerActive.types[0]}{playerActive.types[1] ? `/${playerActive.types[1]}` : ''}</BattleTextDiv>
           </BattleFieldDiv> : <BattleFieldDiv />
         }

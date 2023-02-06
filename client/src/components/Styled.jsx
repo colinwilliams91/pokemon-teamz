@@ -308,7 +308,7 @@ const BattleTextDiv = styled.h1`
     opacity: 0.8;
     font-size: .8rem;
     color: white;
-    text-shadow: 1px 1px 1px #000000;
+    text-shadow: 2px 2px 1px #000000;
     letter-spacing: .2rem;
     text-align: center;
 `;
@@ -319,14 +319,15 @@ const BattleImage = styled.img`
 const BattleButton = styled.button`
   font-family: 'Pokemon Solid', sans-serif;
   text-shadow: 1px 1px 1px #000000;
-  padding: .3rem;
+  /* padding: .3rem; */
+  padding-bottom: .7rem;
   opacity: 0.8;
   letter-spacing: .2rem;
-  border-color: white;
+  border-color: black;
   border-radius:20%;
   border-width: 1px;
   margin-bottom: .3rem;
-  background-color: transparent;
+  background-color: grey;
   color: white;
 `;
 const StyledTableRow = styled(TableRow)`
