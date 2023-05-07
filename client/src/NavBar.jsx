@@ -1,21 +1,8 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
-import Avatar from '@mui/material/Avatar';
-import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import PokeIcon from '@mui/icons-material/CatchingPokemon';
-
+import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuIcon, Container, Avatar, Button, Tooltip, MenuItem, PokeIcon } from './mui/index.jsx';
 import { Outlet, Link } from 'react-router-dom';
 
-const pages = ['profile', 'inbox', 'marketPlace', 'pokedex', 'collection'];
+const pages = ['profile', 'pokeTypes', 'battler', 'leaderboard', 'inbox', 'pokedex', 'marketPlace', 'collection'];
 
 const NavBar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -52,11 +39,12 @@ const NavBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
+              textShadow: '2px 2px 1px #000000',
               color: 'inherit',
               textDecoration: 'none',
             }}
           >
-            PokePlay-Pen
+            Pokemon-Teamz
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -90,8 +78,8 @@ const NavBar = () => {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">
-                    <Link style={{textDecoration: 'none', color: 'black'}} to={`/${page}`}>
+                  <Typography textAlign="center" >
+                    <Link to={`/${page}`}>
                       {page}
                     </Link>
                   </Typography>
@@ -115,7 +103,7 @@ const NavBar = () => {
               textDecoration: 'none',
             }}
           >
-            PokePlay-Pen
+            Pokémon Teamz
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -124,7 +112,7 @@ const NavBar = () => {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link style={{textDecoration: 'none', color: 'inherit'}} to={`/${page}`}>
+                <Link style={{textDecoration: 'none', color: 'inherit', textShadow: '2px 2px 1px #000000'}} to={`/${page}`}>
                   {page}
                 </Link>
               </Button>

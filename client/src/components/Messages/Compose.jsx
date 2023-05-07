@@ -1,18 +1,10 @@
 import React, {useState} from 'react';
 import { useLocation, Link} from 'react-router-dom';
 import axios from 'axios';
-import { Button, TextField} from '@mui/material';
-import { Send } from '@mui/icons-material';
-import styled from 'styled-components';
+import { Button, TextField, Send } from '../../mui/index.jsx';
+import { Body } from '../Styled.jsx';
 
 
-const Body = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 20px;
-  padding: 50px;
-`;
 
 const Compose = () => {
   const [message, setText] = useState('');

@@ -7,11 +7,13 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 require('dotenv').config();
 
 const mongoUri = 'mongodb://localhost/poke';
+// connect to Atlas (Mongo Cloud)
+const { MONGO_URI, MONGO_API_KEY } = process.env;
 
 
-mongoose.connect(mongoUri)
+mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('connected to mongodb'))
-  .catch(err => console.log('you did not connect to mongodb'));
+  .catch(err => console.error('you did not connect to mongodb', err));
 
 const userSchema = new Schema({
   _id: Number,
@@ -27,11 +29,15 @@ const userSchema = new Schema({
   },
   deckId: String,
   favPokemonName: String,
-  favPokemonType1: String, 
+  favPokemonType1: String,
   favPokemonImage: String,
   favPokemonType2: String,
   avatar: String,
+  trainer: String,
   description: String,
+  wins: Number,
+  losses: Number,
+  draws: Number,
 });
 userSchema.plugin(passportLocalMongoose);
 userSchema.plugin(findOrCreate);
@@ -57,6 +63,16 @@ const deckSchema = new Schema({
   image: String
 });
 
+
+const typeSchema = new Schema({
+  name: String,
+  imageUrl: String,
+  strongVs: [String],
+  weakVs: [String],
+  resistantTo: [String],
+  vulnerableTo: [String]
+});
+
 const User = mongoose.model('User', userSchema);
 passport.use(new GoogleStrategy({
   clientID: process.env.GOOGLE_CLIENT_ID,
@@ -66,27 +82,29 @@ passport.use(new GoogleStrategy({
 function (accessToken, refreshToken, profile, cb) {
   User.findOneAndUpdate(
     { password: profile._json.email }, // search for the user with this email (password)
-    { $set: { // if id is not found create it with these inputs
-      _id: profile.id,
-      password: profile._json.email,
-      firstName: profile._json.given_name,
-      lastName: profile._json.family_name,
-      avatar: profile._json['picture'],
-    }},
-    { upsert: true}, // allows functionality option to create what is not there
+    {
+      $set: { // if id is not found create it with these inputs
+        _id: profile.id,
+        password: profile._json.email,
+        firstName: profile._json.given_name,
+        lastName: profile._json.family_name,
+        avatar: profile._json['picture']
+      }
+    },
+    { upsert: true }, // allows functionality option to create what is not there
     (err, user) => { // serelize the user
       return cb(err, user);
     }
     // option to allow such functionality
   );
-}
-));
+}));
+const Type = mongoose.model('Type', typeSchema);
 const Deck = mongoose.model('Deck', deckSchema);
 const Chat = mongoose.model('Chat', chatSchema);
 passport.use(User.createStrategy());
 
 
-passport.serializeUser( (user, done) => {
+passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 passport.deserializeUser((id, done) => {
@@ -96,8 +114,13 @@ passport.deserializeUser((id, done) => {
 });
 
 
+
+
+
+
 module.exports = {
   Deck,
   User,
   Chat,
+  Type,
 };

@@ -1,13 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import { Button } from '@mui/material';
+import { Button } from '../../mui/index.jsx';
+import { Contents } from '../Styled.jsx';
 
-const Contents = styled.div`
-  display: grid;
-  grid-template-rows: 100%, 100%, 100%, 100%, 100%;
-  grid-row-gap: 10px;
-  justify-items: flex-start;
-`;
 
 const PokeInfo = ({ selectedPoke, changePokeStatus, selectedPokeId }) => {
   
